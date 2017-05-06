@@ -29,4 +29,10 @@ class Database
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
     }
+
+    function getEmployee($id, $name){
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE PHONE = :id AND SECOND_NAME = :name");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':id' => $id, ':name' => $name)) ? $request->fetchAll() : null;
+    }
 }
