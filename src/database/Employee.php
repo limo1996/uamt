@@ -1,40 +1,57 @@
 <?php
 class Employee
 {
-    protected $first_name, $second_name, $title1, $title2, $ldaplogin, $photo, $romm, $phone, $department, $staff_role, $function;
+    protected $first_name, $second_name, $title1, $title2, $ldaplogin, $photo, $room, $phone, $department, $staff_role, $function;
 
     public function getFirstName()
     {
-        return $this->id;
+        return $this->first_name;
     }
 
     public function getSecondName()
     {
-        return $this->state;
+        return $this->second_name;
     }
 
-    public function getCity()
+    public function getTitle1()
     {
-        return $this->city;
+        return $this->title1;
     }
 
-    public function getLat()
+    public function getTitle2()
     {
-        return $this->lat;
+        return $this->title2;
     }
 
-    public function getLon()
+    public function getLdapLogin()
     {
-        return $this->lon;
+        return $this->ldaplogin;
     }
 
-    public function getPartOfDay()
+    public function getPhoto()
     {
-        return $this->partOfDay;
+        return $this->photo;
     }
 
-    public function getCountryCode()
+    public function getRoom()
     {
-        return $this->countryCode;
+        return $this->room;
+    }
+
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+    public function getStaffRole()
+    {
+        return $this->staff_role;
+    }
+    public function getFunction()
+    {
+        return $this->function;
     }
 }
