@@ -1,0 +1,44 @@
+hr{
+    background: #0066cc;
+    -webkit-mask-image: radial-gradient(circle,#0066cc 50%,transparent);
+}
+
+footer{
+    background-color: #0066cc;
+    color: #f5f5f5;
+    padding: 7px;
+    width: 100%;
+    display: inline-block;
+    font-size: 11px;
+
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #424242;
+    text-decoration: none;
+}
+
+
+
+
+#nazov {
+    padding-top : 40px;
+    width : 100%;
+    display: inline-block;
+}
+
+h2{
+    text-align: center;
+    color: #0066cc;
+    font-family: Monospace;
+}
+
+#hr_nazov{
+    color: #0066cc;
+
+}
+

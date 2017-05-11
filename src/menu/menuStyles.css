@@ -1,0 +1,89 @@
+@media (min-width: 767px) {
+    .navbar-nav .dropdown-menu .caret {
+	transform: rotate(-90deg);
+    }
+
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+
+    .navbar-default {
+        background-color: #F8F8F8;
+        border-color: #0066cc;
+    }
+    .navbar-default .navbar-nav > li > a:hover {
+        color: #0066cc; /*Change active text color here*/
+
+
+    }
+
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus {
+        color: #0066cc;
+        background-color: #F8F8F8;
+    }
+
+    .navbar-default .navbar-nav > .active li > a {
+        color: #0066cc; /*Change active text color here*/
+
+    }
+
+
+
+    .dropdown-menu > li > a:hover,
+    .dropdown-menu > li > a:focus {
+        color: #0066cc;
+
+    }
+
+
+}
+
+
+.span-logo {
+    display: inline-block;
+    vertical-align: top;
+    height: 20px;
+    width: 30px;
+}
+
+.sk-logo {
+    display: inline-block;
+    vertical-align: top;
+    height: 20px;
+    width: 30px;
+}
+
+.navbar-flag1 {
+    position: absolute;
+    top: 20%;
+    left: 95%;
+
+    display: inline-block;
+    height: 20px;
+    width: 30px;
+    float: right;
+}
+
+
+.navbar-flag2 {
+    position: absolute;
+    top: 20%;
+    left: 91%;
+
+    display: inline-block;
+    height: 20px;
+    width: 30px;
+    float: right;
+}
+
+
+
+

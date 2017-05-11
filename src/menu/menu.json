@@ -1,0 +1,120 @@
+{
+	"MenuItems": [
+		{
+			"displayName": "O Nás",
+			"href": "/uamt/index.php",
+			"separator": false,
+			"children": [ ]
+		},
+		{
+			"displayName": "Pracovníci",
+			"href": "/uamt/employees/employees.php",
+			"separator": false,
+			"children": [ ]
+		},
+		{
+			"displayName": "Štúdium",
+			"href": "#",
+			"separator": false,
+			"children": [ ]
+		},
+		{
+			"displayName": "Výskum",
+			"href": "#",
+			"separator": false,
+			"children": [
+				{
+					"displayName": "Projekty",
+					"href": "#",
+					"separator": false,
+					"children": [ ]
+				},
+				{
+					"displayName": "Výskumné oblasti ",
+					"href": "#",
+					"separator": false,
+					"children": [
+						{
+							"displayName": "Elektrická motokára",
+							"href": "#",
+							"separator": false,
+							"children": [ ]
+						},
+						{
+							"displayName": "Autonómne vozidlo 6×6 ",
+							"href": "#",
+							"separator": false,
+							"children": [ ]
+						},
+						{
+							"displayName": "3D LED kocka",
+							"href": "#",
+							"separator": false,
+							"children": [ ]
+						},
+						{
+							"displayName": "Biomechatronika",
+							"href": "#",
+							"separator": false,
+							"children": [ ]
+						}
+					]
+				}
+			]
+		},
+		{
+			"displayName": "Aktuality",
+			"href": "#",
+			"separator": false,
+			"children": [ ]
+		},
+
+		{
+
+			"displayName": "Aktivity",
+			"href": "#",
+			"separator": false,
+			"children": [
+				{
+					"displayName": "Fotogaléria",
+					"href": "#",
+					"separator": false,
+					"children": [ ]
+
+				},
+				{
+					"displayName": "Videá",
+					"href": "#",
+					"separator": true,
+					"children": [ ]
+				},
+				{
+					"displayName": "Médiá",
+					"href": "#",
+					"separator": true,
+					"children": [ ]
+				},
+				{
+					"displayName": "Naše tématické web stránky ",
+					"href": "#",
+					"separator": false,
+					"children": [
+						{
+							"displayName": "Elektromobilita",
+							"href": "#",
+							"separator": false,
+							"children": [ ]
+
+						}
+					]
+				}
+			]
+		},
+		{
+			"displayName": "Kontakt",
+			"href": "#",
+			"separator": false,
+			"children": [ ]
+		}
+		]
+}
