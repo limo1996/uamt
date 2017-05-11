@@ -48,4 +48,18 @@ class Database
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
     }
+
+    function fetchVideos()
+    {
+        $request = $this->conn->prepare("SELECT * FROM video");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function fetchMedia()
+    {
+        $request = $this->conn->prepare("SELECT * FROM media");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
 }
