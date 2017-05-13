@@ -16,6 +16,9 @@ class Text
         if($page == 'projects'){
             return $this->getTextForProjects();
         }
+        else if ($page == 'menu'){
+            return $this->getTextForMenu();
+        }
         else
             return null;
     }
@@ -45,5 +48,13 @@ class Text
             $final[$key] = $tmp;
         }
         return $final;
+    }
+
+    private function getTextForMenu(){
+        $filename = __DIR__."/menu-".$this->m_lang.".json";
+       # echo $filename;
+
+        $rawContent = file_get_contents($filename);
+        return json_decode($rawContent);
     }
 }

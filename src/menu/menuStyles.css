@@ -61,23 +61,16 @@
     width: 30px;
 }
 
-.navbar-flag1 {
+.nav-flags {
     position: absolute;
     top: 20%;
     left: 95%;
-
-    display: inline-block;
-    height: 20px;
-    width: 30px;
-    float: right;
+    width: 70px;
+    height: 30px;
 }
 
 
-.navbar-flag2 {
-    position: absolute;
-    top: 20%;
-    left: 91%;
-
+.navbar-flag {
     display: inline-block;
     height: 20px;
     width: 30px;

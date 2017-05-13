@@ -178,4 +178,4 @@ function isActive(first, second){
         load(items);
   }
  //in footer insert this: <div id="visited">0</div>
- // in page insert this:  <ul class="breadcrumb" id="breadCrumb"></ul> ->BreadCrumb
+ //in page insert this:  <ul class="breadcrumb" id="breadCrumb"></ul> ->BreadCrumb
