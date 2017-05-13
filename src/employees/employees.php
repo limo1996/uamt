@@ -22,6 +22,8 @@ $text = $lan->getTextForPage('menu');
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
+
+    <script src="../menu/menuScripts.js"></script>
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
@@ -76,7 +78,7 @@ $text = $lan->getTextForPage('menu');
     </div>
 </div>
 <div id="nazov">
-    <h2>Pracovnici</h2>
+    <h2><?php echo $text->staff; ?></h2>
     <hr class="hr_nazov">
 </div>
 <div class="container">
@@ -158,14 +160,9 @@ $text = $lan->getTextForPage('menu');
             <div class="col-sm-2 text-center">
                 Adam Valasik
             </div>
-
-
-
         </div>
     </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
 <script src="../menu/jQueryScripts.js"></script>
-
-<body>
+</body>
 </html>

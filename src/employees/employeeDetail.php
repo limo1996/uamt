@@ -5,7 +5,8 @@
  * Date: 5/6/17
  * Time: 9:27 PM
  */
-include("../database/database.php");
+include_once ('../lang/langFunctions.php');
+include_once ("../database/database.php");
 include("diacritics.php");
 
 $num = $_GET['id'];
@@ -13,8 +14,15 @@ $name = $_GET['name'];
 $db = new Database();
 $usrId = $db->getUsrId($name)[0]['AIS_ID'];
 
-$db = new Database();
 $employee = array_values($db->getEmployee($num, $name))[0];
+
+$lang = 'sk';
+
+if(isset($_GET['lang']))
+    $lang = $_GET['lang'];
+
+$lan = new Text($lang);
+$text = $lan->getTextForPage('menu');
 
 $ldapuid = remove_accents($name);
 $err = false;
@@ -96,9 +104,66 @@ usort($allRows, "cmp");
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
+    <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
+    <script src="../menu/menuScripts.js"></script>
 </head>
 <body>
-
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                    class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                    class="icon-bar"></span></button>
+        <p class="navbar-brand" style="color:#0066cc;">UAMT</p></div>
+    <div class="container">
+        <div class="navbar-header"></div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-collapse navbar-nav" id="navMenu">
+                <li><a href="/uamt/index.php"><?php echo $text->about; ?></a></li>
+                <li class="active"><a href="/uamt/employees/employees.php"><?php echo $text->staff; ?></a></li>
+                <li><a href="#"><?php echo $text->study; ?></a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->research; ?><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><?php echo $text->research_projects; ?></a></li>
+                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->research_topics; ?><b
+                                        class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><?php echo $text->research_motocar; ?></a></li>
+                                <li><a href="#"><?php echo $text->research_vehicle; ?></a></li>
+                                <li><a href="#"><?php echo $text->research_cube; ?></a></li>
+                                <li><a href="#"><?php echo $text->research_bio; ?></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><?php echo $text->news; ?></a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><?php echo $text->act_photos; ?></a></li>
+                        <li><a href="#"><?php echo $text->act_video; ?></a></li>
+                        <li><a href="#"><?php echo $text->act_media; ?></a></li>
+                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?><b
+                                        class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><?php echo $text->act_temata_mobility; ?></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><?php echo $text->contact; ?></a></li>
+                <!--<div class="navbar-flag2"><a href="employees.php?lang=en"><span class="span-logo"><img
+                                    src="http://147.175.98.167/uamt/menu/images/gb.gif" class="sk-logo"></span></a>
+                </div>-->
+            </ul>
+            <!--<div class="navbar-flag1"><a href="employees.php?lang=sk"><span class="span-logo"><img
+                                src="http://147.175.98.167/uamt/menu/images/sk.gif" class="sk-logo"></span></a></div>-->
+        </div>
+    </div>
+</div>
+<div id="nazov">
+    <h2><?php echo $text->staff; ?></h2>
+    <hr class="hr_nazov">
+</div>
 <div class="col-sm-3">
     <div class="profile-sidebar">
         <!-- SIDEBAR USERPIC -->
@@ -207,5 +272,6 @@ usort($allRows, "cmp");
             echo '</table>';
         ?>
 </div>
+<script src="../menu/jQueryScripts.js"></script>
 </body>
 </html>

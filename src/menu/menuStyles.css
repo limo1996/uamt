@@ -57,26 +57,18 @@
 .sk-logo {
     display: inline-block;
     vertical-align: top;
-    height: 20px;
-    width: 30px;
+    height: 15px;
+    width: 21px;
 }
 
 .nav-flags {
     position: absolute;
-    top: 20%;
-    left: 95%;
-    width: 70px;
-    height: 30px;
+    top: 24%;
+    left: 90px;
 }
-
 
 .navbar-flag {
     display: inline-block;
-    height: 20px;
-    width: 30px;
     float: right;
+    margin: 1px;
 }
-
-
-
-

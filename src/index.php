@@ -40,6 +40,26 @@ $text = $lan->getTextForPage('menu');
                     class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                     class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:#0066cc;">UAMT</p></div>
+    <div class="nav-flags">
+        <?php
+        if($lang == 'sk')
+            echo '<div class="navbar-flag">
+            <a href="index.php?lang=en">
+                        <span class="span-logo">
+                            <img src="http://147.175.98.167/uamt/menu/images/gb.gif" class="sk-logo">
+                        </span></a>
+        </div>';
+        else
+            echo ' <div class="navbar-flag">
+            <a href="index.php?lang=sk">
+                    <span class="span-logo">
+                        <img src="http://147.175.98.167/uamt/menu/images/sk.gif" class="sk-logo">
+                    </span>
+            </a>
+        </div>';
+        ?>
+    </div>
+    </div>
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
@@ -81,27 +101,10 @@ $text = $lan->getTextForPage('menu');
                 </li>
                 <li><a href="#"><?php echo $text->contact; ?></a></li>
             </ul>
-            <div class="nav-flags">
-                <div class="navbar-flag">
-                    <a href="index.php?lang=en">
-                        <span class="span-logo">
-                            <img src="http://147.175.98.167/uamt/menu/images/gb.gif" class="sk-logo">
-                        </span></a>
-                </div>
-                <span style="width: 10px;"></span>
-                <div class="navbar-flag">
-                    <a href="index.php?lang=sk">
-                    <span class="span-logo">
-                        <img src="http://147.175.98.167/uamt/menu/images/sk.gif" class="sk-logo">
-                    </span>
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
 </nav>
 <div id="nazov">
-    <h2>O Nás</h2>
+    <h2><?php echo $text->about; ?></h2>
     <hr class="hr_nazov">
 </div>
 
@@ -163,7 +166,7 @@ $text = $lan->getTextForPage('menu');
         <div class="container">
             <div class="col-sm-1 text-align: center text-center">
             </div>
-            <div class="col-sm-2 text-align: centertext-center">
+            <div class="col-sm-2 text-center">
                 Jakub Lichman
             </div>
             <div class="col-sm-2 text-center">
@@ -181,6 +184,6 @@ $text = $lan->getTextForPage('menu');
         </div>
     </div>
 </footer>
+<script src="menu/jQueryScripts.js"></script>
 </body>
-
 </html>
