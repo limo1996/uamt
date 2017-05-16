@@ -173,7 +173,19 @@ usort($allRows, "cmp");
                 $photo = $employee['PHOTO'];
                 if (empty($photo))
                     $photo = "person.png";
-                echo "style='background-image: url(photos/".$photo.")'"
+                $photo = 'photos/'.$photo;
+                list($width, $height, $type, $attr) = getimagesize($photo);
+                if($width > 250)
+                    $width = 250;
+                else
+                    $width = 130;
+
+                if($height > 250)
+                    $height = 250;
+                else
+                    $height = 130;
+
+                echo 'style="width: '.$width.'px; height:'.$height.'px;background-image: url('.$photo.')"';
                 ?>
             >
             </div>
@@ -206,7 +218,7 @@ usort($allRows, "cmp");
         <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="#">
                         <i class="glyphicon glyphicon-home"></i>
                         <span><?php echo $employee['DEPARTMENT']; ?> </span>
@@ -250,12 +262,7 @@ usort($allRows, "cmp");
         </tr>
         <?php
         $currYear = intval(date("Y"));
-        $drawed = false;
         foreach ($allRows as $row) {
-            if (intval($row->childNodes[3]->textContent) <= $currYear - 5 && $drawed == false) {
-                echo '</table><div class="text-center"><button type="button" class="btn btn-primary" id="showMore">Zobraz všetko</button></div><div id="faded"><table class="table table-striped table-bordered">';
-                $drawed = true;
-            }
             echo "<tr>";
             //echo "<p>Typ: ".$row->childNodes[1]->textContent."</p>";
             echo "<td>" . $row->childNodes[1]->textContent . "</td>";
@@ -265,10 +272,6 @@ usort($allRows, "cmp");
             //echo "<p>Anotácia: ".$annotation."</p>";
             echo "</tr>";
         }
-
-        if ($drawed)
-            echo '</table></div>';
-        else
             echo '</table>';
         ?>
 </div>

@@ -1,5 +1,8 @@
 <?php
-include ('Employee.php');
+include (__DIR__.'/../intranet/attendance/classes/Absence.php');
+include (__DIR__.'/../intranet/attendance/classes/Employee.php');
+include (__DIR__.'/../intranet/attendance/classes/EmployeeAbsence.php');
+
 
 class Database
 {
@@ -24,10 +27,35 @@ class Database
         }
     }
 
+    function fetchAisEmployees(){
+        $request = $this->conn->prepare("SELECT * FROM ais_emp");
+        $request->setFetchMode(PDO::FETCH_CLASS, "Employee");
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
     function fetchEmployees(){
         $request = $this->conn->prepare("SELECT * FROM employees");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function sortEmployeesBy($sortBy){
+        $sql = "SELECT * FROM `employees` ORDER BY `employees`.`".$sortBy."` ASC";
+        $request = $this->conn->prepare($sql);
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function sortAndFilterEmployeesBy($sortBy, $filterBy, $keyword){
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE ".$filterBy." LIKE '%".$keyword."%' ORDER BY ".$sortBy);
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':keyword' => $keyword)) ? $request->fetchAll() : null;
+    }
+
+    function filterEmployeesBy($filterBy, $keyword){
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE ".$filterBy." LIKE '%".$keyword."%'");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':filterBy' => $filterBy, ':keyword' => $keyword)) ? $request->fetchAll() : null;
     }
 
     function getEmployee($id, $name){
@@ -61,5 +89,65 @@ class Database
         $request = $this->conn->prepare("SELECT * FROM media");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
+    }
+
+
+    /******************** ATTENDANCE **********************/
+    function fetchAllEmployees()
+    {
+        $request = $this->conn->prepare("SELECT id, firstname, lastname FROM Employee ORDER BY lastname, firstname ASC");
+        $request->setFetchMode(PDO::FETCH_CLASS, "Employee");
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function fetchEmployee($id)
+    {
+        $request = $this->conn->prepare("SELECT id, firstname, lastname FROM Employee WHERE id = :id");
+        $request->bindValue(":id", $id, PDO::PARAM_INT);
+        $request->setFetchMode(PDO::FETCH_CLASS, "Employee");
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function fetchAbsences()
+    {
+        $request = $this->conn->prepare("SELECT id, absencetype FROM Absence");
+        $request->setFetchMode(PDO::FETCH_CLASS, "Absence");
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function fetchEmployeeAbsence()
+    {
+        $request = $this->conn->prepare("SELECT idEmployee, idAbsence, date FROM EmployeeAbsence ORDER BY date DESC");
+        $request->setFetchMode(PDO::FETCH_CLASS, "EmployeeAbsence");
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function fetchEmployeeAbsenceWhere($month, $year, $employeeId)
+    {
+        $sql = "SELECT idEmployee, idAbsence, date FROM EmployeeAbsence WHERE YEAR(date) = :year AND MONTH(date) = :month AND idEmployee = :employeeId ORDER BY date ASC";
+        $request = $this->conn->prepare($sql);
+        $request->setFetchMode(PDO::FETCH_CLASS, "EmployeeAbsence");
+        return $request->execute(array(':month' => $month, ':year' => $year, ':employeeId' => $employeeId)) ? $request->fetchAll() : null;
+    }
+
+    function insertEmployeeAbsence($date, $employeeId, $absenceId)
+    {
+        $sql = "INSERT INTO EmployeeAbsence(idEmployee, idAbsence, date) VALUES (:employeeId, :absenceId, :date)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':employeeId' => $employeeId, ':absenceId' => $absenceId, ':date' => $date));
+    }
+
+    function deleteEmployeeAbsence($date, $employeeId)
+    {
+        $sql = "DELETE FROM EmployeeAbsence WHERE idEmployee = :employeeId AND date = :date";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':employeeId' => $employeeId, ':date' => $date));
+    }
+
+    function deleteEmployeeAbsenceInterval($dateFrom, $dateTo)
+    {
+        $sql = "DELETE FROM EmployeeAbsence WHERE date BETWEEN :dateFrom AND :dateTo";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':dateFrom' => $dateFrom, ':dateTo' => $dateTo));
     }
 }

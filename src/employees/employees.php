@@ -1,9 +1,32 @@
 <?php
 include_once ("../database/database.php");
 include ("../lang/langFunctions.php");
+
+$sortBy = $_POST['SortBy'];
+$sort = $_POST['Sort'];
+$filter = $_POST['Filter'];
+$filterBy = $_POST['FilterBy'];
+$filterBox = $_POST['FilterBox'];
+
 $db = new Database();
 
-$employees = $db->fetchEmployees();
+$employees = array();
+
+if(!$filter && !$sort) {
+    $employees = $db->fetchEmployees();
+}
+else if ($sort){
+    if($filter && !empty($filterBox)){
+        $employees = $db->sortAndFilterEmployeesBy($sortBy, $filterBy, $filterBox);
+    }
+    else{
+        $employees = $db->sortEmployeesBy($sortBy);
+    }
+}
+else if($filter){
+    $employees = $db->filterEmployeesBy($filterBy, $filterBox);
+}
+
 $lang = 'sk';
 
 if(isset($_GET['lang']))
@@ -56,10 +79,10 @@ $text = $lan->getTextForPage('menu');
                 <li><a href="#"><?php echo $text->news; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><?php echo $text->act_photos; ?></a></li>
-                        <li><a href="#"><?php echo $text->act_video; ?></a></li>
-                        <li><a href="#"><?php echo $text->act_media; ?></a></li>
-                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?><b
+                        <li><a href=""><?php echo $text->act_photos; ?></a></li>
+                        <li><a href=""><?php echo $text->act_video; ?></a></li>
+                        <li><a href=""><?php echo $text->act_media; ?></a></li>
+                        <li><a href="" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?><b
                                         class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><?php echo $text->act_temata_mobility; ?></a></li>
@@ -67,19 +90,54 @@ $text = $lan->getTextForPage('menu');
                         </li>
                     </ul>
                 </li>
-                <li><a href="#"><?php echo $text->contact; ?></a></li>
-                <div class="navbar-flag2"><a href="employees.php?lang=en"><span class="span-logo"><img
-                                    src="http://147.175.98.167/uamt/menu/images/gb.gif" class="sk-logo"></span></a>
-                </div>
+                <li><a href=""><?php echo $text->contact; ?></a></li>
             </ul>
-            <div class="navbar-flag1"><a href="employees.php?lang=sk"><span class="span-logo"><img
-                                src="http://147.175.98.167/uamt/menu/images/sk.gif" class="sk-logo"></span></a></div>
         </div>
     </div>
 </div>
 <div id="nazov">
     <h2><?php echo $text->staff; ?></h2>
     <hr class="hr_nazov">
+</div>
+
+<div class="col-sm-4"></div>
+<div class="text-center col-sm-4">
+    <form action="employees.php" method="post" class="form-horizontal">
+        <div class="form-group">
+            <div class="checkbox col-sm-4">
+                <label><input type="checkbox" id="sortBox" name="Sort" <?php if($sort == 'on') echo 'checked';?>/>Zotriedenie</label>
+            </div>
+            <div class="checkbox col-sm-4">
+                <label><input type="checkbox" id="filterBox" name="Filter" <?php if($filter == 'on') echo 'checked';?>/>Filter:</label>
+            </div>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">Vyhľadaj</button>
+            </div>
+        </div>
+        <div class="form-group" id="SortingArea">
+            <label for="select" class="control-label col-sm-3">Zoraď podľa:</label>
+            <div class="col-sm-9">
+                <select name="SortBy" class="form-control">
+                    <option <?php if($sortBy == 'SECOND_NAME') echo 'selected';?> value="SECOND_NAME">Meno</option>
+                    <option <?php if($sortBy == 'DEPARTMENT') echo 'selected';?> value="DEPARTMENT">Oddelenie</option>
+                    <option <?php if($sortBy == 'STAFF_ROLE') echo 'selected';?> value="STAFF_ROLE">Zaradenie</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="FilterArea">
+            <div class="col-sm-4">
+                <select name="FilterBy" class="form-control">
+                    <option <?php if($filterBy == 'DEPARTMENT') echo 'selected';?> value="DEPARTMENT">Oddelenie</option>
+                    <option <?php if($filterBy == 'STAFF_ROLE') echo 'selected';?> value="STAFF_ROLE">Zaradenie</option>
+                </select>
+            </div>
+            <label for="select" class="control-label col-sm-3">ktoré obsahuje</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="filterBox" name="FilterBox" value="<?php echo $filterBox;?>"/>
+            </div>
+        </div>
+        <br>
+    </form>
 </div>
 <div class="container">
 
@@ -91,7 +149,7 @@ $text = $lan->getTextForPage('menu');
             <th>Oddelenie</th>
             <th>Zaradenie</th>
             <th>Funkcia</th>
-            <td>Detail</td>
+            <th>Detail</th>
         </tr>
 
         <?php
@@ -164,5 +222,37 @@ $text = $lan->getTextForPage('menu');
     </div>
 </footer>
 <script src="../menu/jQueryScripts.js"></script>
+<script>
+    /**
+     * Created by limo on 3/26/17.
+     */
+    $(document).ready(function () {
+        if(!$("#sortBox").is(":checked"))
+            $("#SortingArea").hide();
+
+        if(!$("#filterBox").is(":checked"))
+            $("#FilterArea").hide();
+
+        $("#sortBox").change(function() {
+            if(this.checked) {
+                $("#SortingArea").show(400);
+            }else
+                $("#SortingArea").hide(400);
+        });
+        $("#filterBox").change(function() {
+            if(this.checked) {
+                $("#FilterArea").show(400);
+            }else
+                $("#FilterArea").hide(400);
+        });
+        $("#faded").hide();
+
+
+        $("#showMore").click(function () {
+            $(this).hide();
+            $("#faded").show(400);
+        });
+    });
+</script>
 </body>
 </html>
