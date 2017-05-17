@@ -41,23 +41,7 @@ $text = $lan->getTextForPage('menu');
                     class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:#0066cc;">UAMT</p></div>
     <div class="nav-flags">
-        <?php
-        if($lang == 'sk')
-            echo '<div class="navbar-flag">
-            <a href="index.php?lang=en">
-                        <span class="span-logo">
-                            <img src="http://147.175.98.167/uamt/menu/images/gb.gif" class="sk-logo">
-                        </span></a>
-        </div>';
-        else
-            echo ' <div class="navbar-flag">
-            <a href="index.php?lang=sk">
-                    <span class="span-logo">
-                        <img src="http://147.175.98.167/uamt/menu/images/sk.gif" class="sk-logo">
-                    </span>
-            </a>
-        </div>';
-        ?>
+    
     </div>
     </div>
     <div class="container">
@@ -99,7 +83,7 @@ $text = $lan->getTextForPage('menu');
                         </li>
                     </ul>
                 </li>
-                <li><a href="#"><?php echo $text->contact; ?></a></li>
+                <li><a href="/uamt/contactPage/index.php"><?php echo $text->contact; ?></a></li>
             </ul>
     </div>
 </nav>
@@ -164,23 +148,27 @@ $text = $lan->getTextForPage('menu');
         </div>
         <hr>
         <div class="container">
-            <div class="col-sm-1 text-align: center text-center">
+
+            <div class="col-sm-4 text-center">
+                © Copyright 2017. Všetky práva vyhradené.
             </div>
-            <div class="col-sm-2 text-center">
-                Jakub Lichman
+            <div class="col-sm-4 text-center">
+               Baka | Lukac | Lichman | Valasik | Smetanka
             </div>
-            <div class="col-sm-2 text-center">
-                Matus Lukac
+
+            <div class="col-sm-4 text-center">
+
+                <?php
+                if($lang == 'sk')
+                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                else
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='color: yellow'>  English </a>";
+
+                ?>
             </div>
-            <div class="col-sm-2 text-center">
-                Tomas Baka
+
             </div>
-            <div class="col-sm-2 text-center">
-                Jakub Smetanka
-            </div>
-            <div class="col-sm-2 text-center">
-                Adam Valasik
-            </div>
+
         </div>
     </div>
 </footer>
