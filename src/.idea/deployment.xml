@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="WebTech2">
+  <component name="PublishConfigData" autoUpload="Always" serverName="uamt">
     <serverData>
-      <paths name="WebTech2">
+      <paths name="uamt">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/xlichman/public_html/uamt" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/public_html/uamt" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
