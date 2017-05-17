@@ -33,6 +33,20 @@
 include (__DIR__.'/../database/database.php');
 $ex = new Database();
 $js = $ex->fetchVideos();
+function getYoutube($url)
+{
+    $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_]+)\??/i';
+    $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+
+    if (preg_match($longUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+
+    if (preg_match($shortUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+    return 'https://www.youtube.com/embed/' . $youtube_id ;
+}
 ?>
 <div class="container">
         <div class="jumbotron jumbotron-sm" style="background-color:#4268f4 !important;margin-top:2%;color:white !important;">
@@ -49,7 +63,7 @@ $js = $ex->fetchVideos();
             <li class="active" id="labak"><a  href="#1" data-toggle="tab" >Labák</a></li>
             <li id="predmet"><a  href="#2" data-toggle="tab">Predmet</a></li>
             <li id="prop"><a  href="#3" data-toggle="tab">Propagácia</a></li>
-            <!--<li id="zariadenie"><a  href="#1" data-toggle="tab">Zariadenie</a></li>-->
+            <li id="zariadenie"><a  href="#4" data-toggle="tab">Zariadenie</a></li>
         </ul>
     </div>
     <div class="tab-content ">
@@ -60,7 +74,7 @@ $js = $ex->fetchVideos();
                if($js[$i]["TYPE"]=="labák")
                {
                    echo "<h3>".$js[$i]["NAME"]."</h3><br>";
-                   echo "<a href='".$js[$i]['URL']."'>Link na video</a>";
+                   echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                }
            }
             ?>
@@ -73,7 +87,7 @@ $js = $ex->fetchVideos();
             if($js[$i]["TYPE"]=="predmet")
             {
             echo "<h3>".$js[$i]["NAME"]."</h3><br>";
-            echo "<a href='".$js[$i]['URL']."'>Link na video</a>";
+            echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
             }
             }
             ?>
@@ -85,7 +99,19 @@ $js = $ex->fetchVideos();
                 if($js[$i]["TYPE"]=="propagácia")
                 {
                     echo "<h3>".$js[$i]["NAME"]."</h3><br>";
-                    echo "<a href='".$js[$i]['URL']."'>Link na video</a>";
+                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+                }
+            }
+            ?>
+        </div>
+        <div class="tab-pane" id="4">
+            <?php
+            for($i=0;$i<count($js);$i++)
+            {
+                if($js[$i]["TYPE"]=="zariadenie")
+                {
+                    echo "<h3>".$js[$i]["NAME"]."</h3><br>";
+                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                 }
             }
             ?>
