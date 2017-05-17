@@ -102,7 +102,7 @@ $text = $lan->getTextForPage('menu');
 
 <div class="col-sm-4"></div>
 <div class="text-center col-sm-4">
-    <form action="employees.php" method="post" class="form-horizontal">
+    <form action="index.php" method="post" class="form-horizontal">
         <div class="form-group">
             <div class="checkbox col-sm-4">
                 <label><input type="checkbox" id="sortBox" name="Sort" <?php if($sort == 'on') echo 'checked';?>/>Zotriedenie</label>

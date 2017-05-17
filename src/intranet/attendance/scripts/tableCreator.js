@@ -1,5 +1,6 @@
 var m_names = [];
 var m_ids = [];
+var m_dictionary;
 
 var lastX = null;
 var lastY = null;
@@ -41,7 +42,7 @@ function printTable(month, year, employees, employeesDays){
         if(!editEnabled) return;
         var id = $(this).attr('id');
         $("#ModalName").html(m_names[parseInt(id)]);
-        printSmallTable(globalMonth, globalYear, parseInt(id), null);
+        printSmallTable(globalMonth, globalYear, parseInt(id), m_dictionary[m_names[id]]);
         $('#myModal').modal('toggle');
     });
 }
@@ -62,7 +63,7 @@ function printSmallTable(month, year, iid, data){
     }
     var monthCount = getMonthDaysCount(month, year);
     for(var i = 1; i <= monthCount; i++){
-        table += "<td class='editable'>" + i.toString() +"</td>";
+        table += "<td class='editable' style='background:" + getAbsenceColor(data[i - 1]) + "';>" + i.toString() +"</td>";
         if(getDay(year, month, i) == 'Sun' && i != monthCount)
             table += "</tr><tr>";
     }
@@ -163,6 +164,7 @@ function getAndPrintTable(month, year) {
         data = JSON.parse(data);
         var names = data[0];
         var dictionary = data[1];
+        m_dictionary = dictionary;
         m_names = names;
         m_ids = data[2];
         var tmp = dictionary[names[0]];
@@ -173,12 +175,14 @@ function getAndPrintTable(month, year) {
             mark($(this), true);
             setXY($(this));
             down = true;
+            m_dictionary[m_names[xx - 1]][yy -1] = getAbsenceId(markColor);
         }).mousemove(function() {
             if(!editEnabled) return;
             if (down == true && (lastX == getX($(this)) && lastY != getY($(this)))){
                 setXY($(this));
                 last = $(this);
                 mark($(this), true);
+                m_dictionary[m_names[xx - 1]][yy -1] = getAbsenceId(markColor);
             }
         });
         $(document).mouseup(function() {
