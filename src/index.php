@@ -160,9 +160,9 @@ $text = $lan->getTextForPage('menu');
 
                 <?php
                 if($lang == 'sk')
-                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                 echo "<a href='index.php?lang=sk' style='color: #424242' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: #424242'>  English </a>";
 
                 ?>
             </div>
