@@ -15,33 +15,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="contactPage.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/contactPage/contactPage.php">
+      <file leaf-file-name="videos.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/videos/videos.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+            <state relative-caret-position="374">
+              <caret line="87" column="74" lean-forward="false" selection-start-line="87" selection-start-column="74" selection-end-line="87" selection-end-column="74" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#h3#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#h2#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#h2#2;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stat.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../74595_baka_z6/stat.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="32" column="45" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="45" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1495030857515" expanded="true" signature="2276:2459" ph="..." />
+                <marker date="1495030857515" expanded="true" signature="2622:2901" ph="..." />
+                <marker date="1495030857515" expanded="true" signature="2622:2961" ph="..." />
               </folding>
             </state>
           </provider>
@@ -66,7 +48,9 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/employees/employees.php" />
         <option value="$PROJECT_DIR$/css/mainStyles.css" />
+        <option value="$PROJECT_DIR$/../../../bootstrap-3.3.7-dist/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/contactPage/contactPage.php" />
+        <option value="$PROJECT_DIR$/videos/videos.php" />
       </list>
     </option>
   </component>
@@ -105,6 +89,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contactPage" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -227,19 +239,19 @@
       <workItem from="1494489055810" duration="115000" />
       <workItem from="1494489285750" duration="656000" />
       <workItem from="1494490644863" duration="15794000" />
-      <workItem from="1495015994296" duration="4300000" />
+      <workItem from="1495015994296" duration="14574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20865000" />
+    <option name="totallyTimeSpent" value="31139000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="768" extended-state="1" />
+    <frame x="0" y="0" width="1366" height="768" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14777948" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10719755" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14931087" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -403,6 +415,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -435,13 +448,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/Employee.php" />
-    <entry file="file://$PROJECT_DIR$/database/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/menu/404 Not Found.htm" />
     <entry file="file://$PROJECT_DIR$/employees/employeeDetail.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -522,21 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <marker date="1495015525495" expanded="true" signature="1724:1967" ph="..." />
-            <marker date="1495015525495" expanded="true" signature="1765:1952" ph="..." />
-            <marker date="1495015525495" expanded="true" signature="1814:1948" ph="..." />
-            <marker date="1495015525495" expanded="true" signature="2027:2271" ph="..." />
-            <marker date="1495015525495" expanded="true" signature="2068:2256" ph="..." />
-            <marker date="1495015525495" expanded="true" signature="2113:2239" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../74595_baka_z6/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -550,25 +541,125 @@
         <state relative-caret-position="85">
           <caret line="32" column="45" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="45" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2472">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../bootstrap-3.3.7-dist/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3349">
+          <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lang/menu-sk.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lang/menu-en.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lang/lang-sk.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lang/langFunctions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding>
+            <marker date="1495015525495" expanded="true" signature="1724:1967" ph="..." />
+            <marker date="1495015525495" expanded="true" signature="1765:1952" ph="..." />
+            <marker date="1495015525495" expanded="true" signature="1814:1948" ph="..." />
+            <marker date="1495015525495" expanded="true" signature="2027:2271" ph="..." />
+            <marker date="1495015525495" expanded="true" signature="2068:2256" ph="..." />
+            <marker date="1495015525495" expanded="true" signature="2113:2239" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contactPage/contactPage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="153">
+          <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="64" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="64" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#h3#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#h2#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#h2#2;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1495015525467" expanded="true" signature="876:897" ph="SELECT * FRO... ais_emp" />
+            <marker date="1495015525467" expanded="true" signature="1108:1131" ph="SELECT * FRO... employees" />
+            <marker date="1495015525467" expanded="true" signature="1313:1377" ph="SELECT * FRO... employees" />
+            <marker date="1495015525467" expanded="true" signature="1660:1735" ph="SELECT * FRO... employees" />
+            <marker date="1495015525467" expanded="true" signature="1993:2058" ph="SELECT * FRO... employees" />
+            <marker date="1495015525467" expanded="true" signature="2319:2384" ph="SELECT * FRO... employees" />
+            <marker date="1495015525467" expanded="true" signature="2622:2677" ph="SELECT AIS_I... ais_emp" />
+            <marker date="1495015525467" expanded="true" signature="2909:2931" ph="SELECT * FRO... projects" />
+            <marker date="1495015525467" expanded="true" signature="3132:3151" ph="SELECT * FRO... video" />
+            <marker date="1495015525467" expanded="true" signature="3351:3370" ph="SELECT * FRO... media" />
+            <marker date="1495015525467" expanded="true" signature="3639:3716" ph="SELECT id, f... Employee" />
+            <marker date="1495015525467" expanded="true" signature="3934:3993" ph="SELECT id, f... Employee" />
+            <marker date="1495015525467" expanded="true" signature="4265:4300" ph="SELECT id, a... Absence" />
+            <marker date="1495015525467" expanded="true" signature="4521:4595" ph="SELECT idEmp... " />
+            <marker date="1495015525467" expanded="true" signature="4830:4982" ph="SELECT idEmp... " />
+            <marker date="1495015525467" expanded="true" signature="5336:5432" ph="INSERT INTO EmployeeAbsence... " />
+            <marker date="1495015525467" expanded="true" signature="5676:5751" ph="DELETE FROM " />
+            <marker date="1495015525467" expanded="true" signature="5975:6043" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../74595_baka_z6/info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="40" column="25" lean-forward="true" selection-start-line="38" selection-start-column="8" selection-end-line="40" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/videos/videos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="87" column="74" lean-forward="false" selection-start-line="87" selection-start-column="74" selection-end-line="87" selection-end-column="74" />
+          <folding>
+            <marker date="1495030857515" expanded="true" signature="2276:2459" ph="..." />
+            <marker date="1495030857515" expanded="true" signature="2622:2901" ph="..." />
+            <marker date="1495030857515" expanded="true" signature="2622:2961" ph="..." />
           </folding>
         </state>
       </provider>
