@@ -40,8 +40,7 @@ class Database
     }
 
     function sortEmployeesBy($sortBy){
-        $sql = "SELECT * FROM `employees` ORDER BY `employees`.`".$sortBy."` ASC";
-        $request = $this->conn->prepare($sql);
+        $request = $this->conn->prepare("SELECT * FROM `employees` ORDER BY `employees`.`".$sortBy."` ASC");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
     }

@@ -1,0 +1,19 @@
+{
+  "sort":"Sort",
+  "filter":"Filter",
+  "sortBy":"Sort by:",
+  "search":"Search",
+  "name":"Name",
+  "department":"Department",
+  "role":"Staff role",
+  "contains":"that contains",
+  "room":"Room",
+  "phone":"Phone",
+  "function":"Function",
+  "detail":"Detail",
+  "full_profile":"Full profile",
+  "no_function":"No function",
+  "year":"Year",
+  "kind":"Type",
+  "publications":"Publications"
+}

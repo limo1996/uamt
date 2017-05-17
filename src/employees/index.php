@@ -34,8 +34,9 @@ if(isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$contentText = $lan->getTextForPage('staff');
 ?>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
@@ -105,33 +106,33 @@ $text = $lan->getTextForPage('menu');
     <form action="index.php" method="post" class="form-horizontal">
         <div class="form-group">
             <div class="checkbox col-sm-4">
-                <label><input type="checkbox" id="sortBox" name="Sort" <?php if($sort == 'on') echo 'checked';?>/>Zotriedenie</label>
+                <label><input type="checkbox" id="sortBox" name="Sort" <?php if($sort == 'on') echo 'checked';?>/><?php echo $contentText->sort; ?></label>
             </div>
             <div class="checkbox col-sm-4">
-                <label><input type="checkbox" id="filterBox" name="Filter" <?php if($filter == 'on') echo 'checked';?>/>Filter:</label>
+                <label><input type="checkbox" id="filterBox" name="Filter" <?php if($filter == 'on') echo 'checked';?>/><?php echo $contentText->filter; ?></label>
             </div>
             <div class="col-sm-4">
-                <button type="submit" class="btn btn-primary">Vyhľadaj</button>
+                <button type="submit" class="btn btn-primary"><?php echo $contentText->search; ?></button>
             </div>
         </div>
         <div class="form-group" id="SortingArea">
-            <label for="select" class="control-label col-sm-3">Zoraď podľa:</label>
+            <label for="select" class="control-label col-sm-3"><?php echo $contentText->sortBy; ?></label>
             <div class="col-sm-9">
                 <select name="SortBy" class="form-control">
-                    <option <?php if($sortBy == 'SECOND_NAME') echo 'selected';?> value="SECOND_NAME">Meno</option>
-                    <option <?php if($sortBy == 'DEPARTMENT') echo 'selected';?> value="DEPARTMENT">Oddelenie</option>
-                    <option <?php if($sortBy == 'STAFF_ROLE') echo 'selected';?> value="STAFF_ROLE">Zaradenie</option>
+                    <option <?php if($sortBy == 'SECOND_NAME') echo 'selected';?> value="SECOND_NAME"><?php echo $contentText->name; ?></option>
+                    <option <?php if($sortBy == 'DEPARTMENT') echo 'selected';?> value="DEPARTMENT"><?php echo $contentText->department; ?></option>
+                    <option <?php if($sortBy == 'STAFF_ROLE') echo 'selected';?> value="STAFF_ROLE"><?php echo $contentText->role; ?></option>
                 </select>
             </div>
         </div>
         <div class="form-group" id="FilterArea">
             <div class="col-sm-4">
                 <select name="FilterBy" class="form-control">
-                    <option <?php if($filterBy == 'DEPARTMENT') echo 'selected';?> value="DEPARTMENT">Oddelenie</option>
-                    <option <?php if($filterBy == 'STAFF_ROLE') echo 'selected';?> value="STAFF_ROLE">Zaradenie</option>
+                    <option <?php if($filterBy == 'DEPARTMENT') echo 'selected';?> value="DEPARTMENT"><?php echo $contentText->department; ?></option>
+                    <option <?php if($filterBy == 'STAFF_ROLE') echo 'selected';?> value="STAFF_ROLE"><?php echo $contentText->role; ?></option>
                 </select>
             </div>
-            <label for="select" class="control-label col-sm-3">ktoré obsahuje</label>
+            <label for="select" class="control-label col-sm-3"><?php echo $contentText->contains; ?></label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" id="filterBox" name="FilterBox" value="<?php echo $filterBox;?>"/>
             </div>
@@ -143,13 +144,13 @@ $text = $lan->getTextForPage('menu');
 
     <table class="table table-stripped table-bordered">
         <tr>
-            <th>Meno</th>
-            <th>Miestnosť</th>
-            <th>Klapka</th>
-            <th>Oddelenie</th>
-            <th>Zaradenie</th>
-            <th>Funkcia</th>
-            <th>Detail</th>
+            <th><?php echo $contentText->name; ?></th>
+            <th><?php echo $contentText->room; ?></th>
+            <th><?php echo $contentText->phone; ?></th>
+            <th><?php echo $contentText->department; ?></th>
+            <th><?php echo $contentText->role; ?></th>
+            <th><?php echo $contentText->function; ?></th>
+            <th><?php echo $contentText->detail; ?></th>
         </tr>
 
         <?php

@@ -23,13 +23,13 @@ if(isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$contentText = $lan->getTextForPage('staff');
 
 $ldapuid = remove_accents($name);
 $err = false;
 error_reporting(E_ERROR | E_PARSE);
 $allRows = array();
 
-$cur = 2016;
 $tmp = 1;
 $ch = curl_init('http://is.stuba.sk/lide/clovek.pl');
 // echo $ldapuid;
@@ -211,7 +211,7 @@ usort($allRows, "cmp");
         <div class="profile-userbuttons">
             <button type="button" class="btn btn-danger btn-sm"
                     onclick="document.location='http://is.stuba.sk/lide/clovek.pl?lang=en;id=<?php echo $usrId; ?>'">
-                Full Profile
+                <?php echo $contentText->full_profile; ?>
             </button>
         </div>
         <!-- END SIDEBAR BUTTONS -->
@@ -230,7 +230,7 @@ usort($allRows, "cmp");
                         <span>
                         <?php
                         if (empty($employee['FUNCTION']))
-                            echo "No function";
+                            echo $contentText->no_function;
                         else
                             echo $employee['FUNCTION'];
                         ?>
@@ -256,9 +256,9 @@ usort($allRows, "cmp");
 <div class="col-sm-9">
     <table class="table table-striped table-bordered" id="mainTable">
         <tr>
-            <th>Publikácie</th>
-            <th>Druh výsledku</th>
-            <th>Rok</th>
+            <th><?php echo $contentText->publications; ?></th>
+            <th><?php echo $contentText->kind; ?></th>
+            <th><?php echo $contentText->year; ?></th>
         </tr>
         <?php
         $currYear = intval(date("Y"));

@@ -1,0 +1,19 @@
+{
+  "sort":"Zotriedenie",
+  "filter":"Filter",
+  "sortBy":"Zoraď podľa:",
+  "search":"Vyhľadaj",
+  "name":"Meno",
+  "department":"Oddelenie",
+  "role":"Zaradenie",
+  "contains":"ktoré obsahuje",
+  "room":"Miestnosť",
+  "phone":"Klapka",
+  "function":"Funkcia",
+  "detail":"Detail",
+  "full_profile":"Celý profil",
+  "no_function":"Žiadna funkcia",
+  "year":"Rok",
+  "kind":"Druh výsledku",
+  "publications":"Publikácie"
+}

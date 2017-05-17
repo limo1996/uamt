@@ -1,6 +1,5 @@
 <?php
-echo __DIR__;
-include_once (__DIR__.'/../database/database.php');
+include_once(__DIR__ . '/../database/database.php');
 
 class Text
 {
@@ -13,17 +12,18 @@ class Text
 
     public function getTextForPage($page)
     {
-        if($page == 'projects'){
+        if ($page == 'projects') {
             return $this->getTextForProjects();
-        }
-        else if ($page == 'menu'){
+        } else if ($page == 'menu') {
             return $this->getTextForMenu();
-        }
-        else
+        } else if ($page == 'staff') {
+            return $this->getTextForStaff();
+        } else
             return null;
     }
 
-    private function getTextForProjects(){
+    private function getTextForProjects()
+    {
         $db = new Database();
         $projects = $db->fetchProjects();
         $final = array();
@@ -50,11 +50,17 @@ class Text
         return $final;
     }
 
-    private function getTextForMenu(){
-        $filename = __DIR__."/menu-".$this->m_lang.".json";
-       # echo $filename;
+    private function getTextForMenu()
+    {
+        $filename = __DIR__ . "/menu-" . $this->m_lang . ".json";
 
         $rawContent = file_get_contents($filename);
         return json_decode($rawContent);
+    }
+
+    private function getTextForStaff()
+    {
+        $filename = __DIR__ . "/staff-" . $this->m_lang . ".json";
+        return json_decode(file_get_contents($filename));
     }
 }
