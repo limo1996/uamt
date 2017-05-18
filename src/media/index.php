@@ -14,15 +14,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style media="all">
-    th{
-        background-color: #F8F8F8;
-        color:#0066cc;
-
-    }
-        th,td{
-            text-align: center;
-        }
-
+        @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>
 </head>
 <body>
@@ -30,35 +22,36 @@
 include (__DIR__.'/../database/database.php');
 $ex = new Database();
 $js = $ex->fetchMedia();
-//var_dump($js);
+
 ?>
 <div class="container">
     <div class="row">
-
-    <table id="myTable" class="table table-bordered table-striped">
-        <tr>
-            <th>Názov</th><th>Média</th><th>Dátum</th><th>PDF</th><th>URL</th>
-        </tr>
         <?php
         for($i=0;$i<count($js);$i++)
         {
-            echo "<tr>";
-            echo "<td>".$js[$i]['TITLE']."</td><td>".$js[$i]['MEDIA']."</td><td>".$js[$i]['DATE']."</td>";
+           echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['TITLE']."</h3>";
+           echo "<h4><i class='fa fa-newspaper-o' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['MEDIA']."</h4>";
+           if(strpos($js[$i]['DATE'], '.') !== false)
+           {
+            $date = str_replace('.', '/',$js[$i]['DATE'] );
+           }
+           else
+            {
+                $date = $js[$i]['DATE'];
+            }
+            echo "<h4><i class='fa fa-calendar' style='line-height:6%;color:#4268f4!important;'></i> ".$date."</h4>";
             if(!empty($js[$i]['PDF']))
             {
-                echo "<td><a target='blank' href ='".$js[$i]['PDF']."'>LINK</a></td>";
+                echo "<h4><i class='fa fa-file-pdf-o' style='line-height:6%;color:#4268f4!important;'></i><a target='_blank' href ='".$js[$i]['PDF']."'> Zisti viac</a></h4>";
             }
-            else echo "<td></td>";
-
             if(!empty($js[$i]['URL']))
             {
-                echo "<td><a target='blank' href ='".$js[$i]['URL']."'>LINK</a></td>";
+                echo "<h4><i class='fa fa-external-link' style='line-height:6%;color:#4268f4!important;'></i><a target='_blank' href ='".$js[$i]['URL']."'> Zisti viac</a></h4>";
             }
-            else echo "<td></td>";
-            echo "</tr>";
+            echo "<hr>";
         }
         ?>
-    </table>
+
 
     </div>
 </div>
