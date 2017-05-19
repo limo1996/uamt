@@ -30,6 +30,10 @@ $text = $lan->getTextForPage('menu');
             crossorigin="anonymous"></script>
     <script src="menu/menuScripts.js"></script>
 
+    <style media="all">
+        @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+    </style>
+
 </head>
 
 <body>
@@ -41,16 +45,62 @@ $text = $lan->getTextForPage('menu');
                     class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:#0066cc;">UAMT</p></div>
     <div class="nav-flags">
-    
+
     </div>
     </div>
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/index.php"><?php echo $text->about; ?></a></li>
-                <li><a href="/uamt/employees/employees.php"><?php echo $text->staff; ?></a></li>
-                <li><a href="#"><?php echo $text->study; ?></a></li>
+                <li class="active"><a href="#"><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
+                                class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><?php echo $text->about_history; ?></a></li>
+                        <li><a href="#"><?php echo $text->about_management; ?></a></li>
+                        <li><a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"><?php echo $text->about_department; ?><b
+                                        class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><?php echo $text->about_department_OAMM; ?></a></li>
+                                <li><a href="#"><?php echo $text->about_department_OIKR; ?></a></li>
+                                <li><a href="#"><?php echo $text->about_department_OEMP; ?></a></li>
+                                <li><a href="#"><?php echo $text->about_department_OEAP; ?></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="/uamt/employees/index.php"><?php echo $text->staff; ?></a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
+                                class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"><?php echo $text->study_candidate; ?><b
+                                        class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><?php echo $text->study_candidate_bc; ?></a></li>
+                                <li><a href="#"><?php echo $text->study_candidate_ing; ?></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"><?php echo $text->study_bc; ?><b
+                                        class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><?php echo $text->study_bc_info; ?></a></li>
+                                <li><a href="#"><?php echo $text->study_bc_thesis; ?></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"><?php echo $text->study_ing; ?><b
+                                        class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><?php echo $text->study_ing_info; ?></a></li>
+                                <li><a href="#"><?php echo $text->study_ing_thesis; ?></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><?php echo $text->study_phd; ?></a></li>
+                    </ul>
+                </li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->research; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -84,8 +134,11 @@ $text = $lan->getTextForPage('menu');
                     </ul>
                 </li>
                 <li><a href="/uamt/contactPage/index.php"><?php echo $text->contact; ?></a></li>
+                <li><a href="#" style="color:purple"><i class="fa fa-user fa-1x" style="color: purple!important;"></i> Intranet</a></li>
+                <!--   <li><a href="#"><button type="button" class="button-menu btn btn-primary btn-sm">Primary</button></a></li>-->
+
             </ul>
-    </div>
+        </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->about; ?></h2>
@@ -160,7 +213,7 @@ $text = $lan->getTextForPage('menu');
 
                 <?php
                 if($lang == 'sk')
-                 echo "<a href='index.php?lang=sk' style='color: #424242' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
                 else
                     echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: #424242'>  English </a>";
 
