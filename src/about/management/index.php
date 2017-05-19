@@ -195,7 +195,10 @@ $text = $lan->getTextForPage('menu');
             <p>&nbsp;</p>
 
         </article>
+        <p>Organizačný poriadok Ústavu automobilovej mechatroniky (<a href="/uamt/about/organizacny_poriadok.pdf">organizacny_poriadok.pdf</a>)</p>
+
         <p>&nbsp;</p>
+
 
 
     </div>
