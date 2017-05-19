@@ -1,5 +1,6 @@
 <?php
 include('../lang/langFunctions.php');
+include_once ("../database/database.php");
 $lang = 'sk';
 
 if (isset($_GET['lang']))
@@ -7,6 +8,9 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+
+$ex = new Database();
+$js = $ex->fetchMedia();
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,12 +36,7 @@ $text = $lan->getTextForPage('menu');
     </style>
 </head>
 <body>
-<?php
-include (__DIR__.'/../database/database.php');
-$ex = new Database();
-$js = $ex->fetchMedia();
 
-?>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
