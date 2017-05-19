@@ -1,5 +1,5 @@
 <?php
-include('lang/langFunctions.php');
+include('../../lang/langFunctions.php');
 $lang = 'sk';
 
 if (isset($_GET['lang']))
@@ -8,41 +8,32 @@ if (isset($_GET['lang']))
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
 ?>
-
 <!DOCTYPE html>
-<html lang="sk">
-
-<head>
+<html>
+<head lang="sk">
+    <title><?php echo $text->about_department_OAMM;?></title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap -->
-    <title><?php echo $text->home; ?></title>
-
+    <!-- Latest compiled and minified CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/mainStyles.css" type="text/css" rel="stylesheet">
-    <link href="menu/menuStyles.css" type="text/css" rel="stylesheet">
+    <link href="../../css/mainStyles.css" type="text/css" rel="stylesheet">
+    <link href="../../menu/menuStyles.css" type="text/css" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-
-    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <script src="menu/menuScripts.js"></script>
-
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>
-
 </head>
-
 <body>
-<!--<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">-->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
-                    class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-                    class="icon-bar"></span></button>
+                class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:#0066cc;">UAMT</p></div>
     <div class="nav-flags">
 
@@ -52,31 +43,31 @@ $text = $lan->getTextForPage('menu');
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/"><i class="fa fa-home fa-1x"></i></></a></li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
-                                class="caret"></b></a>
+                <li><a href="/uamt/"><i class="fa fa-home fa-1x"></i></></a></li>
+                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/uamt/about/history/"><?php echo $text->about_history; ?></a></li>
-                        <li><a href="/uamt/about/management/"><?php echo $text->about_management; ?></a></li>
+                        <li><a href="#"><?php echo $text->about_history; ?></a></li>
+                        <li><a href="#"><?php echo $text->about_management; ?></a></li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->about_department; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/uamt/about/OAMM/"><?php echo $text->about_department_OAMM; ?></a></li>
-                                <li><a href="/uamt/about/OIKR/"><?php echo $text->about_department_OIKR; ?></a></li>
-                                <li><a href="/uamt/about/OEMP/"><?php echo $text->about_department_OEMP; ?></a></li>
-                                <li><a href="/uamt/about/OEAP/"><?php echo $text->about_department_OEAP; ?></a></li>
+                                <li><a href="#"><?php echo $text->about_department_OAMM; ?></a></li>
+                                <li><a href="#"><?php echo $text->about_department_OIKR; ?></a></li>
+                                <li><a href="#"><?php echo $text->about_department_OEMP; ?></a></li>
+                                <li><a href="#"><?php echo $text->about_department_OEAP; ?></a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li><a href="/uamt/employees/"><?php echo $text->staff; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
-                                class="caret"></b></a>
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->study_candidate; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><?php echo $text->study_candidate_bc; ?></a></li>
                                 <li><a href="#"><?php echo $text->study_candidate_ing; ?></a></li>
@@ -84,7 +75,7 @@ $text = $lan->getTextForPage('menu');
                         </li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->study_bc; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><?php echo $text->study_bc_info; ?></a></li>
                                 <li><a href="#"><?php echo $text->study_bc_thesis; ?></a></li>
@@ -92,7 +83,7 @@ $text = $lan->getTextForPage('menu');
                         </li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->study_ing; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><?php echo $text->study_ing_info; ?></a></li>
                                 <li><a href="#"><?php echo $text->study_ing_thesis; ?></a></li>
@@ -102,12 +93,12 @@ $text = $lan->getTextForPage('menu');
                     </ul>
                 </li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->research; ?><b
-                                class="caret"></b></a>
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><?php echo $text->research_projects; ?></a></li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->research_topics; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><?php echo $text->research_motocar; ?></a></li>
                                 <li><a href="#"><?php echo $text->research_vehicle; ?></a></li>
@@ -119,14 +110,14 @@ $text = $lan->getTextForPage('menu');
                 </li>
                 <li><a href="#"><?php echo $text->news; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
-                                class="caret"></b></a>
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/photos"><?php echo $text->act_photos; ?></a></li>
                         <li><a href="/uamt/videos/"><?php echo $text->act_video; ?></a></li>
                         <li><a href="/uamt/media/"><?php echo $text->act_media; ?></a></li>
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?>
                                 <b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><?php echo $text->act_temata_mobility; ?></a></li>
                             </ul>
@@ -141,39 +132,36 @@ $text = $lan->getTextForPage('menu');
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->home; ?></h2>
+    <h2><?php echo $text->about_department_OAMM;?></h2>
     <hr class="hr_nazov">
 </div>
 
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
 
-    <h1> Content</h1>
+<div id="content">
+    <div class="col-sm-3"></div>
 
-    <h1> Content</h1>
+    <div class="col-sm-6">
+        <p class="text-center"><b>Vedúci:</b> 	prof. Ing. Justín Murín, DrSc.</p>
+        <p class="text-center"><b>Zástupca:</b> 	doc. Ing. Vladimír Kutiš, PhD.</p>
+        <p>&nbsp;</p>
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
+        <article>
+            <p>Oddelenie v rámci pedagogiky zabezpečuje v bakalárskom stupni ŠP výučbu predmetov s hlavným dôrazom na mechaniku a mechatronické prvky. V inžinierskom stupni ŠP zabezpečuje výučbu predmetov s dôrazom na simuláciu a modelovanie mechanických a mechatronických systémov tak z pohľadu mechaniky a dynamiky, ako aj z pohľadu multifyzikálneho previazania jednotlivých fyzikálnych domén.
+            </p>
+            <p>Členovia oddelenia sa venujú formulácii nových matematických postupov a metód, ktoré sa používajú v multifyzikálnych analýzach napr. na opis funkcionálne gradovaných materiálov (FGM), v dynamických analýzach mechatronických a MEMS systémov, ako aj na opis piezoelektrických prvkov.
+            </p>
+            <p>Členovia oddelenia využívajú moderné SW prostriedky, ako sú ANSYS, Catia a MSC.ADAMS na návrh, analýzu a optimalizáciu jednotlivých komponentov, ako aj celých subsystémov mechatronických prvkov.
+            </p>
 
-    <h1> Content</h1>
+        </article>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
-    <h1> Content</h1>
+    </div>
+    <div class="col-sm-3"></div>
 
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
 </div>
-
-
 <footer>
     <div class="container">
         <div class="container">
@@ -206,25 +194,26 @@ $text = $lan->getTextForPage('menu');
                 © Copyright 2017. Všetky práva vyhradené.
             </div>
             <div class="col-sm-4 text-center">
-               Baka | Lukac | Lichman | Valasik | Smetanka
+                Baka | Lukac | Lichman | Valasik | Smetanka
             </div>
 
             <div class="col-sm-4 text-center">
 
                 <?php
                 if($lang == 'sk')
-                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
                 else
                     echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
 
-            </div>
-
         </div>
+
+    </div>
     </div>
 </footer>
-<script src="menu/jQueryScripts.js"></script>
+<script src="../../menu/jQueryScripts.js"></script>
 </body>
+
 </html>
