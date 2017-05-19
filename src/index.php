@@ -17,7 +17,7 @@ $text = $lan->getTextForPage('menu');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
-    <title>Final project</title>
+    <title><?php echo $text->home; ?></title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/mainStyles.css" type="text/css" rel="stylesheet">
@@ -52,7 +52,7 @@ $text = $lan->getTextForPage('menu');
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="#"><i class="fa fa-home fa-1x"></i></></a></li>
+                <li class="active"><a href="/uamt/"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -70,7 +70,7 @@ $text = $lan->getTextForPage('menu');
                         </li>
                     </ul>
                 </li>
-                <li><a href="/uamt/employees/index.php"><?php echo $text->staff; ?></a></li>
+                <li><a href="/uamt/employees/"><?php echo $text->staff; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -121,9 +121,9 @@ $text = $lan->getTextForPage('menu');
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><?php echo $text->act_photos; ?></a></li>
-                        <li><a href="#"><?php echo $text->act_video; ?></a></li>
-                        <li><a href="#"><?php echo $text->act_media; ?></a></li>
+                        <li><a href="/uamt/photos"><?php echo $text->act_photos; ?></a></li>
+                        <li><a href="/uamt/videos/"><?php echo $text->act_video; ?></a></li>
+                        <li><a href="/uamt/media/"><?php echo $text->act_media; ?></a></li>
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?>
                                 <b
                                         class="caret"></b></a>
@@ -141,7 +141,7 @@ $text = $lan->getTextForPage('menu');
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->about; ?></h2>
+    <h2><?php echo $text->home; ?></h2>
     <hr class="hr_nazov">
 </div>
 
@@ -215,7 +215,7 @@ $text = $lan->getTextForPage('menu');
                 if($lang == 'sk')
                  echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: #424242'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
