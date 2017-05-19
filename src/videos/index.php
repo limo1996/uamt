@@ -1,26 +1,29 @@
+<?php
+include('../lang/langFunctions.php');
+$lang = 'sk';
 
+if (isset($_GET['lang']))
+    $lang = $_GET['lang'];
 
+$lan = new Text($lang);
+$text = $lan->getTextForPage('menu');
+?>
 <!DOCTYPE html>
-<html lang="sk">
-<head>
-    <title><?php echo $text->act_video; ?></title>
+<html>
+<head lang="sk">
+    <title><?php echo  $text->act_video; ?></title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-
-    <!-- Latest compiled JavaScript -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-
-    <script src="../menu/menuScripts.js"></script>
-
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 
@@ -40,7 +43,7 @@
 </head>
 <body>
 <?php
-include (__DIR__.'/../database/database.php');
+include_once ("../database/database.php");
 $ex = new Database();
 $js = $ex->fetchVideos();
 function getYoutube($url)
@@ -139,10 +142,10 @@ function getYoutube($url)
                     </ul>
                 </li>
                 <li><a href="#"><?php echo $text->news; ?></a></li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
+                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li class="active"><a href="/uamt/photos"><?php echo $text->act_photos; ?></a></li>
+                        <li><a href="/uamt/photos"><?php echo $text->act_photos; ?></a></li>
                         <li><a href="/uamt/videos/"><?php echo $text->act_video; ?></a></li>
                         <li><a href="/uamt/media/"><?php echo $text->act_media; ?></a></li>
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?>
@@ -162,9 +165,11 @@ function getYoutube($url)
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->act_video; ?></h2>
+    <h2><?php echo  $text->act_video; ?></h2>
     <hr class="hr_nazov">
 </div>
+
+
 <div class="container">
 
     <div id="tabs" class="col-sm-12">
@@ -229,11 +234,6 @@ function getYoutube($url)
 </div>
 
 </div>
-
-
-
-
-
 <footer>
     <div class="container">
         <div class="container">
