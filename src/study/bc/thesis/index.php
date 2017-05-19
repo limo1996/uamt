@@ -7,6 +7,51 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+
+$ch = curl_init('http://is.stuba.sk/pracoviste/prehled_temat.pl');
+
+$departmentNo = '642';
+$proTypeNo = 1;
+$columnIndex = 3;
+$keyIndex = 2;
+
+// zostavenie dat pre POST dopyt
+$data = array(
+    'filtr_typtemata2' => $proTypeNo,
+    'pracoviste' => $departmentNo,
+    'lang' => 'sk',
+    'omezit_temata2' => 'Obmedziť'
+);
+
+// nastavenie curl-u pre pouzitie POST dopytu
+curl_setopt($ch, CURLOPT_POST,1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+// nastavenie curl-u pre ulozenie dat z odpovede do navratovej hodnoty z volania curl_exec
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+// vykonanie dopytu
+$result = curl_exec($ch);
+curl_close($ch);
+
+// parsovanie odpovede pre ziskanie pozadovanych dat
+$doc = new DOMDocument();
+libxml_use_internal_errors(true);
+$doc->loadHTML($result);
+$xPath = new DOMXPath($doc);
+$tableRows = $xPath->query('//html/body/div/div/div/form/table[last()]/tbody/tr');
+
+$dictionary = array();
+$annotations = array();
+
+foreach ($tableRows as $row) {
+    $dictionary[$row->childNodes[$keyIndex]->textContent] = array();
+}
+
+foreach ($tableRows as $row){
+    array_push($dictionary[$row->childNodes[$keyIndex]->textContent], $row);
+}
+
+ksort($dictionary);
 ?>
 <!DOCTYPE html>
 <html>
@@ -131,6 +176,23 @@ $text = $lan->getTextForPage('menu');
             </ul>
         </div>
 </nav>
+<div class="modal fade" id="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="modalHeader"></h2>
+                <h4 id="ModalName"></h4>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <div id="nazov">
     <h2><?php echo $text->study_bc_thesis;?></h2>
     <hr class="hr_nazov">
@@ -185,6 +247,64 @@ $text = $lan->getTextForPage('menu');
 
         <h2>Voľné témy</h2>
 
+            <table class="table table-striped table-bordered" id="displayTable">
+                <tr>
+                    <th>Názov</th>
+                    <th>Školiteľ</th>
+                </tr>
+
+                <?php
+                foreach ($dictionary as $key => $arr)
+                {
+                    foreach ($arr as $row) {
+                        $occupation = $row->childNodes[9]->textContent;
+                        str_ireplace(" ", "", $occupation);
+
+
+                        if ($occupation == '--') {
+                            if ($filterBox == null || $filterBox == "" || stripos($row->childNodes[$columnIndex]->textContent, $filterBox) !== FALSE) {
+                                $annotationURL = 'http://is.stuba.sk' . $row->childNodes[7]->firstChild->firstChild->getAttribute('href');
+
+                                // vykonanie sekundarneho curl dopytu, a parsovanie odpovede pre ziskanie anotacie
+                                $ch = curl_init($annotationURL);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                                $result = curl_exec($ch);
+                                curl_close($ch);
+
+                                $doc = new DOMDocument();
+                                libxml_use_internal_errors(true);
+
+                                $doc->loadHTML($result);
+                                $xPath = new DOMXPath($doc);
+                                $annotation = $xPath->query('//html/body/div/div/div/table[1]/tbody/tr[last()]/td[last()]')[0]->textContent;
+                                $annotations[$row->childNodes[2]->textContent] = $annotation;
+                                echo "<tr>";
+                                echo "<td>" . $row->childNodes[2]->textContent . "</td>";
+                                echo "<td>" . $row->childNodes[3]->textContent . "</td>";
+                                echo "</tr>";
+                            }
+                        }
+                    }
+                }
+
+                ?>
+            </table>
+            <script>
+                <?php
+                echo "var annotations = ".json_encode($annotations).";\n";
+                ?>
+                $('#displayTable').find('tr').click( function(){
+                    var title = this.cells[0].innerHTML;
+                    var supervisor = this.cells[1].innerHTML;
+                    //alert(title+supervisor+ustav);
+
+                    $('#modalHeader').html(title);
+                    $("#modalname").html(supervisor);
+                    $("#modalBody").html(annotations[title]);
+                    if(title != "Názov")
+                        $('#myModal').modal('toggle');
+                });
+            </script
 
         <p>&nbsp;</p>
         <p>&nbsp;</p>
