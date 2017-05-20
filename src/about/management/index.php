@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$text2 = $lan->getTextForPage('positions');
 ?>
 <!DOCTYPE html>
 <html>
@@ -147,21 +148,21 @@ $text = $lan->getTextForPage('menu');
 
             <tbody>
             <tr>
-                <td>Riaditeľ ústavu</td>
+                <td><?php echo $text2['director']; ?></td>
                 <td>prof. Ing. Mikuláš Huba, PhD.</td>
 
             </tr>
             <tr>
-                <td>Zástupca riaditeľa ústavu pre vedeckú činnosť</td>
+                <td><?php echo $text2['director_research']; ?></td>
                 <td>prof. Ing. Justín Murín, DrSc.</td>
             </tr>
             <tr>
-                <td>Zástupca riaditeľa ústavu pre rozvoj ústavu</td>
+                <td><?php echo $text2['director_development']; ?></td>
                 <td>prof. Ing. Štefan Kozák, PhD.</td>
 
             </tr>
             <tr>
-                <td>Zástupca riaditeľa ústavu pre pedagogickú činnosť</td>
+                <td><?php echo $text2['director_activities']; ?></td>
                 <td>doc. Ing. Katarína Žáková, PhD.</td>
 
             </tr>
@@ -171,31 +172,31 @@ $text = $lan->getTextForPage('menu');
             <p>&nbsp;</p>
             <p>&nbsp;</p>
 
-            <h3  class="text-center">ODDELENIA ÚSTAVU AUTOMOBILOVEJ MECHATRONIKY</h3>
+            <h3  class="text-center"><?php echo $text2['d']; ?></h3>
             <p>&nbsp;</p>
 
-            <h4  class="text-center">Oddelenie aplikovanej mechaniky a mechatroniky (OAMM)</h4>
-            <p class="text-center"><b>Vedúci:</b> 	prof. Ing. Justín Murín, DrSc.</p>
-            <p class="text-center"><b>Zástupca:</b> 	doc. Ing. Vladimír Kutiš, PhD.</p>
+            <h4  class="text-center"><?php echo $text->about_department_OAMM; ?></h4>
+            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> 	prof. Ing. Justín Murín, DrSc.</p>
+            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b> 	doc. Ing. Vladimír Kutiš, PhD.</p>
             <p>&nbsp;</p>
 
-            <h4 class="text-center">Oddelenie informačných, komunikačných a riadiacich systémov (OIKR)</h4>
-            <p class="text-center"><b>Vedúci:</b> 	doc. Ing. Danica Rosinová, PhD.</p>
-            <p class="text-center"><b>Zástupca:</b> 	doc. Ing. Katarína Žáková, PhD.</p>
+            <h4 class="text-center"><?php echo $text->about_department_OIKR; ?></h4>
+            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> 	doc. Ing. Danica Rosinová, PhD.</p>
+            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b> 	doc. Ing. Katarína Žáková, PhD.</p>
             <p>&nbsp;</p>
 
-            <h4 class="text-center">Oddelenie elektroniky, mikropočítačov a PLC systémov (OEMP)</h4>
-            <p class="text-center"><b>Vedúci:</b> prof. Ing. Štefan Kozák, PhD.</p>
-            <p class="text-center"><b>Zástupca:</b> 	Ing. Richard Balogh, PhD.</p>
+            <h4 class="text-center"><?php echo $text->about_department_OEMP; ?></h4>
+            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> prof. Ing. Štefan Kozák, PhD.</p>
+            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b> 	Ing. Richard Balogh, PhD.</p>
             <p>&nbsp;</p>
 
-            <h4 class="text-center">Oddelenie E-mobility, automatizácie a pohonov (OEAP)</h4>
-            <<p class="text-center"><b>Vedúci:</b> prof. Ing. Mikuláš Huba, PhD.</p>
-            <p class="text-center"><b>Zástupca:</b>  prof. Ing. Viktor Ferencey, CSc.</p>
+            <h4 class="text-center"><?php echo $text->about_department_OEAP; ?></h4>
+            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> prof. Ing. Mikuláš Huba, PhD.</p>
+            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b>  prof. Ing. Viktor Ferencey, CSc.</p>
             <p>&nbsp;</p>
 
         </article>
-        <p>Organizačný poriadok Ústavu automobilovej mechatroniky (<a href="/uamt/about/organizacny_poriadok.pdf">organizacny_poriadok.pdf</a>)</p>
+        <p><?php echo $text2['org']; ?> (<a href="/uamt/about/organizacny_poriadok.pdf">organizacny_poriadok.pdf</a>)</p>
 
         <p>&nbsp;</p>
 

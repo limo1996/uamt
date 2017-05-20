@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$text2 = $lan->getTextForPage('positions');
 ?>
 <!DOCTYPE html>
 <html>
@@ -141,13 +142,19 @@ $text = $lan->getTextForPage('menu');
     <div class="col-sm-3"></div>
 
     <div class="col-sm-6">
-        <p class="text-center"><b>Vedúci:</b> 	doc. Ing. Danica Rosinová, PhD.</p>
-        <p class="text-center"><b>Zástupca:</b> 	doc. Ing. Katarína Žáková, PhD.</p>
+        <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> 	doc. Ing. Danica Rosinová, PhD.</p>
+        <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b> 	doc. Ing. Katarína Žáková, PhD.</p>
         <p>&nbsp;</p>
 
 
         <article>
-            <p>Informácie budú dodané neskôr...</p>
+            <p><?php
+                if($lang == 'sk')
+                    echo "Informácie budú dodané neskôr...";
+                else if ($lang == 'en')
+                    echo 'Information will be added later...';
+                ?>
+            </p>
         </article>
         <p>&nbsp;</p>
         <p>&nbsp;</p>

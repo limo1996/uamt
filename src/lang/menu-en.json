@@ -2,7 +2,7 @@
   "home": "Home page",
   "about": "About us",
   "about_history": "History",
-  "about_management":"Management of department",
+  "about_management":"Management of Institute",
   "about_department":"Department",
   "about_department_OAMM":"Department of Applied Mechanics and Mechatronics (OAMM)",
   "about_department_OIKR":"Department of Information, Communication and Control Systems (OIKR)",
@@ -34,5 +34,6 @@
   "act_media": "Media",
   "act_temata": "Our thematic web pages",
   "act_temata_mobility": "Electromobility",
-  "contact": "Contact"
+  "contact": "Contact",
+  "rights": "All rights reserved"
 }

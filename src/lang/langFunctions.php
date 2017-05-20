@@ -18,7 +18,9 @@ class Text
             return $this->getTextForMenu();
         } else if ($page == 'staff') {
             return $this->getTextForStaff();
-        } else
+        } else if ($page == 'positions'){
+            return $this->getTextForPositions();
+        }
             return null;
     }
 
@@ -62,5 +64,31 @@ class Text
     {
         $filename = __DIR__ . "/staff-" . $this->m_lang . ".json";
         return json_decode(file_get_contents($filename));
+    }
+
+    private function getTextForPositions()
+    {
+        $text = null;
+        if ($this->m_lang == 'en') {
+            $text["director"] = "Director of Institute";
+            $text["director_research"] = "Deputy Director for Scientific Research";
+            $text["director_development"] = "Deputy Director for Institute Development";
+            $text["director_activities"] = "Deputy Director for Educational Activities";
+            $text["head_department"] = "Head of Department";
+            $text["d_head_department"] = "Deputy Head of Department";
+            $text["d"] = "DEPARTMENTS OF INSTITUTE OF AUTOMOTIVE MECHATRONICS";
+            $text["org"] = "Organization structure of institute";
+        } else if ($this->m_lang == 'sk') {
+            $text["director"] = "Riaditeľ ústavu";
+            $text["director_research"] = "Zástupca riaditeľa ústavu pre vedeckú činnosť";
+            $text["director_development"] = "Zástupca riaditeľa ústavu pre rozvoj ústavu";
+            $text["director_activities"] = "Zástupca riaditeľa ústavu pre pedagogickú činnosť";
+            $text["head_department"] = "Vedúci oddelenia";
+            $text["d_head_department"] = "Zástupca vedúceho oddelenia";
+            $text["d"] = "ODDELENIA ÚSTAVU AUTOMOBILOVEJ MECHATRONIKY";
+            $text["org"] = "Organizačný poriadok Ústavu automobilovej mechatroniky";
+        }
+
+        return $text;
     }
 }

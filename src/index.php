@@ -203,7 +203,7 @@ $text = $lan->getTextForPage('menu');
         <div class="container">
 
             <div class="col-sm-4 text-center">
-                © Copyright 2017. Všetky práva vyhradené.
+                © Copyright 2017.  <?php echo $text->rights; ?>.
             </div>
             <div class="col-sm-4 text-center">
                Baka | Lukac | Lichman | Valasik | Smetanka
