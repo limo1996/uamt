@@ -1,0 +1,74 @@
+@media (min-width: 767px) {
+    .navbar-nav .dropdown-menu .caret {
+	transform: rotate(-90deg);
+    }
+
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+
+    .navbar-default {
+        background-color: #F8F8F8;
+        border-color: purple;
+    }
+    .navbar-default .navbar-nav > li > a:hover {
+        color: purple; /*Change active text color here*/
+
+
+    }
+
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus {
+        color: purple;
+        background-color: #F8F8F8;
+    }
+
+    .navbar-default .navbar-nav > .active li > a {
+        color: purple; /*Change active text color here*/
+
+    }
+
+
+
+    .dropdown-menu > li > a:hover,
+    .dropdown-menu > li > a:focus {
+        color: purple;
+
+    }
+
+
+}
+
+
+.span-logo {
+    display: inline-block;
+    vertical-align: top;
+    height: 20px;
+    width: 30px;
+}
+
+.sk-logo {
+    display: inline-block;
+    vertical-align: top;
+    height: 15px;
+    width: 21px;
+}
+
+.nav-flags {
+    position: absolute;
+    top: 24%;
+    left: 90px;
+}
+
+.navbar-flag {
+    display: inline-block;
+    float: right;
+    margin: 1px;
+}

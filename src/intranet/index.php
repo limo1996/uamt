@@ -8,8 +8,8 @@
     <title>Intranet</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
-    <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
+    <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
 
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
@@ -29,7 +29,7 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
-        <p class="navbar-brand" style="color:#0066cc;">UAMT - Intranet</p></div>
+        <p class="navbar-brand" style="color:purple;">UAMT - Intranet</p></div>
     <div class="nav-flags">
 
     </div>
@@ -38,7 +38,7 @@
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/"><i class="fa fa-home fa-1x"></i></></a></li>
+                <li class="active"><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="#">Pedagogika</a></li>
                 <li><a href="#">Doktorandi</a></li>
                 <li><a href="#">Publikácie</a></li>
@@ -46,10 +46,17 @@
                 <li><a href="#">Nákupy</a></li>
                 <li><a href="#">Dochádzka</a></li>
                 <li><a href="#">Rozdelenie úloh</a></li>
+                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
+
             </ul>
         </div>
     </div>
 </nav>
+
+<div id="nazov">
+    <h2><?php echo "Intranet" ?></h2>
+    <hr class="hr_nazov">
+</div>
 
 <div id="content">// simulate large amount of information
     <h1> Content</h1>
@@ -115,13 +122,16 @@
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk</a>
+                <a href='index.php?lang=sk' style='color: white' > Slovensky jazyk</a>
             </div>
 
         </div>
 
     </div>
     </div>
+
+
+
 </footer>
 <script src="../menu/jQueryScripts.js"></script>
 </body>
