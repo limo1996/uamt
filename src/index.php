@@ -134,7 +134,7 @@ $text = $lan->getTextForPage('menu');
                     </ul>
                 </li>
                 <li><a href="/uamt/contactPage/index.php"><?php echo $text->contact; ?></a></li>
-                <li><a href="#" style="color:purple"><i class="fa fa-user fa-1x" style="color: purple!important;"></i> Intranet</a></li>
+                <li><a href="/uamt/intranet/" style="color:purple"><i class="fa fa-user fa-1x" style="color: purple!important;"></i> Intranet</a></li>
                 <!--   <li><a href="#"><button type="button" class="button-menu btn btn-primary btn-sm">Primary</button></a></li>-->
 
             </ul>

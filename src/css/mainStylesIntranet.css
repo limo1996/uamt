@@ -1,0 +1,50 @@
+hr{
+    background: purple;
+    -webkit-mask-image: radial-gradient(circle,purple 50%,transparent);
+}
+
+footer{
+    background-color: purple;
+    color: #f5f5f5;
+    padding: 7px;
+    width: 100%;
+    display: inline-block;
+    font-size: 11px;
+
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+
+
+
+#nazov {
+    padding-top : 55px;
+    width : 100%;
+    display: inline-block;
+}
+
+h2{
+    text-align: center;
+    color: purple;
+    font-family: Monospace;
+}
+
+#hr_nazov{
+    color: purple;
+
+}
+
+
+
+.kontakt_margin{
+    width: 200px;
+    height:500px;
+}
