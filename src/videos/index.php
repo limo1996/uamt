@@ -187,7 +187,7 @@ function getYoutube($url)
            {
                if($js[$i]["TYPE"]=="labák")
                {
-                   echo "<h3>".$js[$i]["NAME"]."</h3><br>";
+                   echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                }
            }
@@ -200,8 +200,9 @@ function getYoutube($url)
             {
             if($js[$i]["TYPE"]=="predmet")
             {
-            echo "<h3>".$js[$i]["NAME"]."</h3><br>";
-            echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+
+                echo "<h3 style='color:#4268f4!important;'><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
             }
             }
             ?>
@@ -212,7 +213,7 @@ function getYoutube($url)
             {
                 if($js[$i]["TYPE"]=="propagácia")
                 {
-                    echo "<h3>".$js[$i]["NAME"]."</h3><br>";
+                    echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
                     echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                 }
             }
@@ -224,7 +225,7 @@ function getYoutube($url)
             {
                 if($js[$i]["TYPE"]=="zariadenie")
                 {
-                    echo "<h3>".$js[$i]["NAME"]."</h3><br>";
+                    echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
                     echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                 }
             }
