@@ -2,7 +2,7 @@
 session_start();
 
 if(!$_SESSION['user']){
-    header("Location:index.php");
+    header("Location:../index.php");
     die;
 }
 ?>
@@ -21,9 +21,9 @@ if(!$_SESSION['user']){
 
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <script src="../menu/menuScripts.js"></script>
+    <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <script src="../../menu/menuScripts.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -62,13 +62,36 @@ if(!$_SESSION['user']){
 </nav>
 
 <div id="nazov">
-    <h2><?php echo "Intranet" ?></h2>
+    <h2><?php echo "Rozdelenie úloh" ?></h2>
     <hr class="hr_nazov">
 </div>
 
-<div class="container">
-        <h1> Welcum to intranet</h1>
-    <br>
+<div id="content">// simulate large amount of information
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
 </div>
 
 <footer>
@@ -118,6 +141,6 @@ if(!$_SESSION['user']){
 
 
 </footer>
-<script src="../menu/jQueryScripts.js"></script>
+<script src="../../menu/jQueryScripts.js"></script>
 </body>
 </html>

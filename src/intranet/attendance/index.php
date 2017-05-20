@@ -1,4 +1,13 @@
-<?php require __DIR__.'/../../database/database.php' ?>
+<?php
+require __DIR__.'/../../database/database.php';
+
+session_start();
+
+if(!$_SESSION['user']){
+    header("Location:../index.php");
+    die;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="sk">
