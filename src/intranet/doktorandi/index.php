@@ -45,9 +45,9 @@ if(!$_SESSION['user']){
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
-                <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
+                <li class="active"><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
                 <li><a href="/uamt/intranet/sluzobneCesty/index.php">Služobné cesty</a></li>
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
