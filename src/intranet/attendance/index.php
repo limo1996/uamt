@@ -19,8 +19,52 @@
     <script src="scripts/tableCreator.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <script src="../../menu/menuScripts.js"></script>
+    <style media="all">
+        @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+    </style>
+
+
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                    class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                    class="icon-bar"></span></button>
+        <p class="navbar-brand" style="color:purple;">UAMT - Intranet</p></div>
+    <div class="nav-flags">
+
+    </div>
+    </div>
+    <div class="container">
+        <div class="navbar-header"></div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav" id="navMenu">
+                <li ><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="#">Pedagogika</a></li>
+                <li><a href="#">Doktorandi</a></li>
+                <li><a href="#">Publikácie</a></li>
+                <li><a href="#">Služobné cesty</a></li>
+                <li><a href="#">Nákupy</a></li>
+                <li class="active"><a href="#">Dochádzka</a></li>
+                <li><a href="#">Rozdelenie úloh</a></li>
+                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="nazov">
+    <h2><?php echo "Evidencia dochádzky" ?></h2>
+    <hr class="hr_nazov">
+</div>
+
 <?php
 
 /*******TESTS*******
@@ -35,10 +79,7 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
  * *****************/
 ?>
 
-<div class="jumbotron text-center" id="header">
-    <h1>Evidencia dochádzky</h1>
-    <p>Táto stránka umožnuje evidenciu dochádzky zamestnancov.</p>
-</div>
+
 <div class="container-fluid">
     <div class="input-group input-group-lg col-sm-4" id="calendarWrapper">
         <span class="input-group-addon fa fa-calendar"><img src="styles/calendar.png" width="21" height="21" alt="calendar"/></span>
@@ -99,8 +140,8 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+</div>
+<!--
 <div class="col-sm-4">
     <h2>Legenda</h2>
     <span class="label label-primary">PN</span>
@@ -109,5 +150,59 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
     <span class="label label-warning">Dovolenka</span>
     <span class="label label-danger">Plán Dovolenky</span>
 </div>
+ -->
+
+<div>
+
+</div>
+<footer>
+    <div class="container">
+        <div class="container">
+            <div class="col-sm-2 text-center">
+                <a href="http://is.stuba.sk/">AIS STU</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="http://aladin.elf.stuba.sk/rozvrh/ ">Rozvrh hodín FEI</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="http://elearn.elf.stuba.sk/moodle/  "> Moodle FEI</a>
+
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="https://www.jedalen.stuba.sk/WebKredit/"> Jedáleň STU </a>
+            </div>
+
+
+            <div class="col-sm-2 text-center">
+                <a href="https://www.facebook.com/UAMTFEISTU"> Facebook </a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="https://www.youtube.com/channel/UCo3WP2kC0AVpQMIiJR79TdA"> Youtube </a>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+
+            <div class="col-sm-4 text-center">
+                © Copyright 2017. Všetky práva vyhradené.
+            </div>
+            <div class="col-sm-4 text-center">
+                Baka | Lukac | Lichman | Valasik | Smetanka
+            </div>
+
+            <div class="col-sm-4 text-center">
+                <a href='index.php?lang=sk' style='color: white' > Slovensky jazyk</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="../../menu/jQueryScripts.js"></script>
+
+</body>
 
 </html>

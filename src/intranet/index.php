@@ -7,15 +7,15 @@
     <!-- Bootstrap -->
     <title>Intranet</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
     <script src="../menu/menuScripts.js"></script>
 
     <style media="all">
