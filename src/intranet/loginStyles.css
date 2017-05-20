@@ -1,0 +1,32 @@
+.wrapper{
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+.form-signin{
+    max-width: 420px;
+    padding: 40px 38px 66px;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+}
+.input-group{
+    height: 45px;
+    margin-bottom: 15px;
+    border-radius: 0;
+    color: #28d;
+}
+.form-control{
+    height: 45px;
+    color: #28d;
+}
+.input-group:hover span i{
+    color: #28d;
+}
+.btn-block{
+    border-radius: 0;
+    margin-top: 25px;
+    background-color: #28d;
+    border: none;
+}
+.btn-block:hover {
+    background-color: #1f7bc7;
+}
