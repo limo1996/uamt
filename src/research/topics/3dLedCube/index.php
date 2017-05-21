@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$text2 = $lan->getTextForPage('research');
 ?>
 <!DOCTYPE html>
 <html>
@@ -143,10 +144,11 @@ $text = $lan->getTextForPage('menu');
     <div class="col-sm-6">
 
         <img src="kocka.jpg" alt="3D Led Cube" style="width:100%;height:100%">
-        <p>Zobrazená kocka bola vytvorená v rámci diplomovej práce. Bol k nej vytvorený vzdialený prístup cez Internet, čo umožňuje užívateľovi vkladať do kocky vlastný kód, ktorý ovplyvňuje jej správanie sa.
+        <p>
+            <?php
+            echo $text2['cube'];
+            ?>
         </p>
-        <p><i>Displayed cube was created within the diploma thesis. It was created for remote access via the Internet. It allows the user to insert custom code blocks and in this way to influence its behavior.
-            </i></p>
         <p>&nbsp;</p>
 
 

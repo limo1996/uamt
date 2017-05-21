@@ -20,6 +20,10 @@ class Text
             return $this->getTextForStaff();
         } else if ($page == 'positions'){
             return $this->getTextForPositions();
+        } else if ($page == 'contact'){
+            return $this->getTextForContact();
+        } else if ($page == 'research'){
+            return $this->getTextForResearch();
         }
             return null;
     }
@@ -87,6 +91,61 @@ class Text
             $text["d_head_department"] = "Zástupca vedúceho oddelenia";
             $text["d"] = "ODDELENIA ÚSTAVU AUTOMOBILOVEJ MECHATRONIKY";
             $text["org"] = "Organizačný poriadok Ústavu automobilovej mechatroniky";
+        }
+
+        return $text;
+    }
+
+    private function getTextForContact()
+    {
+        $text = null;
+        if($this->m_lang == 'en'){
+            $text['address_t'] = "Address";
+            $text['address'] = 'Institute of automotive mechatronics';
+            $text['state'] = 'Slovak republic';
+            $text['secretariat'] = 'Secretariat';
+            $text['office'] = 'Office';
+            $text['number']= 'Phone number';
+        } else if ($this->m_lang == 'sk') {
+            $text['address_t'] = "Adresa";
+            $text['address'] = 'Ústav automobilovej mechatroniky';
+            $text['state'] = 'Slovak republic';
+            $text['secretariat'] = 'Sekretariát';
+            $text['office'] = 'Kancelária';
+            $text['number']= 'Telefónne číslo';
+        }
+
+        return $text;
+    }
+
+    private function getTextForResearch()
+    {
+        $text = null;
+        if($this->m_lang == 'en') {
+            $text['cube'] = 'Displayed cube was created within the diploma thesis. It was created for remote access via the Internet. 
+            It allows the user to insert custom code blocks and in this way to influence its behavior.';
+            $text['param'] = 'Technical parameters';
+            $text['1'] = 'Weight';
+            $text['2'] = 'Dimensions (l x w x h)';
+            $text['3'] = 'Type of control: Remote control, controlled by microprocessor';
+            $text['4'] = 'Propulsion: 6x6, each wheel controlled independently by BLCD electric motor';
+            $text['5'] = 'Total power of electric motors: 6x 175W';
+            $text['6'] = 'Power supply: 6x DC / AC converter';
+            $text['7'] = 'Power Source: 4x Li-Pol Batteries';
+            $text['8'] = 'Total battery capacity: 13.2 Ah';
+
+        } else if ($this->m_lang == 'sk'){
+            $text['cube'] = 'Zobrazená kocka bola vytvorená v rámci diplomovej práce. Bol k nej vytvorený vzdialený prístup cez Internet, 
+            čo umožňuje užívateľovi vkladať do kocky vlastný kód, ktorý ovplyvňuje jej správanie sa.';
+            $text['param'] = 'Technické údaje';
+            $text['1'] = 'Hmotnosť';
+            $text['2'] = 'Rozmery (d x š x v)';
+            $text['3'] = 'Spôsob ovládania: Diaľkové ovládanie, riadené mikroprocesorom';
+            $text['4'] = 'Pohon: 6×6, každé koleso samostatne riadené BLDC elektromotorom';
+            $text['5'] = 'Celkový výkon elektromotorov: 6x 175W';
+            $text['6'] = 'Napájanie motorov: 6x DC/​AC menič';
+            $text['7'] = 'Zdroj el. prúdu: 4x Li-​Pol akumulátory';
+            $text['8'] = 'Celková kapacita aku­mulá­torov: 13,2 Ah';
         }
 
         return $text;

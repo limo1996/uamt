@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$text2 = $lan->getTextForPage('contact');
 ?>
 <!DOCTYPE html>
 <html>
@@ -153,20 +154,20 @@ $text = $lan->getTextForPage('menu');
     </div>
         <div class="col-sm-4 center" >
             <div class="well"  style=" width: 450px" >
-                <h3 id = "adress" style="line-height:20%;"><i class="fa fa-home fa-1x" style="line-height:6%;color:#4268f4!important;"></i> Adresa:</h3>
-                <p>Ústav automobilovej mechatroniky, FEI STU, Ilkovičova 3,
-                    812 19 Bratislava, Slovenská republika</p>
+                <h3 id = "adress" style="line-height:20%;"><i class="fa fa-home fa-1x" style="line-height:6%;color:#4268f4!important;"></i> <?php echo $text2['address_t']; ?>:</h3>
+                <p><?php echo $text2['address']; ?>, FEI STU, Ilkovičova 3,
+                    812 19 Bratislava, <?php echo $text2['state']; ?></p>
 
-                <h3 id="secretary"><i class="fa fa-user fa-1x" style="line-height:6%;color:#4268f4!important;"></i> Sekretariát:</h3>
+                <h3 id="secretary"><i class="fa fa-user fa-1x" style="line-height:6%;color:#4268f4!important;"></i> <?php echo $text2['secretariat']; ?>:</h3>
                 <p>Katarína Kermietová</p>
 
-                <h3 id="kacelaria"><i class="fa fa-key fa-1x" style="line-height:6%;color:#4268f4"></i> Kancelária</h3>
+                <h3 id="kacelaria"><i class="fa fa-key fa-1x" style="line-height:6%;color:#4268f4"></i> <?php echo $text2['office']; ?>:</h3>
                 <p>D116</p>
 
                 <h3><i class="fa fa-envelope fa-1x" style="line-height:6%;color:#4268f4"></i> E-mail:</h3>
                 <p>katarina.kermietova[at]stuba.sk</p>
 
-                <h3 id="phoneNumber"><i class="fa fa-phone fa-1x" style="line-height:6%;color:#4268f4"></i> Telefónne číslo:</h3>
+                <h3 id="phoneNumber"><i class="fa fa-phone fa-1x" style="line-height:6%;color:#4268f4"></i> <?php echo $text2['number']; ?>:</h3>
                 <p>+421 260 291 598</p>
                 <p>+421 265 429 734</p>
             </div>

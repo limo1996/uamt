@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$text2 = $lan->getTextForPage('research');
 ?>
 <!DOCTYPE html>
 <html>
@@ -146,17 +147,16 @@ $text = $lan->getTextForPage('menu');
 
         <p>&nbsp;</p>
 
-        <h4>Technické údaje:</h4>
+        <h4><?php echo $text2['param']; ?>:</h4>
         <ul style="list-style-type:square">
-            <li>Hmot­nosť: 12,5kg</li>
-            <li>Rozmery (d x š x v): 614 x 495 x 269 mm</li>
-            <li>Spôsob ovládania: Diaľkové ovládanie, riadené mikroprocesorom</li>
-            <li>Pohon: 6×6, každé koleso samostatne riadené</li>
-            <li>BLDC elektromotorom</li>
-            <li>Celkový výkon elektromotorov: 6x 175W</li>
-            <li>Napájanie motorov: 6x DC/​AC menič</li>
-            <li>Zdroj el. prúdu: 4x Li-​Pol akumulátory</li>
-            <li>Celková kapacita aku­mulá­torov: 13,2 Ah</li>
+            <li><?php echo $text2['1']; ?>: 12,5kg</li>
+            <li><?php echo $text2['2']; ?>: 614 x 495 x 269 mm</li>
+            <li><?php echo $text2['3']; ?></li>
+            <li><?php echo $text2['4']; ?></li>
+            <li><?php echo $text2['5']; ?></li>
+            <li><?php echo $text2['6']; ?></li>
+            <li><?php echo $text2['7']; ?></li>
+            <li><?php echo $text2['8']; ?></li>
         </ul>  <img src="Render_ISO.jpg" alt="Autonómne vozidlo 6×6" style="width:50%;height:50%;float:right;">
 
         <p>&nbsp;</p>
