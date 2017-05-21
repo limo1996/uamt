@@ -5,6 +5,9 @@ if(!$_SESSION['user']){
     header("Location:../index.php");
     die;
 }
+
+// TODO: odoslanie formularu do DB
+
 ?>
 
 <!DOCTYPE html>
@@ -16,14 +19,17 @@ if(!$_SESSION['user']){
     <!-- Bootstrap -->
     <title>Intranet</title>
 
-
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../../menu/menuScripts.js"></script>
+    <script src="script/script.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -66,32 +72,85 @@ if(!$_SESSION['user']){
     <hr class="hr_nazov">
 </div>
 
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
+<div class="container space">
+    <div id="documents">
+    </div>
+    <button id="newDocument" class="btn btn-primary btn-primary" type="button" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-open"></span> Nový dokument</button>
 
-    <h1> Content</h1>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-    <h1> Content</h1>
+            <!-- Modal content-->
+            <div class="modal-content form-area">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nový dokument</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="Document_Form" action="" method="POST" name="Document_Form" role="form">
+                        <br style="clear:both">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="documentName" name="documentName" placeholder="Názov dokumentu" required>
+                        </div>
+                        <div class="funkyradio">
+                            <div class="funkyradio-success">
+                                <input type="radio" name="categ" id="choose" value="choose"/>
+                                <label for="choose">Vybrať kategóriu</label>
+                            </div>
+                            <div class="funkyradio-success">
+                                <input type="radio" name="categ" id="create" value="create"/>
+                                <label for="create">Nová kategória</label>
+                            </div>
+                        </div>
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
+                        <!-- TODO: dropdown kategorii z DB-->
 
-    <h1> Content</h1>
+                        <div id="selectCategory">
+                            <select class="selectpicker" title="Výber kategórie">
+                                <?php
+                                echo "<option>Kategoria 1</option>";
+                                echo "<option>Kategoria 2</option>";
+                                echo "<option>Kategoria 3</option>";
+                                ?>
+                            </select>
+                        </div>
 
-    <h1> Content</h1>
+                        <div id="newCategory">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Názov kategórie" required>
+                            </div>
+                        </div>
 
-    <h1> Content</h1>
+                        <div class="funkyradio">
+                            <div class="funkyradio-success">
+                                <input type="radio" name="attach" id="file" value="file"/>
+                                <label for="file">Vložiť súbor</label>
+                            </div>
+                            <div class="funkyradio-success">
+                                <input type="radio" name="attach" id="link" value="link"/>
+                                <label for="link">Vložiť odkaz</label>
+                            </div>
+                        </div>
 
-    <h1> Content</h1>
+                        <div id="attachFile">
+                            <input type="file" name="fileToUpload" id="fileToUpload">
+                        </div>
 
-    <h1> Content</h1>
+                        <div id="attachLink" class="form-group">
+                            <input type="text" class="form-control" id="linkToFile" name="linkToFile" placeholder="Odkaz na dokument" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zrušiť</button>
+                    <button type="Submit" class="btn btn-primary">Pridať</button>
+                </div>
+            </div>
 
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
+        </div>
+    </div>
 </div>
 
 <footer>

@@ -59,6 +59,7 @@ if(isset($_POST['Login']))   // it checks whether the user clicked login button 
             echo "bad";
         }
         else {
+            // TODO: dorobit prava pre roznych uzivatelov
             $_SESSION['user'] = $username;
             echo '<script type="text/javascript"> window.open("intranet.php","_self");</script>';  //  On Successful Login redirects to home.php
             //header("Location:intranet.php");

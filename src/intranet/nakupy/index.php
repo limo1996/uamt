@@ -5,6 +5,10 @@ if(!$_SESSION['user']){
     header("Location:../index.php");
     die;
 }
+
+// TODO: nacitat text z DB
+// TODO: ulozit novy text do DB
+
 ?>
 
 <!DOCTYPE html>

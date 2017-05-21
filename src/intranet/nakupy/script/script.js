@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
 
     $('#Save').on('click', function() {
-        // AJAX na ulozenie noveho textu do DB
+        // TODO: AJAX na ulozenie noveho textu do DB
         content.style.display = "inline"; // obsah stranky
         editor.style.display = "none";
         button_edit.style.display = "inline"; // buttony

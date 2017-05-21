@@ -66,32 +66,8 @@ if(!$_SESSION['user']){
     <hr class="hr_nazov">
 </div>
 
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
+<div class="container">
+    <h1> Tabulka rozdelenia uloh</h1>
 </div>
 
 <footer>
