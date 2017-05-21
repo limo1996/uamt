@@ -229,8 +229,6 @@ if(isset($_POST['Login']))   // it checks whether the user clicked login button 
         </form>
     </div>
 
-    <div id="odpoved"></div>
-
 </div>
 
 
