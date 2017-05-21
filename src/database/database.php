@@ -149,4 +149,12 @@ class Database
         $request = $this->conn->prepare($sql);
         $request->execute(array(':dateFrom' => $dateFrom, ':dateTo' => $dateTo));
     }
+
+    function fetchPhotos()
+    {
+        $sql = "SELECT * FROM photos";
+        $request = $this->conn->prepare($sql);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
 }

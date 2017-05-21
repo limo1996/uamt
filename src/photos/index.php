@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$js = $lan->getTextForPage('photos');
 ?>
 <!DOCTYPE html>
 <html>
@@ -144,33 +145,13 @@ $text = $lan->getTextForPage('menu');
     <h2><?php echo $text->act_photos; ?></h2>
     <hr class="hr_nazov">
 </div>
-
-<?php
-//include (__DIR__.'/../database/database.php');
-//$ex = new Database();
-
-$js = array(
-    array(
-        "Date"=>"07.02.2017",
-        "Title-SK"=>"Deň otvorených dverí na ÚAMT FEI STU",
-        "Title-EN"=>"Open day at UAMT FEI STU",
-        "Folder"=>"events001" ),
-    array(
-        "Date"=>"25.09.2015",
-        "Title-SK"=>"Noc výskumníkov",
-        "Title-EN"=>"Night of researchers",
-        "Folder"=>"events002" )
-          );
-
-
-?>
 <div class="container">
     <div class="row">
 
         <?php
         for($i=0;$i<count($js);$i++)
         {
-            echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['Title-SK']."</h3>";
+            echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['Title']."</h3>";
             echo "<h4><i class='fa fa-calendar' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['Date']."</h4>";
             $dirname = $js[$i]['Folder']."/";
             $images = glob($dirname."*.*");

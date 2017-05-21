@@ -24,6 +24,8 @@ class Text
             return $this->getTextForContact();
         } else if ($page == 'research'){
             return $this->getTextForResearch();
+        } else if ($page == 'photos'){
+            return $this->getTextForPhotos();
         }
             return null;
     }
@@ -149,5 +151,25 @@ class Text
         }
 
         return $text;
+    }
+
+    private function getTextForPhotos()
+    {
+        $db = new Database();
+        $photos = $db->fetchPhotos();
+        $final = array();
+        foreach ($photos as $key => $photo) {
+            $tmp['Date'] = $photo['Date'];
+            $tmp['Folder'] = $photo['Folder'];
+            if ($this->m_lang == 'sk') {
+                $tmp['Title'] = $photo['Title-SK'];
+            } else if ($this->m_lang == 'en') {
+                $tmp['Title'] = $photo['Title-EN'];
+            } else
+                return null;
+
+            $final[$key] = $tmp;
+        }
+        return $final;
     }
 }
