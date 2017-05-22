@@ -30,7 +30,7 @@ class Text
             return null;
     }
 
-    private function getTextForProjects()
+    public function getTextForProjects()
     {
         $db = new Database();
         $projects = $db->fetchProjects();

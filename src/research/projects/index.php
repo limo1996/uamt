@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$projects =  $lan->getTextForProjects();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@ $text = $lan->getTextForPage('menu');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <script src="../../../menu/menuScripts.js"></script>
+    <script src="../../menu/menuScripts.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -140,38 +141,367 @@ $text = $lan->getTextForPage('menu');
             </ul>
         </div>
 </nav>
+<div class="modal fade" id="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="modalHeader" style="color: #0066cc"></h5>
+                <h6 id="ModalName"></h6>
+                <h6 id="ModalDatum"></h6>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <div id="nazov">
     <h2><?php echo $text->research_projects; ?></h2>
     <hr class="hr_nazov">
 </div>
 
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
+<div class="col-sm-2"></div>
 
-    <h1> Content</h1>
+<div class="col-sm-8">
 
-    <h1> Content</h1>
+    <?php
+    foreach ($projects as $project) {
+        $annotations[$project['TITLE']] = $project['ANNOTATION'];
+    }
+    ?>
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
+    <div class="col-sm-3"></div>
+    <div id="tabs" class="col-sm-8 center">
+        <ul id="list" class="nav nav-tabs">
+            <li class="active" id="labak"><a  href="#1" data-toggle="tab" >Všetky</a></li>
+            <li id="predmet"><a  href="#2" data-toggle="tab">Medzinárodné</a></li>
+            <li id="prop"><a  href="#3" data-toggle="tab">VEGA</a></li>
+            <li id="zariadenie"><a  href="#4" data-toggle="tab">APVV</a></li>
+            <li id="zariadenie"><a  href="#5" data-toggle="tab">KEGA</a></li>
 
-    <h1> Content</h1>
+            <li id="zariadenie"><a  href="#6" data-toggle="tab">Iné domáce</a></li>
 
-    <h1> Content</h1>
+        </ul>
+    </div>
 
-    <h1> Content</h1>
+    <div class="tab-content ">
+        <div class="tab-pane active" id="1">
 
-    <h1> Content</h1>
+            <table class="table table-striped table-bordered" id="displayTable">
+                <tr>
+                    <th>Číslo</th>
+                    <th>Názov</th>
+                    <th>Doba riešenia</th>
+                    <th>Zodpovedný riešiteľ</th>
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
+                </tr>
 
-    <h1> Content</h1>
+
+                <?php
+
+                foreach ($projects as $project) {
+                    echo "<tr>";
+                    echo "<td>" .  $project['ID'] . "</td>";
+                    echo "<td>" .  $project['TITLE'] . "</td>";
+                    echo "<td>" .  $project['DURATION'] . "</td>";
+                    echo "<td>" .  $project['COORDINATION'] . "</td>";
+
+                    echo "</tr>";
+                }
+                ?>
+
+
+
+            </table>
+
+        </div>
+        <div class="tab-pane" id="3">
+            <table class="table table-striped table-bordered" id="table1">
+                <tr>
+                    <th>Číslo</th>
+                    <th>Názov</th>
+                    <th>Doba riešenia</th>
+                    <th>Zodpovedný riešiteľ</th>
+
+
+                </tr>
+
+
+                <?php
+
+                foreach ($projects as $project) {
+                    if ($project['TYPE'] == "VEGA") {
+                        echo "<tr>";
+                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['TITLE'] . "</td>";
+                        echo "<td>" . $project['DURATION'] . "</td>";
+                        echo "<td>" . $project['COORDINATION'] . "</td>";
+
+                        echo "</tr>";
+                    }
+                }
+                ?>
+
+
+
+            </table>
+        </div>
+        <div class="tab-pane" id="2">
+            <table class="table table-striped table-bordered" id="table2">
+                <tr>
+                    <th>Číslo</th>
+                    <th>Názov</th>
+                    <th>Doba riešenia</th>
+                    <th>Zodpovedný riešiteľ</th>
+
+
+                </tr>
+
+
+                <?php
+
+                foreach ($projects as $project) {
+                    if ($project['TYPE'] != "VEGA" && $project['TYPE'] != "APVV" && $project['TYPE'] != "KEGA" && $project['TYPE'] != "Iné domáce projekty" ) {
+                        echo "<tr>";
+                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['TITLE'] . "</td>";
+                        echo "<td>" . $project['DURATION'] . "</td>";
+                        echo "<td>" . $project['COORDINATION'] . "</td>";
+
+                        echo "</tr>";
+                    }
+                }
+                ?>
+
+
+
+            </table>
+        </div>
+        <div class="tab-pane" id="4">
+            <table class="table table-striped table-bordered" id="table3">
+                <tr>
+                    <th>Číslo</th>
+                    <th>Názov</th>
+                    <th>Doba riešenia</th>
+                    <th>Zodpovedný riešiteľ</th>
+
+
+                </tr>
+
+
+                <?php
+
+                foreach ($projects as $project) {
+                    if ($project['TYPE'] == "APVV") {
+                        echo "<tr>";
+                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['TITLE'] . "</td>";
+                        echo "<td>" . $project['DURATION'] . "</td>";
+                        echo "<td>" . $project['COORDINATION'] . "</td>";
+
+                        echo "</tr>";
+                    }
+                }
+                ?>
+
+
+
+            </table>
+        </div>
+        <div class="tab-pane" id="5">
+            <table class="table table-striped table-bordered" id="table4">
+                <tr>
+                    <th>Číslo</th>
+                    <th>Názov</th>
+                    <th>Doba riešenia</th>
+                    <th>Zodpovedný riešiteľ</th>
+
+
+                </tr>
+
+
+                <?php
+
+                foreach ($projects as $project) {
+                    if ($project['TYPE'] == "KEGA") {
+                        echo "<tr>";
+                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['TITLE'] . "</td>";
+                        echo "<td>" . $project['DURATION'] . "</td>";
+                        echo "<td>" . $project['COORDINATION'] . "</td>";
+
+                        echo "</tr>";
+                    }
+                }
+                ?>
+
+
+
+            </table>
+        </div>
+        <div class="tab-pane" id="6">
+            <table class="table table-striped table-bordered" id="table5">
+                <tr>
+                    <th>Číslo</th>
+                    <th>Názov</th>
+                    <th>Doba riešenia</th>
+                    <th>Zodpovedný riešiteľ</th>
+
+
+                </tr>
+
+
+                <?php
+
+                foreach ($projects as $project) {
+                    if ($project['TYPE'] == "Iné domáce projekty") {
+                        echo "<tr>";
+                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['TITLE'] . "</td>";
+                        echo "<td>" . $project['DURATION'] . "</td>";
+                        echo "<td>" . $project['COORDINATION'] . "</td>";
+
+                        echo "</tr>";
+                    }
+                }
+                ?>
+
+
+
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        <?php
+        echo "var annotations = ".json_encode($annotations).";\n";
+        ?>
+        $('#displayTable').find('tr').click( function(){
+            var title = this.cells[1].innerHTML;
+            var date = this.cells[2].innerHTML;
+            var supervisor = this.cells[3].innerHTML;
+            //alert(title+supervisor+ustav);
+
+            $('#modalHeader').html(title);
+            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
+            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#modalBody").html(annotations[title]);
+
+            if(title != "Názov")
+                $('#myModal').modal('toggle');
+        });
+
+
+
+        $('#omg').find('tr').click( function(){
+            var title = this.cells[1].innerHTML;
+            var date = this.cells[2].innerHTML;
+            var supervisor = this.cells[3].innerHTML;
+            //alert(title+supervisor+ustav);
+
+            $('#modalHeader').html(title);
+            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
+            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#modalBody").html(annotations[title]);
+
+            if(title != "Názov")
+                $('#myModal').modal('toggle');
+        });
+
+        $('#table1').find('tr').click( function(){
+            var title = this.cells[1].innerHTML;
+            var date = this.cells[2].innerHTML;
+            var supervisor = this.cells[3].innerHTML;
+            //alert(title+supervisor+ustav);
+
+            $('#modalHeader').html(title);
+            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
+            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#modalBody").html(annotations[title]);
+
+            if(title != "Názov")
+                $('#myModal').modal('toggle');
+        });
+
+
+        $('#table2').find('tr').click( function(){
+            var title = this.cells[1].innerHTML;
+            var date = this.cells[2].innerHTML;
+            var supervisor = this.cells[3].innerHTML;
+            //alert(title+supervisor+ustav);
+
+            $('#modalHeader').html(title);
+            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
+            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#modalBody").html(annotations[title]);
+
+            if(title != "Názov")
+                $('#myModal').modal('toggle');
+        });
+
+
+        $('#table3').find('tr').click( function(){
+            var title = this.cells[1].innerHTML;
+            var date = this.cells[2].innerHTML;
+            var supervisor = this.cells[3].innerHTML;
+            //alert(title+supervisor+ustav);
+
+            $('#modalHeader').html(title);
+            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
+            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#modalBody").html(annotations[title]);
+
+            if(title != "Názov")
+                $('#myModal').modal('toggle');
+        });
+
+
+        $('#table4').find('tr').click( function(){
+            var title = this.cells[1].innerHTML;
+            var date = this.cells[2].innerHTML;
+            var supervisor = this.cells[3].innerHTML;
+            //alert(title+supervisor+ustav);
+
+            $('#modalHeader').html(title);
+            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
+            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#modalBody").html(annotations[title]);
+
+            if(title != "Názov")
+                $('#myModal').modal('toggle');
+        });
+
+        $('#table5').find('tr').click( function(){
+            var title = this.cells[1].innerHTML;
+            var date = this.cells[2].innerHTML;
+            var supervisor = this.cells[3].innerHTML;
+            //alert(title+supervisor+ustav);
+
+            $('#modalHeader').html(title);
+            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
+            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#modalBody").html(annotations[title]);
+
+            if(title != "Názov")
+                $('#myModal').modal('toggle');
+        });
+
+    </script>
+
+
+
 </div>
+<div class="col-sm-2"></div>
 
 
 <footer>

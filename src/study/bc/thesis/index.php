@@ -304,7 +304,7 @@ ksort($dictionary);
                     if(title != "Názov")
                         $('#myModal').modal('toggle');
                 });
-            </script
+            </script>
 
         <p>&nbsp;</p>
         <p>&nbsp;</p>
