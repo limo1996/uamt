@@ -144,33 +144,22 @@ $text = $lan->getTextForPage('menu');
     <hr class="hr_nazov">
 </div>
 
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
+<div id="content">
+    <div class="col-sm-3"></div>
 
-    <h1> Content</h1>
+    <div class="col-sm-6">
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
+        <p>Viac informácii na stránke: <a href="http://www.e-mobilita.fei.stuba.sk/">http://www.e-mobilita.fei.stuba.sk/</a></p>
+        <p>&nbsp;</p>
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
 
-    <h1> Content</h1>
+    </div>
+    <div class="col-sm-3"></div>
 
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
 </div>
+
 
 
 <footer>
