@@ -7,14 +7,18 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$js = $lan->getTextForPage('photos');
 ?>
 <!DOCTYPE html>
 <html>
 <head lang="sk">
-    <title><?php echo $text->study_phd;?></title>
+    <title><?php echo $text->act_photos; ?></title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
     <!-- Latest compiled and minified CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStyles.css" type="text/css" rel="stylesheet">
@@ -24,11 +28,17 @@ $text = $lan->getTextForPage('menu');
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../menu/menuScripts.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+        img{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
     </style>
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
@@ -62,7 +72,7 @@ $text = $lan->getTextForPage('menu');
                     </ul>
                 </li>
                 <li><a href="/uamt/employees/<?php echo "?lang=".$lang; ?>"><?php echo $text->staff; ?></a></li>
-                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="dropdown-toggle"
@@ -109,7 +119,7 @@ $text = $lan->getTextForPage('menu');
                     </ul>
                 </li>
                 <li><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
+                <li  class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/activities/photos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_photos; ?></a></li>
@@ -132,28 +142,51 @@ $text = $lan->getTextForPage('menu');
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->study_phd;?></h2>
+    <h2><?php echo $text->act_photos; ?></h2>
     <hr class="hr_nazov">
 </div>
+<div class="container">
+    <div class="row">
 
+        <?php
+        for($i=0;$i<count($js);$i++)
+        {
+            echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['Title']."</h3>";
+            echo "<h4><i class='fa fa-calendar' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['Date']."</h4>";
+            $dirname = $js[$i]['Folder']."/";
+            $images = glob($dirname."*.*");
+             echo "<div class='w3-row-padding'>";
 
-<div id="content">
-    <div class="col-sm-3"></div>
+            foreach($images as $image)
+            {
+                echo "<div class='w3-container w3-third'>";
+                 echo "<img src='".$image."' style='width:100%;height:300px' onclick='onClick(this)' class='w3-hover-opacity'>";
+                echo "</div>";
 
-    <div class="col-sm-6">
-
-
-
-        <article>
-            <p>Informácie budú dodané neskôr...</p>
-        </article>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
+            }
+            echo "</div>";
+            echo "<hr>";
+        }
+        ?>
+        <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+            <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+            <div class="w3-modal-content w3-animate-zoom">
+                <img id="img01" style="width:100%">
+            </div>
+        </div>
 
     </div>
-    <div class="col-sm-3"></div>
-
 </div>
+<script>
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+    }
+</script>
+
+
+
+
 <footer>
     <div class="container">
         <div class="container">

@@ -52,7 +52,7 @@ $text = $lan->getTextForPage('menu');
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/"><i class="fa fa-home fa-1x"></i></></a></li>
+                <li class="active"><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -104,7 +104,7 @@ $text = $lan->getTextForPage('menu');
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->research; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><?php echo $text->research_projects; ?></a></li>
+                        <li><a href="/uamt/research/projects/<?php echo "?lang=".$lang; ?>"><?php echo $text->research_projects; ?></a></li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->research_topics; ?><b
                                         class="caret"></b></a>
@@ -117,24 +117,24 @@ $text = $lan->getTextForPage('menu');
                         </li>
                     </ul>
                 </li>
-                <li><a href="#"><?php echo $text->news; ?></a></li>
+                <li><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/uamt/photos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_photos; ?></a></li>
-                        <li><a href="/uamt/videos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_video; ?></a></li>
-                        <li><a href="/uamt/media/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_media; ?></a></li>
+                        <li><a href="/uamt/activities/photos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_photos; ?></a></li>
+                        <li><a href="/uamt/activities/videos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_video; ?></a></li>
+                        <li><a href="/uamt/activities/media/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_media; ?></a></li>
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?>
                                 <b
                                         class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><?php echo $text->act_temata_mobility; ?></a></li>
+                                <li><a href="/uamt/activities/temata_pages/mobility/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_temata_mobility; ?></a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li><a href="/uamt/contactPage/<?php echo "?lang=".$lang; ?>"><?php echo $text->contact; ?></a></li>
-                <li><a href="/uamt/intranet/" style="color:purple"><i class="fa fa-user fa-1x" style="color: purple!important;"></i> Intranet</a></li>
+                <li><a href="/uamt/intranet/<?php echo "?lang=".$lang; ?>" style="color:purple"><i class="fa fa-user fa-1x" style="color: purple!important;"></i> Intranet</a></li>
                 <!--   <li><a href="#"><button type="button" class="button-menu btn btn-primary btn-sm">Primary</button></a></li>-->
 
             </ul>
@@ -181,14 +181,14 @@ $text = $lan->getTextForPage('menu');
                 <a href="http://is.stuba.sk/">AIS STU</a>
             </div>
             <div class="col-sm-2 text-center">
-                <a href="http://aladin.elf.stuba.sk/rozvrh/ ">Rozvrh hodín FEI</a>
+                <a href="http://aladin.elf.stuba.sk/rozvrh/ "> <?php echo $text->timetable; ?></a>
             </div>
             <div class="col-sm-2 text-center">
                 <a href="http://elearn.elf.stuba.sk/moodle/  "> Moodle FEI</a>
 
             </div>
             <div class="col-sm-2 text-center">
-                <a href="https://www.jedalen.stuba.sk/WebKredit/"> Jedáleň STU </a>
+                <a href="https://www.jedalen.stuba.sk/WebKredit/"> <?php echo $text->cantine; ?> </a>
             </div>
 
 

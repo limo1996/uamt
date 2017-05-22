@@ -1,5 +1,5 @@
 <?php
-include('../../lang/langFunctions.php');
+include('../lang/langFunctions.php');
 $lang = 'sk';
 
 if (isset($_GET['lang']))
@@ -8,27 +8,36 @@ if (isset($_GET['lang']))
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
 ?>
+
 <!DOCTYPE html>
-<html>
-<head lang="sk">
-    <title><?php echo $text->study_phd;?></title>
+<html lang="sk">
+
+<head>
     <meta charset="utf-8">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/mainStyles.css" type="text/css" rel="stylesheet">
-    <link href="../../menu/menuStyles.css" type="text/css" rel="stylesheet">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <title><?php echo $text->news;?></title>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
+    <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
+
+
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="../../../menu/menuScripts.js"></script>
+
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>
+
 </head>
+
 <body>
+<!--<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">-->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
@@ -62,7 +71,7 @@ $text = $lan->getTextForPage('menu');
                     </ul>
                 </li>
                 <li><a href="/uamt/employees/<?php echo "?lang=".$lang; ?>"><?php echo $text->staff; ?></a></li>
-                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="dropdown-toggle"
@@ -108,7 +117,7 @@ $text = $lan->getTextForPage('menu');
                         </li>
                     </ul>
                 </li>
-                <li><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
+                <li class="active"><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -132,28 +141,39 @@ $text = $lan->getTextForPage('menu');
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->study_phd;?></h2>
+    <h2><?php echo $text->news; ?></h2>
     <hr class="hr_nazov">
 </div>
 
+<div id="content">// simulate large amount of information
+    <h1> Content</h1>
 
-<div id="content">
-    <div class="col-sm-3"></div>
+    <h1> Content</h1>
 
-    <div class="col-sm-6">
+    <h1> Content</h1>
 
+    <h1> Content</h1>
 
+    <h1> Content</h1>
 
-        <article>
-            <p>Informácie budú dodané neskôr...</p>
-        </article>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
+    <h1> Content</h1>
 
-    </div>
-    <div class="col-sm-3"></div>
+    <h1> Content</h1>
 
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
+
+    <h1> Content</h1>
 </div>
+
+
 <footer>
     <div class="container">
         <div class="container">
@@ -183,7 +203,7 @@ $text = $lan->getTextForPage('menu');
         <div class="container">
 
             <div class="col-sm-4 text-center">
-                © Copyright 2017. Všetky práva vyhradené.
+                © Copyright 2017.  <?php echo $text->rights; ?>.
             </div>
             <div class="col-sm-4 text-center">
                 Baka | Lukac | Lichman | Valasik | Smetanka
@@ -205,7 +225,6 @@ $text = $lan->getTextForPage('menu');
     </div>
     </div>
 </footer>
-<script src="../../menu/jQueryScripts.js"></script>
+<script src="../menu/jQueryScripts.js"></script>
 </body>
-
 </html>
