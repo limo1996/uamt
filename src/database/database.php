@@ -195,6 +195,13 @@ class Database
         return $request->execute(array(':tab' => $tab)) ? $request->fetchAll() : null;
     }
 
+    function getDocumentSource($id)
+    {
+        $request = $this->conn->prepare("SELECT source FROM document WHERE id = :id");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
+    }
+
     function insertDocument($name, $source, $category, $tab)
     {
         $sql = "INSERT INTO document(NAME, SOURCE, CATEGORY, TAB) VALUES (:name, :source, :category, :tab)";
@@ -207,6 +214,27 @@ class Database
         $sql = "DELETE FROM document WHERE id = :id";
         $request = $this->conn->prepare($sql);
         $request->execute(array(':id' => $id));
+    }
+
+    function updateDocument($id, $name, $source)
+    {
+        if (($name == null || $name == '') && ($source == null || $source == ''))
+            return;
+        if ($name == null || $name == '') {
+            $sql = "UPDATE document SET source = :source WHERE id = :id";
+            $request = $this->conn->prepare($sql);
+            $request->execute(array(':id' => $id, ':source' => $source));
+        }
+        else if ($source == null || $source == '') {
+            $sql = "UPDATE document SET name = :name WHERE id = :id";
+            $request = $this->conn->prepare($sql);
+            $request->execute(array(':id' => $id, ':name' => $name));
+        }
+        else {
+            $sql = "UPDATE document SET name = :name, source = :source WHERE id = :id";
+            $request = $this->conn->prepare($sql);
+            $request->execute(array(':id' => $id, ':name' => $name, ':source' => $source));
+        }
     }
 
 }
