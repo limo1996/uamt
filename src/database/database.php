@@ -156,5 +156,57 @@ class Database
         $request = $this->conn->prepare($sql);
         return $request->execute() ? $request->fetchAll() : null;
     }
+    /************************* NEWS *********************************/
+    function fetchAllNews(){
+        $sql = "SELECT * FROM Aktuality";
+        $request = $this->conn->prepare($sql);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+    function insertNewsletterSubs($email,$newsLang){
+        $sql = "INSERT INTO newsletter(Email,newsLang) VALUES (:email,:newsLang)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':email' => $email,':newsLang'=> $newsLang));
+    }
+    function deleteNewsletterSubs($email)
+    {
+        $sql = "DELETE FROM newsletter WHERE Email = :email ";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':email' => $email));
+    }
+    function fetchSubsByLang($newsLang)
+    {
+        $request = $this->conn->prepare("SELECT Email, newsLang FROM newsletter WHERE newsLang= :newsLang");
+        $request->setFetchMode(PDO::FETCH_ASSOC, "newsletter");
+        return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
+    }
+
+    /******************** INTRANET-DOCUMENTS **********************/
+    function getTabCategories($tab)
+    {
+        $request = $this->conn->prepare("SELECT category FROM document WHERE tab = :tab GROUP BY category");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':tab' => $tab)) ? $request->fetchAll() : null;
+    }
+
+    function getTabDocuments($tab)
+    {
+        $request = $this->conn->prepare("SELECT * FROM document WHERE tab = :tab");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':tab' => $tab)) ? $request->fetchAll() : null;
+    }
+
+    function insertDocument($name, $source, $category, $tab)
+    {
+        $sql = "INSERT INTO document(NAME, SOURCE, CATEGORY, TAB) VALUES (:name, :source, :category, :tab)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':name' => $name, ':source' => $source, ':category' => $category, ':tab' => $tab));
+    }
+
+    function deleteDocument($id)
+    {
+        $sql = "DELETE FROM document WHERE id = :id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':id' => $id));
+    }
 
 }

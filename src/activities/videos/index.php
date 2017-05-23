@@ -7,12 +7,11 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
-$text2 = $lan->getTextForPage('positions');
 ?>
 <!DOCTYPE html>
 <html>
 <head lang="sk">
-    <title><?php echo $text->about_management;?></title>
+    <title><?php echo  $text->act_video; ?></title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,14 +21,49 @@ $text2 = $lan->getTextForPage('positions');
     <link href="../../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../../menu/menuScripts.js"></script>
+
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+
+        #tabs .tab-content {
+            color : white;
+            background-color: #428bca;
+            padding : 5px 15px;
+        }
+
+        #tabs h3 {
+            color : white;
+            background-color: #428bca;
+            padding : 5px 15px;
+        }
+
     </style>
 </head>
 <body>
+<?php
+include_once ("../../database/database.php");
+$ex = new Database();
+$js = $ex->fetchVideos();
+function getYoutube($url)
+{
+    $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_]+)\??/i';
+    $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+
+    if (preg_match($longUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+
+    if (preg_match($shortUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+    return 'https://www.youtube.com/embed/' . $youtube_id ;
+}
+?>
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
@@ -39,13 +73,12 @@ $text2 = $lan->getTextForPage('positions');
     <div class="nav-flags">
 
     </div>
-    </div>
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
-                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/about/history/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_history; ?></a></li>
@@ -110,7 +143,7 @@ $text2 = $lan->getTextForPage('positions');
                     </ul>
                 </li>
                 <li><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
+                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/activities/photos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_photos; ?></a></li>
@@ -133,77 +166,74 @@ $text2 = $lan->getTextForPage('positions');
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->about_management;?></h2>
+    <h2><?php echo  $text->act_video; ?></h2>
     <hr class="hr_nazov">
 </div>
 
 
-<div id="content">
-    <div class="col-sm-3"></div>
+<div class="container">
 
-    <div class="col-sm-6">
-        <p>&nbsp;</p>
-
-        <table class="table table-striped">
-
-            <tbody>
-            <tr>
-                <td><?php echo $text2['director']; ?></td>
-                <td>prof. Ing. Mikuláš Huba, PhD.</td>
-
-            </tr>
-            <tr>
-                <td><?php echo $text2['director_research']; ?></td>
-                <td>prof. Ing. Justín Murín, DrSc.</td>
-            </tr>
-            <tr>
-                <td><?php echo $text2['director_development']; ?></td>
-                <td>prof. Ing. Štefan Kozák, PhD.</td>
-
-            </tr>
-            <tr>
-                <td><?php echo $text2['director_activities']; ?></td>
-                <td>doc. Ing. Katarína Žáková, PhD.</td>
-
-            </tr>
-            </tbody>
-        </table>
-        <article>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-
-            <h3  class="text-center"><?php echo $text2['d']; ?></h3>
-            <p>&nbsp;</p>
-
-            <h4  class="text-center"><?php echo $text->about_department_OAMM; ?></h4>
-            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> 	prof. Ing. Justín Murín, DrSc.</p>
-            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b> 	doc. Ing. Vladimír Kutiš, PhD.</p>
-            <p>&nbsp;</p>
-
-            <h4 class="text-center"><?php echo $text->about_department_OIKR; ?></h4>
-            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> 	doc. Ing. Danica Rosinová, PhD.</p>
-            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b> 	doc. Ing. Katarína Žáková, PhD.</p>
-            <p>&nbsp;</p>
-
-            <h4 class="text-center"><?php echo $text->about_department_OEMP; ?></h4>
-            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> prof. Ing. Štefan Kozák, PhD.</p>
-            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b> 	Ing. Richard Balogh, PhD.</p>
-            <p>&nbsp;</p>
-
-            <h4 class="text-center"><?php echo $text->about_department_OEAP; ?></h4>
-            <p class="text-center"><b><?php echo $text2['head_department']; ?>:</b> prof. Ing. Mikuláš Huba, PhD.</p>
-            <p class="text-center"><b><?php echo $text2['d_head_department']; ?>:</b>  prof. Ing. Viktor Ferencey, CSc.</p>
-            <p>&nbsp;</p>
-
-        </article>
-        <p><?php echo $text2['org']; ?> (<a href="/uamt/about/organizacny_poriadok.pdf">organizacny_poriadok.pdf</a>)</p>
-
-        <p>&nbsp;</p>
-
-
-
+    <div id="tabs" class="col-sm-12">
+        <ul id="list" class="nav nav-tabs">
+            <li class="active" id="labak"><a  href="#1" data-toggle="tab" >Labák</a></li>
+            <li id="predmet"><a  href="#2" data-toggle="tab">Predmet</a></li>
+            <li id="prop"><a  href="#3" data-toggle="tab">Propagácia</a></li>
+            <li id="zariadenie"><a  href="#4" data-toggle="tab">Zariadenie</a></li>
+        </ul>
     </div>
-    <div class="col-sm-3"></div>
+    <div class="tab-content ">
+        <div class="tab-pane active" id="1">
+            <?php
+           for($i=0;$i<count($js);$i++)
+           {
+               if($js[$i]["TYPE"]=="labák")
+               {
+                   echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                   echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+               }
+           }
+            ?>
+
+        </div>
+        <div class="tab-pane" id="2">
+            <?php
+            for($i=0;$i<count($js);$i++)
+            {
+            if($js[$i]["TYPE"]=="predmet")
+            {
+
+                echo "<h3 style='color:#4268f4!important;'><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+            }
+            }
+            ?>
+        </div>
+        <div class="tab-pane" id="3">
+            <?php
+            for($i=0;$i<count($js);$i++)
+            {
+                if($js[$i]["TYPE"]=="propagácia")
+                {
+                    echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+                }
+            }
+            ?>
+        </div>
+        <div class="tab-pane" id="4">
+            <?php
+            for($i=0;$i<count($js);$i++)
+            {
+                if($js[$i]["TYPE"]=="zariadenie")
+                {
+                    echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+                }
+            }
+            ?>
+        </div>
+    </div>
+</div>
 
 </div>
 <footer>
