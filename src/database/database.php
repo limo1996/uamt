@@ -156,5 +156,9 @@ class Database
         $request = $this->conn->prepare($sql);
         return $request->execute() ? $request->fetchAll() : null;
     }
-
+    function insertNewsletterSubs($email){
+        $sql = "INSERT INTO newsletter(Email) VALUES (:email)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':email' => $email));
+    }
 }

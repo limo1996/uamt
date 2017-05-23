@@ -1,5 +1,6 @@
 <?php
 include('../lang/langFunctions.php');
+include_once ("../database/database.php");
 $lang = 'sk';
 
 if (isset($_GET['lang']))
@@ -7,37 +8,36 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+
+$ex = new Database();
+$js = $ex->fetchMedia();
 ?>
-
 <!DOCTYPE html>
-<html lang="sk">
-
-<head>
+<html>
+<head lang="sk">
+    <title><?php echo $text->act_media; ?></title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap -->
-    <title><?php echo $text->news;?></title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../menu/menuScripts.js"></script>
 
-    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <script src="../../../menu/menuScripts.js"></script>
 
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>
-
 </head>
-
 <body>
-<!--<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">-->
+
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
@@ -117,8 +117,8 @@ $text = $lan->getTextForPage('menu');
                         </li>
                     </ul>
                 </li>
-                <li class="active"><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
+                <li><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
+                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/activities/photos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_photos; ?></a></li>
@@ -144,33 +144,14 @@ $text = $lan->getTextForPage('menu');
     <h2><?php echo $text->news; ?></h2>
     <hr class="hr_nazov">
 </div>
-
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
+<div class="container-news">
+        <div>
+            <!-- <input type="text">-->
+            <form class="form-inline" method="post">
+                <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
+                <button type="submit" class="btn btn-default navbar-btn">Odber</button>
+            </form>
+        </div>
 </div>
 
 
@@ -203,7 +184,7 @@ $text = $lan->getTextForPage('menu');
         <div class="container">
 
             <div class="col-sm-4 text-center">
-                © Copyright 2017.  <?php echo $text->rights; ?>.
+                © Copyright 2017. Všetky práva vyhradené.
             </div>
             <div class="col-sm-4 text-center">
                 Baka | Lukac | Lichman | Valasik | Smetanka
@@ -225,6 +206,15 @@ $text = $lan->getTextForPage('menu');
     </div>
     </div>
 </footer>
-<script src="../menu/jQueryScripts.js"></script>
+<script src="../../menu/jQueryScripts.js"></script>
 </body>
+
 </html>
+<?php
+if (isset($_POST['email'])){
+$db = new Database();
+$email=$_POST['email'];
+$db->insertNewsletterSubs($email);
+}
+
+?>
