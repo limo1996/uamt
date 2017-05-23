@@ -245,11 +245,17 @@ class Database
         return $request->execute() ? $request->fetchAll() : null;
     }
 
-    function updatePurchases($id)
+    function updatePurchase($id)
     {
         $sql = "UPDATE purchases SET text = :text WHERE id = :id";
         $request = $this->conn->prepare($sql);
         $request->execute(array(':id' => $id));
     }
 
+    function insertPurchase($text)
+    {
+        $sql = "INSERT INTO document(TEXT) VALUES (:text)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':text' => $text));
+    }
 }
