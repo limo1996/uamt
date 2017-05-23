@@ -150,7 +150,14 @@ $text = $lan->getTextForPage('menu');
     <div class="col-sm-6">
 
 
-        <p>Viac informácii na stránke: <a href="http://www.e-mobilita.fei.stuba.sk/">http://www.e-mobilita.fei.stuba.sk/</a></p>
+        <p>
+            <?php
+            if($lang == 'sk')
+                echo 'Viac informácii na stránke:';
+            else
+                echo 'More information: ';
+            ?>
+            <a href="http://www.e-mobilita.fei.stuba.sk/">http://www.e-mobilita.fei.stuba.sk/</a></p>
         <p>&nbsp;</p>
 
 
