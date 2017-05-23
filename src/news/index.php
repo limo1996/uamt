@@ -147,9 +147,16 @@ $js = $ex->fetchMedia();
 <div class="container-news">
         <div>
             <!-- <input type="text">-->
-            <form class="form-inline" method="post">
-                <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
-                <button type="submit" class="btn btn-default navbar-btn">Odber</button>
+            <form class="form-vertical" method="post">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
+                    <!--<label for="sel1">(select one):</label>-->
+                    <select class="form-control" name="choice" id="sel1">
+                        <option>EN</option>
+                        <option>SK</option>
+                    </select>
+                    <button type="submit" class="btn btn-default navbar-btn">Odber</button>
+                </div>
             </form>
         </div>
 </div>
@@ -214,7 +221,8 @@ $js = $ex->fetchMedia();
 if (isset($_POST['email'])){
 $db = new Database();
 $email=$_POST['email'];
-$db->insertNewsletterSubs($email);
+$newsLang=$_POST['choice'];
+$db->insertNewsletterSubs($email,$newsLang);
 }
 
 ?>

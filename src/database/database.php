@@ -156,10 +156,23 @@ class Database
         $request = $this->conn->prepare($sql);
         return $request->execute() ? $request->fetchAll() : null;
     }
-    function insertNewsletterSubs($email){
-        $sql = "INSERT INTO newsletter(Email) VALUES (:email)";
+    /************************* NEWS *********************************/
+    function insertNewsletterSubs($email,$newsLang){
+        $sql = "INSERT INTO newsletter(Email,newsLang) VALUES (:email,:newsLang)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':email' => $email,':newsLang'=> $newsLang));
+    }
+    function deleteNewsletterSubs($email)
+    {
+        $sql = "DELETE FROM newsletter WHERE Email = :email ";
         $request = $this->conn->prepare($sql);
         $request->execute(array(':email' => $email));
+    }
+    function fetchSubsByLang($newsLang)
+    {
+        $request = $this->conn->prepare("SELECT Email, newsLang FROM newsletter WHERE newsLang= :newsLang");
+        $request->setFetchMode(PDO::FETCH_ASSOC, "newsletter");
+        return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
     }
 
     /******************** INTRANET-DOCUMENTS **********************/
