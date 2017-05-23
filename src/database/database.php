@@ -161,4 +161,27 @@ class Database
         $request = $this->conn->prepare($sql);
         $request->execute(array(':email' => $email));
     }
+
+    /******************** INTRANET-DOCUMENTS **********************/
+    function getTabCategories($tab)
+    {
+        $request = $this->conn->prepare("SELECT category FROM document WHERE tab = :tab");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':tab' => $tab)) ? $request->fetchAll() : null;
+    }
+
+    function getTabDocuments($tab)
+    {
+        $request = $this->conn->prepare("SELECT * FROM document WHERE tab = :tab");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':tab' => $tab)) ? $request->fetchAll() : null;
+    }
+
+    function insertDocument($name, $source, $category, $tab)
+    {
+        $sql = "INSERT INTO document(NAME, SOURCE, CATEGORY, TAB) VALUES (:name, :source, :category, :tab)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':name' => $name, ':source' => $source, ':category' => $category, ':tab' => $tab));
+    }
+
 }
