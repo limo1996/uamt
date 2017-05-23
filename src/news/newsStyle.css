@@ -1,5 +1,5 @@
 .news {
-    width: 300px;
+    width: 350px;
     background: #fff;
     position: relative;
     overflow: hidden;
@@ -137,4 +137,10 @@ p.more {
     top: 20px;
     z-index: 1;
     padding: 3px 15px;
+}
+.letter{
+    display: inline-block;
+}
+.pagination{
+    display:inline;
 }

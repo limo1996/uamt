@@ -16,7 +16,7 @@ $db = new Database();
 <!DOCTYPE html>
 <html>
 <head lang="sk">
-    <title><?php echo $text->act_media; ?></title>
+    <title><?php echo $text->news; ?></title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -161,10 +161,30 @@ $db = new Database();
             </form>
         </div>
     <?php
-    $news=$db->fetchAllNews();
+    $news=$db->fetchAllNewsByLang($lang);
+    //echo "<div class='row'>";
+    $count=$db->getCountOfNews($lang);
+    //var_dump($count);
+    $rec_limit=2;
+    $rec_count= $count[0]["COUNT(Title)"];
+
+    if( isset($_GET{'page'} ) ) {
+        $page = $_GET{'page'} + 1;
+        $offset = $rec_limit * $page ;
+    }else {
+        $page = 0;
+        $offset = 0;
+    }
+    $left_rec = $rec_count - ($page * $rec_limit);
+
+
+
+
+
+
     foreach($news as $act) {
         echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><h1>".$act['Title']."</h1></div><p class=description>".$act['Text']."</p></div></div>";
-        //echo
+
 
 
         /*  echo "<h3>".$act['Title']."</h3>";
@@ -179,10 +199,27 @@ $db = new Database();
 
           */
     }
+    if( $page > 0 ) {
+        $last = $page - 2;
+        echo "<a href = \"$_PHP_SELF?page = $last\">Last 10 Records</a> |";
+        echo "<a href = \"$_PHP_SELF?page = $page\">Next 10 Records</a>";
+    }else if( $page == 0 ) {
+        echo "<a href = \"$_PHP_SELF?page = $page\">Next 10 Records</a>";
+    }else if( $left_rec < $rec_limit ) {
+        $last = $page - 2;
+        echo "<a href = \"$_PHP_SELF?page = $last\">Last 10 Records</a>";
+    }
         ?>
-
+    <!--<div>
+        <ul class="pagination">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
+    </div>-->
 </div>
-
 
 <footer>
     <div class="container">
