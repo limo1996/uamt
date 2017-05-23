@@ -202,4 +202,11 @@ class Database
         $request->execute(array(':name' => $name, ':source' => $source, ':category' => $category, ':tab' => $tab));
     }
 
+    function deleteDocument($id)
+    {
+        $sql = "DELETE FROM document WHERE id = :id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':id' => $id));
+    }
+
 }
