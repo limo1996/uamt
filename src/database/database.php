@@ -237,4 +237,19 @@ class Database
         }
     }
 
+    /******************** INTRANET-PURCHASES **********************/
+    function getPurchases()
+    {
+        $request = $this->conn->prepare("SELECT text FROM purchases");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function updatePurchases($id)
+    {
+        $sql = "UPDATE purchases SET text = :text WHERE id = :id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':id' => $id));
+    }
+
 }
