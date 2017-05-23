@@ -24,7 +24,7 @@ $db = new Database();
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
-
+    <link href="newsStyle.css" type="text/css" rel="stylesheet">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../menu/menuScripts.js"></script>
@@ -145,7 +145,7 @@ $db = new Database();
     <h2><?php echo $text->news; ?></h2>
     <hr class="hr_nazov">
 </div>
-<div class="container-news">
+<div class="container">
         <div>
             <!-- <input type="text">-->
             <form class="form-vertical" method="post">
@@ -162,15 +162,25 @@ $db = new Database();
         </div>
     <?php
     $news=$db->fetchAllNews();
-    foreach($news as $act){
-    echo "<h3>".$act['Title']."</h3>";
-            echo $act['Text']."<br>";
-            echo $act['Active'];
-            echo $act['Category'];
-            echo $act['Lang'];
-            echo "<br><br>";
-            }
-    ?>
+    foreach($news as $act) {
+        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><h1>".$act['Title']."</h1></div><p class=description>".$act['Text']."</p></div></div>";
+        //echo
+
+
+        /*  echo "<h3>".$act['Title']."</h3>";
+                  echo $act['Text']."<br>";
+                  echo $act['Active'];
+                  echo $act['Category'];
+                  echo $act['Lang'];
+                  echo "<br><br>";
+<div class='row'></div>
+        	"<div class="title">".$act['Title']."</div>"
+<p class="description">".$act['Text']."</p>
+
+          */
+    }
+        ?>
+
 </div>
 
 
