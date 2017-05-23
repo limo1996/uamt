@@ -178,7 +178,7 @@ class Database
     /******************** INTRANET-DOCUMENTS **********************/
     function getTabCategories($tab)
     {
-        $request = $this->conn->prepare("SELECT category FROM document WHERE tab = :tab");
+        $request = $this->conn->prepare("SELECT category FROM document WHERE tab = :tab GROUP BY category");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':tab' => $tab)) ? $request->fetchAll() : null;
     }
