@@ -2,7 +2,19 @@
     margin-bottom: 50px;
 }
 
-#myModal {
+.table {
+    width: 700px;
+}
+
+td {
+    width: 200px;
+}
+
+.right_pos {
+    width: 5px;
+}
+
+#myModal, #myModal2 {
     margin-top: 110px;
 }
 
@@ -25,14 +37,14 @@
     margin-bottom: 15px;
 }
 
-#selectCategory, #newCategory, #attachFile, #attachLink {
+#selectCategory, #newCategory, #attachFile, #attachLink, #attachFile2, #attachLink2 {
     display: none;
 }
 
 .funkyradio div {
     clear: both;
     overflow: hidden;
-
+    margin-bottom: -4px;
 }
 
 .funkyradio label {

@@ -263,11 +263,11 @@ class Database
         return $request->execute() ? $request->fetchAll() : null;
     }
 
-    function updatePurchase($id)
+    function updatePurchase($id, $text)
     {
-        $sql = "UPDATE purchases SET text = :text WHERE id = :id";
+        $sql = "UPDATE purchases SET TEXT = :text WHERE ID = :id";
         $request = $this->conn->prepare($sql);
-        $request->execute(array(':id' => $id));
+        $request->execute(array(':id' => $id, ':text' => $text));
     }
 
     function insertPurchase($text)
