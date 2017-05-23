@@ -11,6 +11,7 @@ $text = $lan->getTextForPage('menu');
 
 $ex = new Database();
 $js = $ex->fetchMedia();
+$db = new Database();
 ?>
 <!DOCTYPE html>
 <html>
@@ -117,8 +118,8 @@ $js = $ex->fetchMedia();
                         </li>
                     </ul>
                 </li>
-                <li><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
-                <li class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
+                <li class="active"><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/activities/photos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_photos; ?></a></li>
@@ -159,6 +160,17 @@ $js = $ex->fetchMedia();
                 </div>
             </form>
         </div>
+    <?php
+    $news=$db->fetchAllNews();
+    foreach($news as $act){
+    echo "<h3>".$act['Title']."</h3>";
+            echo $act['Text']."<br>";
+            echo $act['Active'];
+            echo $act['Category'];
+            echo $act['Lang'];
+            echo "<br><br>";
+            }
+    ?>
 </div>
 
 
@@ -218,6 +230,8 @@ $js = $ex->fetchMedia();
 
 </html>
 <?php
+
+
 if (isset($_POST['email'])){
 $db = new Database();
 $email=$_POST['email'];

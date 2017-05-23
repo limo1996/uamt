@@ -157,6 +157,11 @@ class Database
         return $request->execute() ? $request->fetchAll() : null;
     }
     /************************* NEWS *********************************/
+    function fetchAllNews(){
+        $sql = "SELECT * FROM Aktuality";
+        $request = $this->conn->prepare($sql);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
     function insertNewsletterSubs($email,$newsLang){
         $sql = "INSERT INTO newsletter(Email,newsLang) VALUES (:email,:newsLang)";
         $request = $this->conn->prepare($sql);
