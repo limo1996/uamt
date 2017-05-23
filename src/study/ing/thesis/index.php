@@ -5,6 +5,12 @@ $lang = 'sk';
 if (isset($_GET['lang']))
     $lang = $_GET['lang'];
 
+if($lang == 'en')
+{
+    header("Location: /uamt/index.php?lang=en");
+    exit();
+}
+
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
 
@@ -365,9 +371,9 @@ ksort($dictionary);
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
