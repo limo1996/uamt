@@ -1,5 +1,6 @@
 .news {
     width: 350px;
+    height: 350px;
     background: #fff;
     position: relative;
     overflow: hidden;
@@ -20,6 +21,7 @@
 .news .img-figure img {
     position: relative;
     overflow: hidden;
+
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -ms-transition: all 1s ease;
@@ -37,7 +39,7 @@
 
 .news .title {
     /*padding: 29px 30px;*/
-    padding: 45px 30px;
+    padding: 35px 30px;
     position: absolute;
     left: 0;
     background: #fff;
@@ -57,6 +59,7 @@
     font-size: 19px;
     /*	color: #3D6AA2;*/
     text-align: center;
+    padding: 3px;
 }
 
 .news:hover .title  {
@@ -100,7 +103,7 @@ p.more {
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     display: inline-block;
-    color: #28998b;
+    color: #0066cc;
 }
 
 .more a:after {
@@ -112,7 +115,7 @@ p.more {
     left: 55px;
     top: 9px;
 
-    background: #28998b;
+    background: #0066cc;
 
     vertical-align: middle;
     margin-left: 10px;

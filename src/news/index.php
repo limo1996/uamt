@@ -12,6 +12,8 @@ $text = $lan->getTextForPage('menu');
 $ex = new Database();
 $js = $ex->fetchMedia();
 $db = new Database();
+$date = date("Y-m-d");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -161,13 +163,13 @@ $db = new Database();
             </form>
         </div>
     <?php
-   // $news=$db->fetchAllNewsByLang($lang);
-    //echo "<div class='row'>";
-    $count=$db->getCountOfNews($lang);
-   // var_dump($count);
-    $rec_limit=3;
-    $rec_count= $count[0]["COUNT(Title)"];
 
+    $count=$db->getCountOfActiveNews($lang,$date);
+
+    $rec_limit=6;
+    $rec_count= $count[0]["COUNT(Title)"];
+    $str=ceil($rec_count/$rec_limit);
+    //var_dump($str);
     if( isset($_GET{'page'} ) ) {
         $page = $_GET{'page'} + 1;
         $offset = $rec_limit * $page ;
@@ -176,15 +178,15 @@ $db = new Database();
         $offset = 0;
     }
     $left_rec = $rec_count - ($page * $rec_limit);
-    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
+    $news=$db->fetchAllActiveNewsByLang($lang,$offset,$rec_limit,$date);
     echo "<div class='container'>";
     foreach($news as $act) {
-        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><h1>".$act['Title']."</h1></div><p class=description>".$act['Text']."</p></div></div>";
-
+        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
+						</div></div>";
     }
     echo "<br><br></div>";
     //unset($news);
-    echo "<ul class=pagination>";
+ /*   echo "<ul class=pagination>";
     if( $page > 0 && $left_rec > $rec_limit) {
         $last = $page-2 ;
         echo "<li><a href =$_PHP_SELF?page=$last>Previous</a></li>";
@@ -195,8 +197,15 @@ $db = new Database();
         $last = $page-2 ;
         echo "<li><a href = $_PHP_SELF?page=$last>Previous</a><li>";
     }
-    echo "</ul>";
+    echo "</ul>";*/
     //var_dump($offset)
+
+    echo "<ul class=pagination>";
+    for($i=1;$i<=$str;$i++){
+        $act=$i-2;
+        echo "<li><a href =$_PHP_SELF?page=$act>$i</a></li>";
+    }
+    echo "</ul>";
         ?>
     <!--<div>
         <ul class="pagination">

@@ -169,9 +169,14 @@ class Database
     {
         $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang LIMIT $offset,$rec_limit";
         $request = $this->conn->prepare($sql);
-        return $request->execute(array(':newsLang' => $newsLang )) ? $request->fetchAll() : null;
+        return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
     }
-
+    function fetchAllActiveNewsByLang($newsLang,$offset,$rec_limit,$date)
+    {
+        $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang AND Active >= :date LIMIT $offset,$rec_limit";
+        $request = $this->conn->prepare($sql);
+        return $request->execute(array(':newsLang' => $newsLang,':date'=>$date)) ? $request->fetchAll() : null;
+    }
     function insertNewsletterSubs($email, $newsLang)
     {
         $sql = "INSERT INTO newsletter(Email,newsLang) VALUES (:email,:newsLang)";
@@ -198,6 +203,12 @@ class Database
         $request = $this->conn->prepare("SELECT COUNT(Title) FROM `Aktuality` WHERE Lang= :newsLang");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
+    }
+    function getCountOfActiveNews($newsLang,$date)
+    {
+        $request = $this->conn->prepare("SELECT COUNT(Title) FROM `Aktuality` WHERE Lang= :newsLang AND Active >= :date");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':newsLang' => $newsLang,':date'=>$date)) ? $request->fetchAll() : null;
     }
 
     /******************** INTRANET-DOCUMENTS **********************/
