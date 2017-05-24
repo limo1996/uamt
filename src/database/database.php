@@ -287,4 +287,11 @@ class Database
         $request = $this->conn->prepare($sql);
         $request->execute(array(':text' => $text));
     }
+
+    function deletePurchase($id)
+    {
+        $sql = "DELETE FROM purchases WHERE id = :id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':id' => $id));
+    }
 }

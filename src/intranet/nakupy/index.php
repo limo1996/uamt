@@ -19,6 +19,11 @@ if(isset($_POST['Save'])) {
     header("Location: index.php");
 }
 
+if(isset($_POST['Delete'])) {
+    $db->deletePurchase($_POST['Delete']);
+    header("Location: index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -111,7 +116,8 @@ if(isset($_POST['Save'])) {
                         <textarea id="editor_content" name="textareas" style="height:250px; margin:5px 5px 5px 5px;"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button id="Cancel" type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Zrušiť</button>
+                        <button id="Cancel" type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-share-alt"></span> Zrušiť</button>
+                        <button id="Delete" name="Delete" type="Submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Odstrániť</button>
                         <button id="Save" name="Save" type="Submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Uložiť</button>
                         <button id="Add" name="Add" type="Submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Pridať</button>
                     </div>
