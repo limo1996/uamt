@@ -151,8 +151,8 @@ $js = $lan->getTextForPage('photos');
         <?php
         for($i=0;$i<count($js);$i++)
         {
-            echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['Title']."</h3>";
-            echo "<h4><i class='fa fa-calendar' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['Date']."</h4>";
+            echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]['Title']."</h3>";
+            echo "<h4><i class='fa fa-calendar' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]['Date']."</h4>";
             $dirname = $js[$i]['Folder']."/";
             $images = glob($dirname."*.*");
              echo "<div class='w3-row-padding'>";
