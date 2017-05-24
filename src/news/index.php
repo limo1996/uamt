@@ -161,11 +161,11 @@ $db = new Database();
             </form>
         </div>
     <?php
-    $news=$db->fetchAllNewsByLang($lang);
+   // $news=$db->fetchAllNewsByLang($lang);
     //echo "<div class='row'>";
     $count=$db->getCountOfNews($lang);
-    //var_dump($count);
-    $rec_limit=2;
+   // var_dump($count);
+    $rec_limit=3;
     $rec_count= $count[0]["COUNT(Title)"];
 
     if( isset($_GET{'page'} ) ) {
@@ -176,39 +176,27 @@ $db = new Database();
         $offset = 0;
     }
     $left_rec = $rec_count - ($page * $rec_limit);
-
-
-
-
-
-
+    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
+    echo "<div class='container'>";
     foreach($news as $act) {
         echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><h1>".$act['Title']."</h1></div><p class=description>".$act['Text']."</p></div></div>";
 
-
-
-        /*  echo "<h3>".$act['Title']."</h3>";
-                  echo $act['Text']."<br>";
-                  echo $act['Active'];
-                  echo $act['Category'];
-                  echo $act['Lang'];
-                  echo "<br><br>";
-<div class='row'></div>
-        	"<div class="title">".$act['Title']."</div>"
-<p class="description">".$act['Text']."</p>
-
-          */
     }
-    if( $page > 0 ) {
-        $last = $page - 2;
-        echo "<a href = \"$_PHP_SELF?page = $last\">Last 10 Records</a> |";
-        echo "<a href = \"$_PHP_SELF?page = $page\">Next 10 Records</a>";
+    echo "<br><br></div>";
+    //unset($news);
+    echo "<ul class=pagination>";
+    if( $page > 0 && $left_rec > $rec_limit) {
+        $last = $page-2 ;
+        echo "<li><a href =$_PHP_SELF?page=$last>Previous</a></li>";
+        echo "<li><a href = $_PHP_SELF?page=$page>Next</a></li>";
     }else if( $page == 0 ) {
-        echo "<a href = \"$_PHP_SELF?page = $page\">Next 10 Records</a>";
+        echo "<li><a href = $_PHP_SELF?page=$page>Next</a></li>";
     }else if( $left_rec < $rec_limit ) {
-        $last = $page - 2;
-        echo "<a href = \"$_PHP_SELF?page = $last\">Last 10 Records</a>";
+        $last = $page-2 ;
+        echo "<li><a href = $_PHP_SELF?page=$last>Previous</a><li>";
     }
+    echo "</ul>";
+    //var_dump($offset)
         ?>
     <!--<div>
         <ul class="pagination">

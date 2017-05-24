@@ -165,11 +165,11 @@ class Database
     }
 
     /************************* NEWS *********************************/
-    function fetchAllNewsByLang($newsLang)
+    function fetchAllNewsByLang($newsLang,$offset,$rec_limit)
     {
-        $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang";
+        $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang LIMIT $offset,$rec_limit";
         $request = $this->conn->prepare($sql);
-        return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
+        return $request->execute(array(':newsLang' => $newsLang )) ? $request->fetchAll() : null;
     }
 
     function insertNewsletterSubs($email, $newsLang)

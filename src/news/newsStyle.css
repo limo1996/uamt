@@ -141,6 +141,10 @@ p.more {
 .letter{
     display: inline-block;
 }
-.pagination{
-    display:inline;
+.pagination {
+    display:inline-block;
+}
+.pag{
+    display: block;
+    margin-top:20px;
 }
