@@ -184,11 +184,11 @@ class Database
         $request->execute(array(':email' => $email, ':newsLang' => $newsLang));
     }
 
-    function deleteNewsletterSubs($email)
+    function deleteNewsletterSubs($email,$newsLang)
     {
-        $sql = "DELETE FROM newsletter WHERE Email = :email ";
+        $sql = "DELETE FROM newsletter WHERE Email = :email AND newsLang = :newsLang";
         $request = $this->conn->prepare($sql);
-        $request->execute(array(':email' => $email));
+        $request->execute(array(':email' => $email,':newsLang'=>$newsLang));
     }
 
     function fetchSubsByLang($newsLang)

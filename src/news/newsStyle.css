@@ -151,3 +151,6 @@ p.more {
     display: block;
     margin-top:20px;
 }
+#letter.form-group {
+    width:190px;
+}

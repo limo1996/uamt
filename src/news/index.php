@@ -2,7 +2,9 @@
 include('../lang/langFunctions.php');
 include_once ("../database/database.php");
 $lang = 'sk';
+$showAll = $_GET['ShowAll'];
 
+var_dump($showAll);
 if (isset($_GET['lang']))
     $lang = $_GET['lang'];
 
@@ -14,6 +16,32 @@ $js = $ex->fetchMedia();
 $db = new Database();
 $date = date("Y-m-d");
 
+if(isset($_GET['ShowAll'])) {
+    $count = $db->getCountOfNews($lang);
+    $check=true;
+}
+else{
+    $count = $db->getCountOfActiveNews($lang, $date);
+    $check=false;
+}
+$rec_limit=6;
+$rec_count= $count[0]["COUNT(Title)"];
+$str=ceil($rec_count/$rec_limit);
+
+if( isset($_GET{'page'} ) ) {
+    $page = $_GET{'page'} + 1;
+    $offset = $rec_limit * $page ;
+}else {
+    $page = 0;
+    $offset = 0;
+}
+$left_rec = $rec_count - ($page * $rec_limit);
+if(isset($_GET['ShowAll'])){
+    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
+}
+else {
+    $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -150,35 +178,17 @@ $date = date("Y-m-d");
 <div class="container">
         <div>
             <!-- <input type="text">-->
-            <form class="form-vertical" method="post">
+
+            <form action="index.php" method="get" class="form-horizontal">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
-                    <!--<label for="sel1">(select one):</label>-->
-                    <select class="form-control" name="choice" id="sel1">
-                        <option>EN</option>
-                        <option>SK</option>
-                    </select>
-                    <button type="submit" class="btn btn-default navbar-btn">Odber</button>
+                    <div class="checkbox col-sm-4">
+                        <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" />Zobraz vsetko</label>
+                        <input type="submit" class="btn btn-default navbar-btn" />
+                    </div>
                 </div>
-            </form>
         </div>
     <?php
 
-    $count=$db->getCountOfActiveNews($lang,$date);
-
-    $rec_limit=6;
-    $rec_count= $count[0]["COUNT(Title)"];
-    $str=ceil($rec_count/$rec_limit);
-    //var_dump($str);
-    if( isset($_GET{'page'} ) ) {
-        $page = $_GET{'page'} + 1;
-        $offset = $rec_limit * $page ;
-    }else {
-        $page = 0;
-        $offset = 0;
-    }
-    $left_rec = $rec_count - ($page * $rec_limit);
-    $news=$db->fetchAllActiveNewsByLang($lang,$offset,$rec_limit,$date);
     echo "<div class='container'>";
     foreach($news as $act) {
         echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
@@ -203,7 +213,8 @@ $date = date("Y-m-d");
     echo "<ul class=pagination>";
     for($i=1;$i<=$str;$i++){
         $act=$i-2;
-        echo "<li><a href =$_PHP_SELF?page=$act>$i</a></li>";
+        echo "<li><a href =index.php?page=$act>$i</a></li>";
+        $showAll = $_GET['ShowAll'];
     }
     echo "</ul>";
         ?>
@@ -216,6 +227,18 @@ $date = date("Y-m-d");
             <li><a href="#">5</a></li>
         </ul>
     </div>-->
+    <form class="form-vertical letter" method="post">
+        <div class="form-group" id="letter">
+            <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
+            <!--<label for="sel1">(select one):</label>-->
+            <select class="form-control" name="choice" id="sel1">
+                <option>EN</option>
+                <option>SK</option>
+            </select>
+            <button type="submit" class="btn btn-default navbar-btn" name="in">Prihlasit</button>
+            <button type="submit" class="btn btn-default navbar-btn" name="out">Odhlasit</button>
+        </div>
+    </form>
 </div>
 
 <footer>
@@ -276,11 +299,16 @@ $date = date("Y-m-d");
 <?php
 
 
-if (isset($_POST['email'])){
+if (isset($_POST['in'])){
 $db = new Database();
 $email=$_POST['email'];
 $newsLang=$_POST['choice'];
 $db->insertNewsletterSubs($email,$newsLang);
 }
-
+if (isset($_POST['out'])){
+    $db = new Database();
+    $email=$_POST['email'];
+    $newsLang=$_POST['choice'];
+    $db->deleteNewsletterSubs($email,$newsLang);
+}
 ?>

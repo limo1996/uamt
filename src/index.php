@@ -145,8 +145,8 @@ $text = $lan->getTextForPage('menu');
     <hr class="hr_nazov">
 </div>
 
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
+<div id="content" class="container">
+    <h2> Novinky</h2>
 
     <h1> Content</h1>
 
