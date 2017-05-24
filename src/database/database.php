@@ -294,4 +294,13 @@ class Database
         $request = $this->conn->prepare($sql);
         $request->execute(array(':id' => $id));
     }
+
+    /******************** ROLES **********************/
+    function getUserRoles($ldap)
+    {
+        $request = $this->conn->prepare("SELECT roles.ROLE FROM roles JOIN employee_role ON roles.ID = employee_role.ROLE JOIN employees ON employee_role.EMPLOYEE = employees.ID WHERE employees.LDAPLOGIN = :ldap");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':ldap' => $ldap)) ? $request->fetchAll() : null;
+    }
+
 }
