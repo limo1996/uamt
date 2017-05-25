@@ -134,10 +134,11 @@ if(!$_SESSION['user']){
             <div class="col-sm-6">
                 <h4>Jakub Lichman</h4>
                 <ul>
-                    <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
-                    <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
-                    <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
-
+                    <li>Dvojjazyčnosť</li>
+                    <li>Dochádzka</li>
+                    <li>Databáza</li>
+                    <li>Zamestnanci</li>
+                    <li>Gitmaster</li>
                 </ul>
             </div>
     </div>

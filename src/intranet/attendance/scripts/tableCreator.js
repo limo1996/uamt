@@ -18,14 +18,14 @@ function printTable(month, year, employees, employeesDays){
     var table = "<table class='table table-bordered' id='mainTable'>";
     var monthCount = getMonthDaysCount(month, year);
     for(var i = 0; i <= employees.length; i++) {
-        var style = "";
+        var classTd = "tdEditable";
         if (onlyName != null && i !== 0 && employees[i - 1].indexOf(onlyName) === -1) {
-            style = "style='display:none;'";
+            classTd = "";
         }
         if (i == 0)
             table += "<tr><th>Meno</th>";
         else
-            table += "<tr " + style + "><th class='persons text-center' id='" + (i - 1).toString() + "'>" + employees[i - 1] + "</th>";
+            table += "<tr><th class='persons text-center' id='" + (i - 1).toString() + "'>" + employees[i - 1] + "</th>";
         for (var j = 1; j <= monthCount; j++) {
             if (i == 0) {
                 var day = getDay(year, month, j);
@@ -36,7 +36,7 @@ function printTable(month, year, employees, employeesDays){
             }
             else {
                 var name = employeesDays[m_names[i - 1]];
-                table += "<td style='background: " + getAbsenceColor(name[j - 1]) + ";'></td>";
+                table += "<td style='background: " + getAbsenceColor(name[j - 1]) + ";' class='" + classTd + "'></td>";
             }
         }
         table += "</tr>";
@@ -184,7 +184,7 @@ function getAndPrintTable(month, year) {
         var tmp = dictionary[names[0]];
         var down = false;
         printTable(month, year, names, dictionary);
-        $(".table td").mousedown(function() {
+        $(".tdEditable").mousedown(function() {
             if(!editEnabled) return;
             mark($(this), true);
             setXY($(this));

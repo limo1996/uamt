@@ -3,8 +3,18 @@
 }
 
 #editBtn{
+    margin-top: 20px;
     width: 300px;
     left:10px;
+    background-color: purple;
+    color: white;
+    margin-right: 10px;
+}
+
+#exportBtn{
+    margin-top: 20px;
+    width: 300px;
+    left:60px;
     background-color: purple;
     color: white;
     margin-right: 10px;

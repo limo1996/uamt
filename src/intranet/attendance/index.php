@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../../database/database.php';
+require __DIR__ . '/../../database/database.php';
 
 include('../../lang/langFunctions.php');
 $lang = 'sk';
@@ -12,7 +12,7 @@ $text = $lan->getTextForPage('menu');
 
 session_start();
 
-if(!$_SESSION['user']){
+if (!$_SESSION['user']) {
     header("Location:../index.php");
     die;
 }
@@ -21,8 +21,8 @@ $canEdit = false;
 $db = new Database();
 $result = $db->getUserRoles($_SESSION['user']);
 $roles = array();
-foreach($result as $role)
-    if( $role['ROLE'] == 'hr')
+foreach ($result as $role)
+    if ($role['ROLE'] == 'hr' || $role['ROLE'] == 'admin')
         $canEdit = true;
 ?>
 
@@ -30,11 +30,12 @@ foreach($result as $role)
 <html lang="sk">
 <head>
     <link rel="stylesheet" type="text/css" href="styles/MainStyles.css"/>
-    <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="styles/MonthPicker.css" rel="stylesheet" type="text/css" />
+    <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="styles/MonthPicker.css" rel="stylesheet" type="text/css"/>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" media="screen">
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          media="screen">
     <link href="../../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <link href="styles/menu2.css" type="text/css" rel="stylesheet">
@@ -59,14 +60,14 @@ foreach($result as $role)
 <?php
 
 /*******TESTS*******
-$db = new Database('staff');
-// $db->connect();
-$employees = $db->fetchEmployee(3);
-$db->insertEmployeeAbsence(date("Y-m-d", strtotime("2017-03-05")), 1, 1);
-$db->insertEmployeeAbsence(date("Y-m-d", strtotime("2017-03-06")), 2, 2);
-$db->insertEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
-$db->deleteEmployeeAbsenceInterval(date("Y-m-d", strtotime("2017-03-01")), date("Y-m-d", strtotime("2017-03-09")));
-$db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
+ * $db = new Database('staff');
+ * // $db->connect();
+ * $employees = $db->fetchEmployee(3);
+ * $db->insertEmployeeAbsence(date("Y-m-d", strtotime("2017-03-05")), 1, 1);
+ * $db->insertEmployeeAbsence(date("Y-m-d", strtotime("2017-03-06")), 2, 2);
+ * $db->insertEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
+ * $db->deleteEmployeeAbsenceInterval(date("Y-m-d", strtotime("2017-03-01")), date("Y-m-d", strtotime("2017-03-09")));
+ * $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
  * *****************/
 ?>
 
@@ -166,40 +167,52 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
 </nav>
 
 
-
 <div class="container-fluid">
     <div class="row">
-
-        <div class="col-sm-6">
-            <div class="input-group input-group-lg col-sm-4" id="calendarWrapper">
+        <div class="col-sm-4 text-center">
+            <div class="input-group input-group-lg col-sm-4" style="margin-top: 20px; width: 300px" id="calendarWrapper">
                 <input id="NoIconDemo" type="text" class="form-control" aria-describedby="sizing-addon1"/>
             </div>
         </div>
-    <div class="text-right">
-        <button type="button" class="btn btn-lg" id="editBtn">   Edituj   </button>
-    </div>
+        <div class="col-sm-4 text-center">
+            <?php
+            if($canEdit)
+                echo '<button type="button" class="btn btn-lg" id="exportBtn"> Stiahni Pdf</button>';
+            ?>
+        </div>
+        <div class="col-sm-4 text-center">
+            <button type="button" class="btn btn-lg" id="editBtn"> Edituj</button>
+        </div>
     </div>
 
 </div>
-<br />
+<br/>
 <div class="text-center" id="selector">
     <div class="btn-group">
-        <button type="button" class="btn btn-primary tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="1">PN</button>
-        <button type="button" class="btn btn-success tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="2">OČR</button>
-        <button type="button" class="btn btn-info tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="3">Služobka</button>
-        <button type="button" class="btn btn-warning tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="4">Dovolenka</button>
+        <button type="button" class="btn btn-primary tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="1">PN
+        </button>
+        <button type="button" class="btn btn-success tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="2">OČR
+        </button>
+        <button type="button" class="btn btn-info tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="3">
+            Služobka
+        </button>
+        <button type="button" class="btn btn-warning tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="4">
+            Dovolenka
+        </button>
         <button type="button" class="btn btn-danger tableChoise" id="5">Plán Dovolenky</button>
     </div>
 </div>
-<br />
+<br/>
 <div id="tableDiv" class="container-fluid"></div>
-<br />
-<div style="display: none;" id="currName"><?php echo $db->fetchEmployeeName($_SESSION['user'])[0]['SECOND_NAME']; ?></div>
+<br/>
+<div style="display: none;"
+     id="currName"><?php echo $db->fetchEmployeeName($_SESSION['user'])[0]['SECOND_NAME']; ?></div>
 <div class="modal fade" id="myModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                 <h2 class="modal-title">Osobný editor</h2>
                 <h4 id="ModalName"></h4>
             </div>
@@ -235,14 +248,14 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
 </div><!-- /.modal -->
 <div class="row">
 
-<div class="col-sm-4" style="margin-left: 10px;">
-    <h3 style="color:purple">Legenda</h3>
-    <span class="label label-primary">PN</span>
-    <span class="label label-success">OČR</span>
-    <span class="label label-info">Služobka</span>
-    <span class="label label-warning">Dovolenka</span>
-    <span class="label label-danger">Plán Dovolenky</span>
-</div>
+    <div class="col-sm-4" style="margin-left: 10px;">
+        <h3 style="color:purple">Legenda</h3>
+        <span class="label label-primary">PN</span>
+        <span class="label label-success">OČR</span>
+        <span class="label label-info">Služobka</span>
+        <span class="label label-warning">Dovolenka</span>
+        <span class="label label-danger">Plán Dovolenky</span>
+    </div>
 </div>
 <br>
 <footer>
@@ -281,14 +294,13 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='index.php?lang=sk' style='color: white' > Slovenský jazyk</a>
+                <a href='index.php?lang=sk' style='color: white'> Slovenský jazyk</a>
             </div>
 
         </div>
 
     </div>
     </div>
-
 
 
 </footer>
