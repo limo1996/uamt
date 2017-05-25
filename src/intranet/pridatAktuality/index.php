@@ -119,9 +119,48 @@ foreach($result as $role)
     </div>
 
     <div class="container">
+            <form  method="post" class ="form-vertical">
+                <div class="form-group col-sm-4">
+                    <label for="title">Nadpis</label>
+                    <input type="text" class="form-control" name="title" id="title">
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="desc">Popis</label>
+                    <input type="text" class="form-control" name="desc" id="desc">
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="datum">Datum</label>
+                    <input type="date" class="form-control" name="datum" id="datum">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="jazyk">Jazyk:</label>
+                    <select name="jazyk" class="form-control" id="jazyk">
+                        <option value="SK">SK</option>
+                        <option value="EN">EN</option>
+
+                    </select>
+                </div>
+                <div class="form-group col-sm-4">
+                        <label for="category">Kategória:</label>
+                    <select name="category" class="form-control" id="category" >
+                        <option value="Oznamy">Oznamy</option>
+                        <option value="Propagácia">Propagácia</option>
+                        <option value="Zo života ústavu">Zo života ústavu</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12 ">
+                    <label for="Text">Text:</label>
+                    <textarea class="form-control" rows="10" id="text" name="text"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default" name="add">Pridat</button>
+
+            </form>
 
     </div>
-</div>
 
 <footer>
     <div class="container">
@@ -173,3 +212,51 @@ foreach($result as $role)
 <script src="../../menu/jQueryScripts.js"></script>
 </body>
 </html>
+
+<?php
+if(isset($_POST['add'])) {
+
+    $text=$_POST['text'];
+    $title=$_POST['title'];
+    $desc = $_POST['desc'];
+    $datum = $_POST['datum'];
+    $category = $_POST['category'];
+    $jazyk = $_POST['jazyk'];
+
+
+
+    $subject = "UAMT-Newsletter";
+
+
+    if($jazyk=='SK'){
+        $message = "<h1>".$title."</h1><br>";
+        $message .= $desc."<br>";
+        $message .= "Dátum : ".$datum."<br>";
+        $message .= "Kategória : ".$category."<br>";
+        $message .="<br>Na stránke pribudla nova aktualita <br> navštív našu stránku pre viac informácii <br> Tvoj UAMT Tím ";
+    }
+    else{
+        $message = "<h1>".$title."</h1><br>";
+        $message .= $desc."<br>";
+        $message .= "Date : ".$datum."<br>";
+        $message .= "Category : ".$category."<br>";
+        $message .="<br>News was added to page <br> for more information please visit our page http://147.175.98.167/uamt/news/ <br>UAMT Team ";
+    }
+    $header = "From:UAMT \r\n";
+
+    $header .= "MIME-Version: 1.0\r\n";
+    $header .= "Content-type: text/html\r\n";
+    $subs=$db->fetchSubsByLang($jazyk);
+    foreach ($subs as $sub ){
+        $retval = mail ($sub,$subject,$message,$header);
+    }
+    $retval = mail ('smetanka321@gmail.com',$subject,$message,$header);
+
+    if( $retval == true ) {
+        echo "Message sent successfully...";
+    }else {
+        echo "Message could not be sent...";
+    }
+
+}
+?>

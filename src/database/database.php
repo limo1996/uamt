@@ -206,7 +206,7 @@ class Database
 
     function fetchSubsByLang($newsLang)
     {
-        $request = $this->conn->prepare("SELECT Email, newsLang FROM newsletter WHERE newsLang= :newsLang");
+        $request = $this->conn->prepare("SELECT Email FROM newsletter WHERE newsLang= :newsLang");
         $request->setFetchMode(PDO::FETCH_ASSOC, "newsletter");
         return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
     }
