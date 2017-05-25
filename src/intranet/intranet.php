@@ -67,7 +67,6 @@ foreach($result as $role)
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -75,7 +74,6 @@ foreach($result as $role)
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
 
@@ -98,7 +96,7 @@ foreach($result as $role)
 <nav class="main-menu">
     <ul>
 
-        <li class="has-subnav">
+        <li class="has-subnav active">
             <a href="/uamt/intranet/intranet.php">
                 <i class="fa fa-home fa-2x"></i>
                 <span class="nav-text">Domov intranet</span>
