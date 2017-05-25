@@ -29,8 +29,6 @@ function getYoutube($url)
 ?>
 
 
-?>
-
 <!DOCTYPE html>
 <html lang="sk">
 
@@ -203,7 +201,6 @@ function getYoutube($url)
             </div>
             <div class="col-sm-2 text-center">
                 <a href="http://elearn.elf.stuba.sk/moodle/  "> Moodle FEI</a>
-
             </div>
             <div class="col-sm-2 text-center">
                 <a href="https://www.jedalen.stuba.sk/WebKredit/"> <?php echo $text->cantine; ?> </a>
@@ -234,11 +231,10 @@ function getYoutube($url)
                  echo "<a href='index.php?lang=sk' style='color: yellow' > Slovenský jazyk   | <a href='index.php?lang=en'>  English </a>";
                 else
                     echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
-
                 ?>
             </div>
 
-            </div>
+        </div>
 
         </div>
     </div>

@@ -4,7 +4,6 @@ include_once ("../database/database.php");
 session_start();
 $lang = 'sk';
 $showAll = $_GET['ShowAll'];
-$_SESSION["show"]=$showAll;
 
 if (isset($_GET['lang']))
     $lang = $_GET['lang'];
@@ -14,15 +13,16 @@ $text = $lan->getTextForPage('menu');
 $db = new Database();
 $date = date("Y-m-d");
 
-if(isset($_GET['ShowAll'])) {
-    $count = $db->getCountOfNews($lang);
+if(!isset($_GET['ShowAll'])) {
+    $count = $db->getCountOfActiveNews($lang, $date);
+
     $check=true;
-    $_SESSION["count"] = $count;
+
 }
 else{
-    $count = $db->getCountOfActiveNews($lang, $date);
+    $count = $db->getCountOfNews($lang);
     $check=false;
-    $_SESSION["count"] = $count;
+
 }
 $rec_limit=6;
 $rec_count= $count[0]["COUNT(Title)"];
@@ -36,11 +36,12 @@ if( isset($_GET{'page'} ) ) {
     $offset = 0;
 }
 $left_rec = $rec_count - ($page * $rec_limit);
-if(isset($_GET['ShowAll'])){
-    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
+if(!isset($_GET['ShowAll'])){
+
+    $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
 }
 else {
-    $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
+    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
 }
 
 
@@ -215,20 +216,13 @@ else {
     echo "<ul class=pagination>";
     for($i=1;$i<=$str;$i++){
         $act=$i-2;
-        echo "<li><a href =index.php?showAll=$showAll?page=$act>$i</a></li>";
         $showAll = $_GET['ShowAll'];
+        echo "<li><a href =$_PHP_SELF?ShowAll=$showAll?page=$act>$i</a></li>";
+
     }
     echo "</ul>";
         ?>
-    <!--<div>
-        <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-        </ul>
-    </div>-->
+
     <form class="form-vertical letter" method="post">
         <div class="form-group" id="letter">
             <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
