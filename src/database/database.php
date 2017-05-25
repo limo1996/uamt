@@ -76,6 +76,13 @@ class Database
         return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
     }
 
+    function getEmployeeByLDAP($ldap)
+    {
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE LDAPLOGIN = :ldap");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':ldap' => $ldap)) ? $request->fetchAll() : null;
+    }
+
     function insertNewEmployee($name, $surname, $title1, $title2, $ldaplogin, $photo, $room, $phone, $department, $staff_role, $function)
     {
         $sql = "INSERT INTO employees (FIRST_NAME, SECOND_NAME, TITLE1, TITLE2, LDAPLOGIN, PHOTO, ROOM, PHONE, DEPARTMENT, STAFF_ROLE, FUNCTION) VALUES 
