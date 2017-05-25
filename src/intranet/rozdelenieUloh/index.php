@@ -139,10 +139,10 @@ if(!$_SESSION['user']){
         <div class="col-sm-6">
             <h4>Tomáš Baka</h4>
             <ul>
-                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
-                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
-                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
-
+                <li>Kontakt</li>
+                <li>Fotogaléria</li>
+                <li>Videá</li>
+                <li>Médiá</li>
             </ul>
         </div>
     </div>

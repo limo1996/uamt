@@ -51,6 +51,9 @@ $text = $lan->getTextForPage('menu');
 
 
         }
+        iframe{
+            max-width: 100% !important;
+        }
 
 
     </style>
@@ -185,7 +188,7 @@ function getYoutube($url)
 
 
 <div class="container">
-<div class="row">
+  <div class="row">
     <div class="col-sm-3"></div>
     <div id="tabs" class="col-sm-6 center">
         <ul id="list" class="nav nav-tabs">
@@ -201,7 +204,7 @@ function getYoutube($url)
 
 
     <div class="col-sm-4"></div>
-    <div class='w3-container '>
+    <div class='w3-content'>
     <div class="tab-content col-sm-12 center">
 
         <div class="tab-pane active" id="1">
@@ -214,7 +217,7 @@ function getYoutube($url)
 
                    echo "<h3 style='color:#0066cc!important; text-align: center '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
 
-                   echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' style='margin: auto;display: block'></iframe>";
+                   echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."'allowfullscreen  style='margin: auto;display: block'></iframe>";
 
                }
            }
@@ -233,7 +236,7 @@ function getYoutube($url)
             {
 
                 echo "<h3 style='color:#0066cc!important; text-align: center'><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
-                echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' style='margin: auto;display: block'></iframe>";
+                echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' allowfullscreen style='margin: auto;display: block'></iframe>";
             }
             }
             echo "<br><br>";
@@ -247,7 +250,7 @@ function getYoutube($url)
                 if($js[$i]["TYPE"]=="propagácia")
                 {
                     echo "<h3 style='color:#0066cc!important; text-align: center'><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
-                    echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' style='margin: auto;display: block'></iframe>";
+                    echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' allowfullscreen style='margin: auto;display: block'></iframe>";
                 }
             }
             echo "<br><br>";
@@ -261,19 +264,20 @@ function getYoutube($url)
                 if($js[$i]["TYPE"]=="zariadenie")
                 {
                     echo "<h3 style='color:#0066cc!important; text-align: center '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
-                    echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' style='margin: auto;display: block'></iframe>";
+                    echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' allowfullscreen  style='margin: auto;display: block'></iframe>";
                 }
             }
             echo "<br><br>";
             ?>
         </div>
+      </div>
     </div>
-    </div>
-</div>
+  </div>
 </div>
 
 
 <footer>
+
     <div class="container">
         <div class="container">
             <div class="col-sm-2 text-center">
