@@ -83,7 +83,7 @@ function getYoutube($url)
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -170,6 +170,7 @@ function getYoutube($url)
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo  $text->act_video; ?></h2>
@@ -190,7 +191,7 @@ function getYoutube($url)
     <div class="tab-content ">
         <div class="tab-pane active" id="1">
             <?php
-            echo "<p>&nbsp</p>";
+            echo "<p>&nbsp;</p>";
            for($i=0;$i<count($js);$i++)
            {
                 if($js[$i]["TYPE"]=="labák")
@@ -205,7 +206,7 @@ function getYoutube($url)
         </div>
         <div class="tab-pane" id="2">
             <?php
-            echo "<p>&nbsp</p>";
+            echo "<p>&nbsp;</p>";
             for($i=0;$i<count($js);$i++)
             {
             if($js[$i]["TYPE"]=="predmet")
@@ -219,7 +220,7 @@ function getYoutube($url)
         </div>
         <div class="tab-pane" id="3">
             <?php
-            echo "<p>&nbsp</p>";
+            echo "<p>&nbsp;</p>";
             for($i=0;$i<count($js);$i++)
             {
                 if($js[$i]["TYPE"]=="propagácia")
@@ -232,7 +233,7 @@ function getYoutube($url)
         </div>
         <div class="tab-pane" id="4">
             <?php
-            echo "<p>&nbsp</p>";
+            echo "<p>&nbsp;</p>";
             for($i=0;$i<count($js);$i++)
             {
                 if($js[$i]["TYPE"]=="zariadenie")
@@ -246,7 +247,7 @@ function getYoutube($url)
     </div>
 </div>
 
-</div>
+
 <footer>
     <div class="container">
         <div class="container">
@@ -286,9 +287,9 @@ function getYoutube($url)
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk </a>  | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk </a>  | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -296,7 +297,7 @@ function getYoutube($url)
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../menu/jQueryScripts.js"></script>
 </body>
