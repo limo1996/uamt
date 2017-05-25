@@ -9,6 +9,14 @@ if(!$_SESSION['user']){
 
 $db = new Database();
 
+// zistenie roly
+//---------------------------------------------
+$result = $db->getUserRoles($_SESSION['user']);
+$roles = array();
+foreach($result as $role)
+    $roles[] = $role['ROLE'];
+//---------------------------------------------
+
 if(isset($_POST['Add'])) {
     $db->insertPurchase($_POST['textareas']);
     header("Location: index.php");
@@ -83,47 +91,80 @@ if(isset($_POST['Delete'])) {
     </div>
 </nav>
 
-<div id="nazov">
-    <h2><?php echo "Nákupy" ?></h2>
-    <hr class="hr_nazov">
-</div>
+<div id="intranet-wrapper">
+    <div id="nazov">
+        <h2><?php echo "Nákupy" ?></h2>
+        <hr class="hr_nazov">
+    </div>
 
-<div class="container space">
+    <div id="sidebar-wrapper" class="sidebar-toggle">
+        <ul class="sidebar-nav">
+            <br>
+            <li>
+                <a href="#item3">Odhlásiť sa</a>
+            </li>
+            <hr>
+            <li>
+                <a href="#item1">Upraviť profil</a>
+            </li>
+            <li>
+                <a href="#item2">Pridať aktuality</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať fotky</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať videá</a>
+            </li>
+        </ul>
+    </div>
 
-    <button id="add" name="add" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>
+    <div class="container space">
+        <?php
+        $data_target = "";
+        $data_target = "";
+        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+            echo "<button id=\"add\" name=\"add\" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>";
+            $data_toggle = "data-toggle='modal'";
+            $data_target = "data-target='#myModal'";
+        }
 
-    <?php
-    $purchases = $db->getPurchases();
-    foreach($purchases as $purchase) {
-        $id = $purchase["ID"];
-        echo "<article class='div-hover' id='$id' data-toggle='modal' data-target='#myModal'>";
-        echo $purchase["TEXT"];
-        echo "</article>";
-    }
-    ?>
+        $purchases = $db->getPurchases();
+        foreach($purchases as $purchase) {
+            $id = $purchase["ID"];
+            echo "<article class='div-hover' id='$id' $data_toggle $data_target>";
+            echo $purchase["TEXT"];
+            echo "</article>";
+        }
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" data-reveal role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content form-area">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Upraviť nákup</h4>
+        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+            echo "
+            <!-- Modal -->
+            <div class=\"modal fade\" id=\"myModal\" data-reveal role=\"dialog\">
+                <div class=\"modal-dialog modal-lg\">
+                    <!-- Modal content-->
+                    <div class=\"modal-content form-area\">
+                        <div class=\"modal-header\">
+                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
+                            <h4 class=\"modal-title\">Upraviť nákup</h4>
+                        </div>
+                        <form method=\"post\" onsubmit=\"saveText();\">
+                            <div class=\"modal-body\">
+                                <textarea id=\"editor_content\" name=\"textareas\" style=\"height:250px; margin:5px 5px 5px 5px;\"></textarea>
+                            </div>
+                            <div class=\"modal-footer\">
+                                <button id=\"Cancel\" type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-share-alt\"></span> Zrušiť</button>
+                                <button id=\"Delete\" name=\"Delete\" type=\"Submit\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Odstrániť</button>
+                                <button id=\"Save\" name=\"Save\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť</button>
+                                <button id=\"Add\" name=\"Add\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Pridať</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form method="post" onsubmit="saveText();">
-                    <div class="modal-body">
-                        <textarea id="editor_content" name="textareas" style="height:250px; margin:5px 5px 5px 5px;"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="Cancel" type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-share-alt"></span> Zrušiť</button>
-                        <button id="Delete" name="Delete" type="Submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Odstrániť</button>
-                        <button id="Save" name="Save" type="Submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Uložiť</button>
-                        <button id="Add" name="Add" type="Submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Pridať</button>
-                    </div>
-                </form>
             </div>
-        </div>
+            ";
+        }
+        ?>
     </div>
 </div>
 

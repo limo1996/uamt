@@ -24,6 +24,8 @@ $text = $lan->getTextForPage('menu');
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../menu/menuScripts.js"></script>
+
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>

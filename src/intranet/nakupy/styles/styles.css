@@ -4,7 +4,6 @@
 }
 
 .space {
-    margin-bottom: 50px;
     width: 800px;
 }
 
@@ -23,4 +22,64 @@
 
 .div-hover:hover {
     background-color: #f2f2f2;
+}
+
+#intranet-wrapper {
+    position: relative;
+    vertical-align: bottom;
+    min-height: 400px;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+#sidebar-wrapper {
+    top: 0px;
+    left: -200px;
+    width: 200px;
+    background-color: #8080ff;
+    color: white;
+    position: absolute;
+    height:100%;
+    z-index: 1;
+    border-right: 1px solid purple;
+
+}
+.sidebar-nav {
+    margin-top: 60px;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    width: 200px;
+}
+
+@media print {
+    #sidebar-wrapper {display: none;}
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 50px;
+}
+.sidebar-nav li a {
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+.sidebar-nav li a:hover {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    text-decoration: none;
+}
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+#sidebar-wrapper.sidebar-toggle {
+    transition: all 0.3s ease-out;
+    margin-left: -200px;
+}
+@media (min-width: 768px) {
+    #sidebar-wrapper.sidebar-toggle {
+        transition: 0s;
+        left: 200px;
+    }
 }
