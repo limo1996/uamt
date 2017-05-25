@@ -63,14 +63,6 @@ if(isset($_POST['Delete'])) {
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
-
-        <a href="#" class="navbar-toggle sidebarmenu-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
@@ -82,7 +74,7 @@ if(isset($_POST['Delete'])) {
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav nextto" id="navMenu">
+            <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
@@ -94,22 +86,14 @@ if(isset($_POST['Delete'])) {
                 <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
-
-            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
         </div>
     </div>
 </nav>
 
-<div id="intranet-wrapper">
-    <div id="nazov">
-        <h2><?php echo "Nákupy" ?></h2>
-        <hr class="hr_nazov">
-    </div>
+<div id="nazov">
+    <h2><?php echo "Nákupy" ?></h2>
+    <hr class="hr_nazov">
+</div>
 
     <div id="sidebar-wrapper" class="sidebar-toggle">
         <ul class="sidebar-nav">
@@ -133,26 +117,26 @@ if(isset($_POST['Delete'])) {
         </ul>
     </div>
 
-    <div class="container">
-        <?php
-        $data_target = "";
-        $data_target = "";
-        if (in_array("admin", $roles) || in_array("editor", $roles)) {
-            echo "<button id=\"add\" name=\"add\" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>";
-            $data_toggle = "data-toggle='modal'";
-            $data_target = "data-target='#myModal'";
-        }
+<div class="container">
+    <?php
+    $data_target = "";
+    $data_target = "";
+    if (in_array("admin", $roles) || in_array("editor", $roles)) {
+        echo "<button id=\"add\" name=\"add\" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>";
+        $data_toggle = "data-toggle='modal'";
+        $data_target = "data-target='#myModal'";
+    }
 
-        $purchases = $db->getPurchases();
-        foreach($purchases as $purchase) {
-            $id = $purchase["ID"];
-            echo "<article class='div-hover' id='$id' $data_toggle $data_target>";
-            echo $purchase["TEXT"];
-            echo "</article>";
-        }
+    $purchases = $db->getPurchases();
+    foreach($purchases as $purchase) {
+        $id = $purchase["ID"];
+        echo "<article class='div-hover' id='$id' $data_toggle $data_target>";
+        echo $purchase["TEXT"];
+        echo "</article>";
+    }
 
-        if (in_array("admin", $roles) || in_array("editor", $roles)) {
-            echo "
+    if (in_array("admin", $roles) || in_array("editor", $roles)) {
+        echo "
             <!-- Modal -->
             <div class=\"modal fade\" id=\"myModal\" data-reveal role=\"dialog\">
                 <div class=\"modal-dialog modal-lg\">
@@ -177,9 +161,8 @@ if(isset($_POST['Delete'])) {
                 </div>
             </div>
             ";
-        }
-        ?>
-    </div>
+    }
+    ?>
 </div>
 
 <footer>

@@ -167,14 +167,6 @@ if(isset($_POST['save_emp'])) {
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
-
-        <a href="#" class="navbar-toggle sidebarmenu-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
@@ -186,7 +178,7 @@ if(isset($_POST['save_emp'])) {
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav nextto" id="navMenu">
+            <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
@@ -198,22 +190,14 @@ if(isset($_POST['save_emp'])) {
                 <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
-
-            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
         </div>
     </div>
 </nav>
 
-<div id="intranet-wrapper">
-    <div id="nazov">
-        <h2><?php echo "Upraviť profil" ?></h2>
-        <hr class="hr_nazov">
-    </div>
+<div id="nazov">
+    <h2><?php echo "Upraviť profil" ?></h2>
+    <hr class="hr_nazov">
+</div>
 
     <div id="sidebar-wrapper" class="sidebar-toggle">
         <ul class="sidebar-nav">
@@ -237,96 +221,95 @@ if(isset($_POST['save_emp'])) {
         </ul>
     </div>
 
-    <div class="container">
-
-        <?php
-        if (in_array("admin", $roles)) {
-            echo "
+<div class="container">
+    <?php
+    if (in_array("admin", $roles)) {
+        echo "
             <form action=\"\" method=\"post\">
                 <div class=\"form-group col-md-9 col-md-offset-3\">
                     <select id=\"selectEmployee\" name=\"selectEmployee\" class=\"selectpicker\" title=\"Nový Zamestnanec\">
             ";
-                echo "<option value='' style='background-color: #b3c6ff'> Nový Zamestnanec  </option>";
-                $employees = $db->fetchEmployees();
-                foreach ($employees as $employee) {
-                    $employee_id = $employee['ID'];
-                    $employee_name = $employee['FIRST_NAME'];
-                    $employee_surname = $employee['SECOND_NAME'];
-                    $sel = "";
-                    if ($id == $employee_id) {
-                        $sel = "selected";
-                    }
-                    echo "<option value='$employee_id' $sel> $employee_name $employee_surname </option>";
-                }
-            echo "
+        echo "<option value='' style='background-color: #b3c6ff'> Nový Zamestnanec  </option>";
+        $employees = $db->fetchEmployees();
+        foreach ($employees as $employee) {
+            $employee_id = $employee['ID'];
+            $employee_name = $employee['FIRST_NAME'];
+            $employee_surname = $employee['SECOND_NAME'];
+            $sel = "";
+            if ($id == $employee_id) {
+                $sel = "selected";
+            }
+            echo "<option value='$employee_id' $sel> $employee_name $employee_surname </option>";
+        }
+        echo "
                     </select>
                     <button type=\"submit\" class=\"btn btn-info active\" name=\"loadProfile\"><span class=\"glyphicon glyphicon-save\"></span> Načítať údaje profilu</button>
                 </div>
             </form>
             ";
+    }
+
+    echo $name;
+    if (id != "" && in_array("admin", $roles)) {
+        $employee = $db->getEmployeeByID($id);
+        foreach ($employee as $emp) {
+            $employee = $emp;
         }
 
-        echo $name;
-        if (id != "" && in_array("admin", $roles)) {
-            $employee = $db->getEmployeeByID($id);
-            foreach ($employee as $emp) {
-                $employee = $emp;
-            }
+        $name = $employee["FIRST_NAME"];
+        $surname = $employee["SECOND_NAME"];
+        $title1 = $employee["TITLE1"];
+        $title2 = $employee["TITLE2"];
+        $ldaplogin = $employee["LDAPLOGIN"];
 
-            $name = $employee["FIRST_NAME"];
-            $surname = $employee["SECOND_NAME"];
-            $title1 = $employee["TITLE1"];
-            $title2 = $employee["TITLE2"];
-            $ldaplogin = $employee["LDAPLOGIN"];
+        $rol = $db->getUserRoles($ldaplogin);
+        $employee_roles = array();
+        foreach($rol as $r)
+            $employee_roles[] = $r['ROLE'];
+        $room = $employee["ROOM"];
+        $phone = $employee["PHONE"];
+        $department = $employee["DEPARTMENT"];
+        $staff_role = $employee["STAFF_ROLE"];
+        $function = $employee["FUNCTION"];
+    }
+    ?>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well well-sm">
+                <form class="form-horizontal borders" action="" method="post" enctype="multipart/form-data">
+                    <fieldset>
 
-            $rol = $db->getUserRoles($ldaplogin);
-            $employee_roles = array();
-            foreach($rol as $r)
-                $employee_roles[] = $r['ROLE'];
-            $room = $employee["ROOM"];
-            $phone = $employee["PHONE"];
-            $department = $employee["DEPARTMENT"];
-            $staff_role = $employee["STAFF_ROLE"];
-            $function = $employee["FUNCTION"];
-        }
-        ?>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="well well-sm">
-                    <form class="form-horizontal borders" action="" method="post" enctype="multipart/form-data">
-                        <fieldset>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="name">Meno</label>
-                                <div class="col-md-9">
-                                    <input id="name" name="name" type="text" placeholder="Meno" value="<?php echo $name;?>" class="form-control">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="name">Meno</label>
+                            <div class="col-md-9">
+                                <input id="name" name="name" type="text" placeholder="Meno" value="<?php echo $name;?>" class="form-control">
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="surname">Priezvisko</label>
-                                <div class="col-md-9">
-                                    <input id="surname" name="surname" type="text" placeholder="Priezvisko" value="<?php echo $surname;?>" class="form-control">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="surname">Priezvisko</label>
+                            <div class="col-md-9">
+                                <input id="surname" name="surname" type="text" placeholder="Priezvisko" value="<?php echo $surname;?>" class="form-control">
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="room">Miestnosť</label>
-                                <div class="col-md-9">
-                                    <input id="room" name="room" type="text" placeholder="Kancelária" value="<?php echo $room;?>" class="form-control">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="room">Miestnosť</label>
+                            <div class="col-md-9">
+                                <input id="room" name="room" type="text" placeholder="Kancelária" value="<?php echo $room;?>" class="form-control">
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="phone">Telefón</label>
-                                <div class="col-md-9">
-                                    <input id="phone" name="phone" type="number" placeholder="Telefón" value="<?php echo $phone;?>" class="form-control">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="phone">Telefón</label>
+                            <div class="col-md-9">
+                                <input id="phone" name="phone" type="number" placeholder="Telefón" value="<?php echo $phone;?>" class="form-control">
                             </div>
+                        </div>
 
-                            <?php
-                            if (in_array("admin", $roles)) {
-                                echo "
+                        <?php
+                        if (in_array("admin", $roles)) {
+                            echo "
                                 
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"title1\">Titul 1</label>
@@ -375,111 +358,110 @@ if(isset($_POST['save_emp'])) {
                                     <div class=\"btn-group col-md-9\" data-toggle=\"buttons\">
                                 ";
 
-                                if (in_array("user", $employee_roles))
-                                    echo "
+                            if (in_array("user", $employee_roles))
+                                echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"1\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> user
                                         </label>                                  
                                         ";
-                                else
-                                    echo "
+                            else
+                                echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"1\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> user
                                         </label> 
                                         ";
-                                if (in_array("hr", $employee_roles))
-                                    echo "
+                            if (in_array("hr", $employee_roles))
+                                echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"2\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> hr
                                         </label>                                 
                                         ";
-                                else
-                                    echo "
+                            else
+                                echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"2\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> hr
                                         </label>
                                         ";
-                                if (in_array("reporter", $employee_roles))
-                                    echo "
+                            if (in_array("reporter", $employee_roles))
+                                echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"3\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> reporter
                                         </label>                                 
                                         ";
-                                else
-                                    echo "
+                            else
+                                echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"3\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> reporter
                                         </label>
                                         ";
-                                if (in_array("editor", $employee_roles))
-                                    echo "
+                            if (in_array("editor", $employee_roles))
+                                echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"4\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> editor
                                         </label>                                 
                                         ";
-                                else
-                                    echo "
+                            else
+                                echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"4\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> editor
                                         </label>
                                         ";
-                                if (in_array("admin", $employee_roles))
-                                    echo "
+                            if (in_array("admin", $employee_roles))
+                                echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"5\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> admin
                                         </label>                                
                                         ";
-                                else
-                                    echo "
+                            else
+                                echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"5\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> admin
                                         </label>
                                         ";
 
-                                echo "</div>";
-                                echo "</div>";
-                            }
-                            ?>
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        ?>
 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="fileToUpload">Fotografia</label>
-                                <div class="col-md-9">
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="fileToUpload">Fotografia</label>
+                            <div class="col-md-9">
+                                <input type="file" name="fileToUpload" id="fileToUpload">
                             </div>
+                        </div>
 
-                            <?php
-                            if ($id != "" || !in_array("admin", $roles)) {
-                                echo "
+                        <?php
+                        if ($id != "" || !in_array("admin", $roles)) {
+                            echo "
                                 <div class=\"form-group\">
                                     <div class=\"col-md-12 text-right\">
                                         <button type=\"submit\" name='save_emp' class=\"btn btn-success active\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť</button>
                                     </div>
                                 </div>
                                 ";
-                            }
-                            else
-                                echo "
+                        }
+                        else
+                            echo "
                                 <div class=\"form-group\">
                                     <div class=\"col-md-12 text-right\">
                                         <button type=\"submit\" name='add_emp' class=\"btn btn-success active\"><span class=\"glyphicon glyphicon-ok\"></span> Pridať</button>
                                     </div>
                                 </div>
                                 ";
-                            ?>
-                        </fieldset>
-                    </form>
-                </div>
+                        ?>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>

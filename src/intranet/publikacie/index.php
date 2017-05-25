@@ -149,14 +149,6 @@ if(isset($_POST['save']))
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
-
-        <a href="#" class="navbar-toggle sidebarmenu-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
@@ -168,7 +160,7 @@ if(isset($_POST['save']))
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav nextto" id="navMenu">
+            <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
@@ -180,22 +172,14 @@ if(isset($_POST['save']))
                 <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
-
-            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
         </div>
     </div>
 </nav>
 
-<div id="intranet-wrapper">
-    <div id="nazov">
-        <h2><?php echo "Publikácie" ?></h2>
-        <hr class="hr_nazov">
-    </div>
+<div id="nazov">
+    <h2><?php echo "Publikácie" ?></h2>
+    <hr class="hr_nazov">
+</div>
 
     <div id="sidebar-wrapper" class="sidebar-toggle">
         <ul class="sidebar-nav">
@@ -219,55 +203,55 @@ if(isset($_POST['save']))
         </ul>
     </div>
 
-    <div class="container">
-        <div id="documents">
-            <?php
-            $categories = $db->getTabCategories($tab);
-            $documents = $db->getTabDocuments($tab);
+<div class="container">
+    <div id="documents">
+        <?php
+        $categories = $db->getTabCategories($tab);
+        $documents = $db->getTabDocuments($tab);
 
-            foreach($categories as $category) {
-                $categ = $category['category'];
-                echo "<h3> $categ </h3>";
+        foreach($categories as $category) {
+            $categ = $category['category'];
+            echo "<h3> $categ </h3>";
 
-                echo "<table id='$categ' class='table table-striped'>";
+            echo "<table id='$categ' class='table table-striped'>";
 
-                echo "<thead>";
-                echo "<tr>";
-                echo "<th >Dokument</th>";
-                echo "<th class='sortable'>Príloha</th>";
-                echo "</tr>";
-                echo "</thead>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th >Dokument</th>";
+            echo "<th class='sortable'>Príloha</th>";
+            echo "</tr>";
+            echo "</thead>";
 
-                echo "<tbody>";
+            echo "<tbody>";
 
-                foreach($documents as $document) {
-                    if($document['CATEGORY'] == $categ) {
-                        $id = $document['ID'];
-                        echo "<tr>";
-                        echo "<td>" . $document['NAME'] . "</td>";
-                        echo "<td class='right_pos'> <a href=" . $document['SOURCE'] . " class='btn btn-block btn-xs btn-success'><span class='glyphicon glyphicon-save'></span> Stiahnuť</a> </td>";
-                        if (in_array("admin", $roles) || in_array("editor", $roles)) {
-                            echo "<td class='right_pos'><button id='update' class='btn btn-block btn-xs btn-info' name='update' value='$id' type='Submit' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-pencil'></span> Upraviť</button></td>";
-                            echo "<td class='right_pos'> 
+            foreach($documents as $document) {
+                if($document['CATEGORY'] == $categ) {
+                    $id = $document['ID'];
+                    echo "<tr>";
+                    echo "<td>" . $document['NAME'] . "</td>";
+                    echo "<td class='right_pos'> <a href=" . $document['SOURCE'] . " class='btn btn-block btn-xs btn-success'><span class='glyphicon glyphicon-save'></span> Stiahnuť</a> </td>";
+                    if (in_array("admin", $roles) || in_array("editor", $roles)) {
+                        echo "<td class='right_pos'><button id='update' class='btn btn-block btn-xs btn-info' name='update' value='$id' type='Submit' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-pencil'></span> Upraviť</button></td>";
+                        echo "<td class='right_pos'> 
                                 <form method='post'>
                                     <button name='delete' class='btn btn-block btn-xs btn-danger' type='Submit' value='$id'><span class='glyphicon glyphicon-remove'></span></button>
                                 </form>
                               </td>";
-                            echo "</tr>";
-                        }
+                        echo "</tr>";
                     }
                 }
-                echo "</tbody>";
-                echo "</table> <br>";
             }
+            echo "</tbody>";
+            echo "</table> <br>";
+        }
 
-            ?>
-        </div>
+        ?>
+    </div>
 
-        <?php
-        if (in_array("admin", $roles) || in_array("editor", $roles)) {
-            echo " <button id=\"newDocument\" class=\"btn btn-primary btn-primary\" type=\"button\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-open\"></span> Nový dokument</button>";
-            echo " 
+    <?php
+    if (in_array("admin", $roles) || in_array("editor", $roles)) {
+        echo " <button id=\"newDocument\" class=\"btn btn-primary btn-primary\" type=\"button\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-open\"></span> Nový dokument</button>";
+        echo " 
         <!-- Modal -->
         <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">
             <div class=\"modal-dialog\">
@@ -297,11 +281,11 @@ if(isset($_POST['save']))
                                 <select id=\"selectedCategory\" name=\"selectedCategory\" class=\"selectpicker\" title=\"Výber kategórie\">
         
         ";
-            foreach ($categories as $category) {
-                $categ = $category['category'];
-                echo "<option value='$categ'> $categ </option>";
-            }
-            echo "                  
+        foreach ($categories as $category) {
+            $categ = $category['category'];
+            echo "<option value='$categ'> $categ </option>";
+        }
+        echo "                  
                                 </select>
                             </div>
                             <div id=\"newCategory\">
@@ -375,9 +359,8 @@ if(isset($_POST['save']))
                 </div>
             </div>
         </div>";
-        }
-        ?>
-    </div>
+    }
+    ?>
 </div>
 
 <footer>
