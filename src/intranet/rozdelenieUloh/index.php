@@ -23,6 +23,8 @@ if(!$_SESSION['user']){
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="rozdelenieUloh.css" type="text/css" rel="stylesheet">
+
     <script src="../../menu/menuScripts.js"></script>
 
     <style media="all">
@@ -67,8 +69,110 @@ if(!$_SESSION['user']){
 </div>
 
 <div class="container">
-    <h1> Tabulka rozdelenia uloh</h1>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img3" src="jakub.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+            </div>
+            <div class="col-sm-6">
+                <h4>Jakub Lichman</h4>
+                <ul>
+                    <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
+                    <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
+                    <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+
+                </ul>
+            </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img2" src="adam.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Adam Valašík</h4>
+            <ul>
+                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
+                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
+                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+
+            </ul>
+        </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img1" src="matus.JPG" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Matúš Lukáč</h4>
+            <ul>
+                <li>Menu</li>
+                <li>Footer</li>
+                <li>Stránky - "Výskum" </li>
+                <li>Dizajn</li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img4" src="tomas.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Tomáš Baka</h4>
+            <ul>
+                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
+                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
+                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+
+            </ul>
+        </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img5" src="jakub2.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Jakub Smetanka</h4>
+            <ul>
+                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
+                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
+                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+
+            </ul>
+        </div>
+    </div>
+
+
+
 </div>
+<br>
+<br>
+
+
 
 <footer>
     <div class="container">
