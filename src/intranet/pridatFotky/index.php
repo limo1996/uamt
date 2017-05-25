@@ -48,15 +48,7 @@ foreach($result as $role)
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
-
-        <a href="#" class="navbar-toggle sidebarmenu-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:purple;">UAMT - Intranet</p></div>
@@ -67,7 +59,7 @@ foreach($result as $role)
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav nextto" id="navMenu">
+            <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
@@ -80,21 +72,14 @@ foreach($result as $role)
 
             </ul>
 
-            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
         </div>
     </div>
 </nav>
 
-<div id="intranet-wrapper">
-    <div id="nazov">
-        <h2><?php echo "Pridať fotky" ?></h2>
-        <hr class="hr_nazov">
-    </div>
+<div id="nazov">
+    <h2><?php echo "Pridať fotky" ?></h2>
+    <hr class="hr_nazov">
+</div>
 
     <div id="sidebar-wrapper" class="sidebar-toggle">
         <ul class="sidebar-nav">
@@ -118,9 +103,8 @@ foreach($result as $role)
         </ul>
     </div>
 
-    <div class="container">
+<div class="container">
 
-    </div>
 </div>
 
 <footer>

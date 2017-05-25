@@ -149,14 +149,6 @@ if(isset($_POST['save']))
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
-
-        <a href="#" class="navbar-toggle sidebarmenu-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
@@ -168,7 +160,7 @@ if(isset($_POST['save']))
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav nextto" id="navMenu">
+            <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li class="active"><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
@@ -179,13 +171,6 @@ if(isset($_POST['save']))
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
                 <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
             </ul>
-
-            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
         </div>
     </div>
 </nav>
