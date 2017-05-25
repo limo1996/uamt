@@ -1,28 +1,28 @@
 <?php
 include('../lang/langFunctions.php');
 include_once ("../database/database.php");
+session_start();
 $lang = 'sk';
 $showAll = $_GET['ShowAll'];
+$_SESSION["show"]=$showAll;
 
-var_dump($showAll);
 if (isset($_GET['lang']))
     $lang = $_GET['lang'];
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
-
-$ex = new Database();
-$js = $ex->fetchMedia();
 $db = new Database();
 $date = date("Y-m-d");
 
 if(isset($_GET['ShowAll'])) {
     $count = $db->getCountOfNews($lang);
     $check=true;
+    $_SESSION["count"] = $count;
 }
 else{
     $count = $db->getCountOfActiveNews($lang, $date);
     $check=false;
+    $_SESSION["count"] = $count;
 }
 $rec_limit=6;
 $rec_count= $count[0]["COUNT(Title)"];
@@ -42,6 +42,8 @@ if(isset($_GET['ShowAll'])){
 else {
     $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
 }
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -213,7 +215,7 @@ else {
     echo "<ul class=pagination>";
     for($i=1;$i<=$str;$i++){
         $act=$i-2;
-        echo "<li><a href =index.php?page=$act>$i</a></li>";
+        echo "<li><a href =index.php?showAll=$showAll?page=$act>$i</a></li>";
         $showAll = $_GET['ShowAll'];
     }
     echo "</ul>";
