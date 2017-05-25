@@ -1,4 +1,5 @@
 <?php
+include_once ("../../database/database.php");
 session_start();
 
 if(!$_SESSION['user']){
@@ -6,8 +7,30 @@ if(!$_SESSION['user']){
     die;
 }
 
-// TODO: nacitat text z DB
-// TODO: ulozit novy text do DB
+$db = new Database();
+
+// zistenie roly
+//---------------------------------------------
+$result = $db->getUserRoles($_SESSION['user']);
+$roles = array();
+foreach($result as $role)
+    $roles[] = $role['ROLE'];
+//---------------------------------------------
+
+if(isset($_POST['Add'])) {
+    $db->insertPurchase($_POST['textareas']);
+    header("Location: index.php");
+}
+
+if(isset($_POST['Save'])) {
+    $db->updatePurchase($_POST['Save'], $_POST['textareas']);
+    header("Location: index.php");
+}
+
+if(isset($_POST['Delete'])) {
+    $db->deletePurchase($_POST['Delete']);
+    header("Location: index.php");
+}
 
 ?>
 
@@ -21,6 +44,7 @@ if(!$_SESSION['user']){
     <title>Intranet</title>
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=r4y29w5xcesgziqbk6k6sf1gmb3m9uz18g0cinyvy3n8sam4"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
 
@@ -67,38 +91,80 @@ if(!$_SESSION['user']){
     </div>
 </nav>
 
-<div id="nazov">
-    <h2><?php echo "Nákupy" ?></h2>
-    <hr class="hr_nazov">
-</div>
-
-<div class="container space">
-    <div id="content">
-        <p>
-            Lorem ipsum dolor sit amet, ne sea sale repudiandae, iudico dolore dolorum qui cu. Qui discere deseruisse at, solum dicunt adolescens pro te. Vel facer civibus ei. Est congue aliquam ei, no cum sint recteque. Ius stet legendos et, eos idque admodum corpora cu. Et nulla euripidis nam, cum ex officiis inciderint, expetenda forensibus mel id.
-        </p>
-        <p>
-            Ad mei animal tibique efficiantur. Ut qui sint probo utinam, viris adipiscing incorrupte no per, no mel accusam molestie offendit. In usu commodo mandamus, deseruisse theophrastus ut eos. Cu veri labore mel, ea vide illum eam. Ea mei cetero invidunt. Case illud complectitur an vim, nam stet purto in.
-        </p>
-        <p>
-            Te blandit indoctum deterruisset qui, eu melius adversarium qui. Cum an solum tempor interpretaris, justo habemus est id. Oratio aperiam sit in, et usu deleniti incorrupte sadipscing, mollis animal ex vix. Stet verterem consulatu sea ea. In elitr quidam est, mei oportere assentior te.
-        </p>
-        <p>
-            Novum graecis admodum ex duo. Nonumy invenire vim at. Sit eu imperdiet deterruisset. Vel rebum oblique praesent ut, no mea vocent detracto.
-        </p>
-        <p>
-            Eu iisque percipitur pro. Odio adipisci in ius, harum libris his ut, pri id tacimates iracundia. Eu pro denique constituam, et nam illud graeco vidisse, sit detracto dissentiunt in. Consetetur disputando id eos, copiosae consetetur no vix. Vim te habeo nemore epicuri, tale ferri erant in mel.
-        </p>
+<div id="intranet-wrapper">
+    <div id="nazov">
+        <h2><?php echo "Nákupy" ?></h2>
+        <hr class="hr_nazov">
     </div>
 
-    <div id="editor">
-        <textarea id="editor_content" style="height:400px;"></textarea>
+    <div id="sidebar-wrapper" class="sidebar-toggle">
+        <ul class="sidebar-nav">
+            <br>
+            <li>
+                <a href="#item3">Odhlásiť sa</a>
+            </li>
+            <hr>
+            <li>
+                <a href="#item1">Upraviť profil</a>
+            </li>
+            <li>
+                <a href="#item2">Pridať aktuality</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať fotky</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať videá</a>
+            </li>
+        </ul>
     </div>
 
-    <div class="buttons">
-    <button id="Edit" type="button" class="btn btn-primary">Upraviť</button>
-    <button id="Save" type="button" class="btn btn-success">Uložiť</button>
-    <button id="Cancel" type="button" class="btn btn-warning">Zrušiť</button>
+    <div class="container space">
+        <?php
+        $data_target = "";
+        $data_target = "";
+        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+            echo "<button id=\"add\" name=\"add\" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>";
+            $data_toggle = "data-toggle='modal'";
+            $data_target = "data-target='#myModal'";
+        }
+
+        $purchases = $db->getPurchases();
+        foreach($purchases as $purchase) {
+            $id = $purchase["ID"];
+            echo "<article class='div-hover' id='$id' $data_toggle $data_target>";
+            echo $purchase["TEXT"];
+            echo "</article>";
+        }
+
+        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+            echo "
+            <!-- Modal -->
+            <div class=\"modal fade\" id=\"myModal\" data-reveal role=\"dialog\">
+                <div class=\"modal-dialog modal-lg\">
+                    <!-- Modal content-->
+                    <div class=\"modal-content form-area\">
+                        <div class=\"modal-header\">
+                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
+                            <h4 class=\"modal-title\">Upraviť nákup</h4>
+                        </div>
+                        <form method=\"post\" onsubmit=\"saveText();\">
+                            <div class=\"modal-body\">
+                                <textarea id=\"editor_content\" name=\"textareas\" style=\"height:250px; margin:5px 5px 5px 5px;\"></textarea>
+                            </div>
+                            <div class=\"modal-footer\">
+                                <button id=\"Cancel\" type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-share-alt\"></span> Zrušiť</button>
+                                <button id=\"Delete\" name=\"Delete\" type=\"Submit\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Odstrániť</button>
+                                <button id=\"Save\" name=\"Save\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť</button>
+                                <button id=\"Add\" name=\"Add\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Pridať</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            ";
+        }
+        ?>
     </div>
 </div>
 

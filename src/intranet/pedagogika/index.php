@@ -1,9 +1,121 @@
 <?php
+include_once ("../../database/database.php");
 session_start();
 
 if(!$_SESSION['user']){
     header("Location:../index.php");
     die;
+}
+
+$tab = "pedagogika";
+$db = new Database();
+
+// zistenie roly
+//---------------------------------------------
+$result = $db->getUserRoles($_SESSION['user']);
+$roles = array();
+foreach($result as $role)
+    $roles[] = $role['ROLE'];
+//---------------------------------------------
+
+if(isset($_POST['add']))
+{
+    if ($_POST["attach"] == 'link') {
+        $source = $_POST["linkToFile"];
+    }
+    else {
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            $uploadOk = 0;
+        }
+        if ($uploadOk == 0) {
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                chmod($target_file, 0777);
+            } else {
+                header("Location:index.php");
+            }
+        }
+        $source = $target_file;
+    }
+
+    $documentName = $_POST["documentName"];
+
+    if ($_POST["categ"] == 'choose') {
+        $category = $_POST["selectedCategory"];
+    }
+    else {
+        $category = $_POST["categoryName"];
+    }
+
+    $db->insertDocument($documentName, $source, $category, $tab);
+
+    header("Location:index.php");
+}
+
+if(isset($_POST['delete'])) {
+    $delete = $_POST['delete'];
+
+    $sources = $db->getDocumentSource($delete);
+    foreach($sources as $source) {
+        if (substr($source["source"],0,7) == "uploads") {
+            unlink($source["source"]);
+        }
+    }
+    $db->deleteDocument($delete);
+    header("Location:index.php");
+}
+
+if(isset($_POST['save']))
+{
+    $source = null;
+    $documentName = null;
+    $update = $_POST['save'];
+    if ($_POST["attach2"] == 'link2' && (isset($_POST["linkToFile2"]) || trim($_POST["linkToFile2"]) != '')) {
+        $source = $_POST["linkToFile2"];
+        $sources = $db->getDocumentSource($update);
+        foreach($sources as $source) {
+            if (substr($source["source"],0,7) === "uploads") {
+                unlink($source["source"]);
+            }
+        }
+    }
+    else if ($_POST["attach2"] == 'file2' && !empty($_FILES['fileToUpload2']['name'])) {
+
+        $sources = $db->getDocumentSource($update);
+        foreach($sources as $source) {
+            if (substr($source["source"],0,7) === "uploads") {
+                unlink($source["source"]);
+            }
+        }
+
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload2"]["name"]);
+        $uploadOk = 1;
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            $uploadOk = 0;
+        }
+        if ($uploadOk == 0) {
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload2"]["tmp_name"], $target_file)) {
+                chmod($target_file, 0777);
+            } else {
+                header("Location:index.php");
+            }
+        }
+        $source = $target_file;
+    }
+    $documentName = $_POST["documentName2"];
+
+    $db->updateDocument($update, $documentName, $source);
+
+    header("Location:index.php");
 }
 ?>
 
@@ -65,89 +177,192 @@ if(!$_SESSION['user']){
     </div>
 </nav>
 
-<div id="nazov">
-    <h2><?php echo "Pedagogika" ?></h2>
-    <hr class="hr_nazov">
-</div>
-
-<div class="container space">
-    <div id="documents">
+<div id="intranet-wrapper">
+    <div id="nazov">
+        <h2><?php echo "Pedagogika" ?></h2>
+        <hr class="hr_nazov">
     </div>
-    <button id="newDocument" class="btn btn-primary btn-primary" type="button" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-open"></span> Nový dokument</button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+    <div id="sidebar-wrapper" class="sidebar-toggle">
+        <ul class="sidebar-nav">
+            <br>
+            <li>
+                <a href="#item3">Odhlásiť sa</a>
+            </li>
+            <hr>
+            <li>
+                <a href="#item1">Upraviť profil</a>
+            </li>
+            <li>
+                <a href="#item2">Pridať aktuality</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať fotky</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať videá</a>
+            </li>
+        </ul>
+    </div>
 
-            <!-- Modal content-->
-            <div class="modal-content form-area">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Nový dokument</h4>
+    <div class="container">
+        <div id="documents">
+            <?php
+            $categories = $db->getTabCategories($tab);
+            $documents = $db->getTabDocuments($tab);
+
+            foreach($categories as $category) {
+                $categ = $category['category'];
+                echo "<h3> $categ </h3>";
+
+                echo "<table id='$categ' class='table table-striped'>";
+
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th >Dokument</th>";
+                echo "<th class='sortable'>Príloha</th>";
+                echo "</tr>";
+                echo "</thead>";
+
+                echo "<tbody>";
+
+                foreach($documents as $document) {
+                    if($document['CATEGORY'] == $categ) {
+                        $id = $document['ID'];
+                        echo "<tr>";
+                        echo "<td>" . $document['NAME'] . "</td>";
+                        echo "<td class='right_pos'> <a href=" . $document['SOURCE'] . " class='btn btn-block btn-xs btn-success'><span class='glyphicon glyphicon-save'></span> Stiahnuť</a> </td>";
+                        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+                            echo "<td class='right_pos'><button id='update' class='btn btn-block btn-xs btn-info' name='update' value='$id' type='Submit' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-pencil'></span> Upraviť</button></td>";
+                            echo "<td class='right_pos'> 
+                                <form method='post'>
+                                    <button name='delete' class='btn btn-block btn-xs btn-danger' type='Submit' value='$id'><span class='glyphicon glyphicon-remove'></span></button>
+                                </form>
+                              </td>";
+                            echo "</tr>";
+                        }
+                    }
+                }
+                echo "</tbody>";
+                echo "</table> <br>";
+            }
+
+            ?>
+        </div>
+
+        <?php
+        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+            echo " <button id=\"newDocument\" class=\"btn btn-primary btn-primary\" type=\"button\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-open\"></span> Nový dokument</button>";
+            echo " 
+        <!-- Modal -->
+        <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">
+            <div class=\"modal-dialog\">
+                <!-- Modal content-->
+                <div class=\"modal-content form-area\">
+                    <div class=\"modal-header\">
+                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
+                        <h4 class=\"modal-title\">Nový dokument</h4>
+                    </div>
+                    <form id=\"Document_Form\" action=\"\" method=\"POST\" name=\"Document_Form\" role=\"form\" enctype=\"multipart/form-data\">
+                        <div class=\"modal-body\">
+                            <br style=\"clear:both\">
+                            <div class=\"form-group\">
+                                <input type=\"text\" class=\"form-control\" id=\"documentName\" name=\"documentName\" placeholder=\"Názov dokumentu\" required>
+                            </div>
+                            <div class=\"funkyradio\">
+                                <div class=\"funkyradio-success\">
+                                    <input type=\"radio\" name=\"categ\" id=\"choose\" value=\"choose\" required>
+                                    <label for=\"choose\">Vybrať kategóriu</label>
+                                </div>
+                                <div class=\"funkyradio-success\">
+                                    <input type=\"radio\" name=\"categ\" id=\"create\" value=\"create\" required>
+                                    <label for=\"create\">Nová kategória</label>
+                                </div>
+                            </div>
+                            <div id=\"selectCategory\">
+                                <select id=\"selectedCategory\" name=\"selectedCategory\" class=\"selectpicker\" title=\"Výber kategórie\">
+        
+        ";
+            foreach ($categories as $category) {
+                $categ = $category['category'];
+                echo "<option value='$categ'> $categ </option>";
+            }
+            echo "                  
+                                </select>
+                            </div>
+                            <div id=\"newCategory\">
+                                <div class=\"form-group\">
+                                    <input type=\"text\" class=\"form-control\" id=\"categoryName\" name=\"categoryName\" placeholder=\"Názov kategórie\">
+                                </div>
+                            </div>
+                            <div class=\"funkyradio\">
+                                <div class=\"funkyradio-success\">
+                                    <input type=\"radio\" name=\"attach\" id=\"file\" value=\"file\" required>
+                                    <label for=\"file\">Vložiť súbor</label>
+                                </div>
+                                <div class=\"funkyradio-success\">
+                                    <input type=\"radio\" name=\"attach\" id=\"link\" value=\"link\" required>
+                                    <label for=\"link\">Vložiť odkaz</label>
+                                </div>
+                            </div>
+                            <div id=\"attachFile\">
+                                <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">
+                            </div>
+                            <div id=\"attachLink\" class=\"form-group\">
+                                <input type=\"text\" class=\"form-control\" id=\"linkToFile\" name=\"linkToFile\" placeholder=\"Odkaz na dokument\">
+                            </div>
+                        </div>
+                         <div class=\"modal-footer\">
+                             <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Zrušiť</button>
+                             <button name=\"add\" value=\"add\" type=\"Submit\" class=\"btn btn-primary\">Pridať</button>
+                         </div>
+                     </form>
                 </div>
-                <div class="modal-body">
-                    <form id="Document_Form" action="" method="POST" name="Document_Form" role="form">
-                        <br style="clear:both">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="documentName" name="documentName" placeholder="Názov dokumentu" required>
-                        </div>
-                        <div class="funkyradio">
-                            <div class="funkyradio-success">
-                                <input type="radio" name="categ" id="choose" value="choose"/>
-                                <label for="choose">Vybrať kategóriu</label>
+            </div>
+        </div>
+    
+        <!-- Modal -->
+        <div class=\"modal fade\" id=\"myModal2\" role=\"dialog\">
+            <div class=\"modal-dialog\">
+                <!-- Modal content-->
+                <div class=\"modal-content form-area\">
+                    <div class=\"modal-header\">
+                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
+                        <h4 class=\"modal-title\">Upraviť dokument</h4>
+                    </div>
+                    <form id=\"Document_Form2\" action=\"\" method=\"POST\" name=\"Document_Form2\" role=\"form\" enctype=\"multipart/form-data\">
+                        <div class=\"modal-body\">
+                            <br style=\"clear:both\">
+                            <div class=\"form-group\">
+                                <input type=\"text\" class=\"form-control\" id=\"documentName2\" name=\"documentName2\" placeholder=\"Názov dokumentu\">
                             </div>
-                            <div class="funkyradio-success">
-                                <input type="radio" name="categ" id="create" value="create"/>
-                                <label for="create">Nová kategória</label>
+                            <div class=\"funkyradio\">
+                                <div class=\"funkyradio-success\">
+                                    <input type=\"radio\" name=\"attach2\" id=\"file2\" value=\"file2\">
+                                    <label for=\"file2\">Zmeniť súbor</label>
+                                </div>
+                                <div class=\"funkyradio-success\">
+                                    <input type=\"radio\" name=\"attach2\" id=\"link2\" value=\"link2\">
+                                    <label for=\"link2\">Zmeniť odkaz</label>
+                                </div>
                             </div>
-                        </div>
-
-
-                        <!-- TODO: dropdown kategorii z DB-->
-
-                        <div id="selectCategory">
-                            <select class="selectpicker" title="Výber kategórie">
-                                <?php
-                                echo "<option>Kategoria 1</option>";
-                                echo "<option>Kategoria 2</option>";
-                                echo "<option>Kategoria 3</option>";
-                                ?>
-                            </select>
-                        </div>
-
-                        <div id="newCategory">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Názov kategórie" required>
+                            <div id=\"attachFile2\">
+                                <input type=\"file\" name=\"fileToUpload2\" id=\"fileToUpload2\">
                             </div>
-                        </div>
-
-                        <div class="funkyradio">
-                            <div class="funkyradio-success">
-                                <input type="radio" name="attach" id="file" value="file"/>
-                                <label for="file">Vložiť súbor</label>
-                            </div>
-                            <div class="funkyradio-success">
-                                <input type="radio" name="attach" id="link" value="link"/>
-                                <label for="link">Vložiť odkaz</label>
+                            <div id=\"attachLink2\" class=\"form-group\">
+                                <input type=\"text\" class=\"form-control\" id=\"linkToFile2\" name=\"linkToFile2\" placeholder=\"Odkaz na dokument\">
                             </div>
                         </div>
-
-                        <div id="attachFile">
-                            <input type="file" name="fileToUpload" id="fileToUpload">
-                        </div>
-
-                        <div id="attachLink" class="form-group">
-                            <input type="text" class="form-control" id="linkToFile" name="linkToFile" placeholder="Odkaz na dokument" required>
+                        <div class=\"modal-footer\">
+                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Zrušiť</button>
+                            <button id=\"save\" name=\"save\" type=\"Submit\" class=\"btn btn-primary\">Uložiť</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Zrušiť</button>
-                    <button type="Submit" class="btn btn-primary">Pridať</button>
-                </div>
             </div>
-
-        </div>
+        </div>";
+        }
+        ?>
     </div>
 </div>
 

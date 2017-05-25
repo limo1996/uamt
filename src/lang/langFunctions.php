@@ -26,11 +26,13 @@ class Text
             return $this->getTextForResearch();
         } else if ($page == 'photos'){
             return $this->getTextForPhotos();
+        } else if ($page == 'projects-headers'){
+            return $this->getTextForProjectsHeaders();
         }
             return null;
     }
 
-    public function getTextForProjects()
+    private function getTextForProjects()
     {
         $db = new Database();
         $projects = $db->fetchProjects();
@@ -171,5 +173,29 @@ class Text
             $final[$key] = $tmp;
         }
         return $final;
+    }
+
+    private function getTextForProjectsHeaders()
+    {
+        $tmp = null;
+        if($this->m_lang == 'sk') {
+            $tmp['1'] = 'Číslo';
+            $tmp['2'] = 'Názov';
+            $tmp['3'] = 'Doba riešenia';
+            $tmp['4'] = 'Zodpovedný riešiteľ';
+            $tmp['all'] = 'Všetky';
+            $tmp['inter'] = 'Medzinárodné';
+            $tmp['other'] = 'Iné domáce';
+        } else if ($this->m_lang == 'en'){
+            $tmp['1'] = 'ID';
+            $tmp['2'] = 'Title';
+            $tmp['3'] = 'Time period';
+            $tmp['4'] = 'The responsible supervisor';
+            $tmp['all'] = 'All';
+            $tmp['inter'] = 'International';
+            $tmp['other'] = 'Other national projects';
+        } else
+            return null;
+        return $tmp;
     }
 }

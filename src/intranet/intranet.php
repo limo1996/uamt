@@ -1,10 +1,22 @@
 <?php
+include_once ("../database/database.php");
+
 session_start();
 
 if(!$_SESSION['user']){
     header("Location:index.php");
     die;
 }
+
+$db = new Database();
+// zistenie roly
+//---------------------------------------------
+$result = $db->getUserRoles($_SESSION['user']);
+$roles = array();
+foreach($result as $role)
+    $roles[] = $role['ROLE'];
+//---------------------------------------------
+
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +35,7 @@ if(!$_SESSION['user']){
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../menu/menuScripts.js"></script>
 
     <style media="all">
@@ -61,14 +74,45 @@ if(!$_SESSION['user']){
     </div>
 </nav>
 
-<div id="nazov">
-    <h2><?php echo "Intranet" ?></h2>
-    <hr class="hr_nazov">
-</div>
+<div id="intranet-wrapper">
+    <div id="nazov">
+        <h2><?php echo "Intranet" ?></h2>
+        <hr class="hr_nazov">
+    </div>
 
-<div class="container">
-        <h1> Welcum to intranet</h1>
-    <br>
+    <div id="sidebar-wrapper" class="sidebar-toggle">
+        <ul class="sidebar-nav">
+            <br>
+            <li>
+                <a href="#item3">Odhlásiť sa</a>
+            </li>
+            <hr>
+            <li>
+                <a href="#item1">Upraviť profil</a>
+            </li>
+            <li>
+                <a href="#item2">Pridať aktuality</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať fotky</a>
+            </li>
+            <li>
+                <a href="#item3">Pridať videá</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+            <h1> Welcum to intranet</h1>
+
+        <?php
+        //if (in_array("admin", $roles))
+        //    echo "";
+        ?>
+
+        <br>
+    </div>
+
 </div>
 
 <footer>

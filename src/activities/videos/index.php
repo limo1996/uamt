@@ -5,6 +5,12 @@ $lang = 'sk';
 if (isset($_GET['lang']))
     $lang = $_GET['lang'];
 
+if($lang == 'en')
+{
+    header("Location: /uamt/index.php?lang=en");
+    exit();
+}
+
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
 ?>
@@ -31,13 +37,13 @@ $text = $lan->getTextForPage('menu');
 
         #tabs .tab-content {
             color : white;
-            background-color: #428bca;
+            background-color: #0066cc;
             padding : 5px 15px;
         }
 
         #tabs h3 {
             color : white;
-            background-color: #428bca;
+            background-color: #0066cc;
             padding : 5px 15px;
         }
 
@@ -184,11 +190,13 @@ function getYoutube($url)
     <div class="tab-content ">
         <div class="tab-pane active" id="1">
             <?php
+            echo "<p>&nbsp</p>";
            for($i=0;$i<count($js);$i++)
            {
-               if($js[$i]["TYPE"]=="labák")
+                if($js[$i]["TYPE"]=="labák")
                {
-                   echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+
+                   echo "<h3 style='color:#0066cc!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                }
            }
@@ -197,12 +205,13 @@ function getYoutube($url)
         </div>
         <div class="tab-pane" id="2">
             <?php
+            echo "<p>&nbsp</p>";
             for($i=0;$i<count($js);$i++)
             {
             if($js[$i]["TYPE"]=="predmet")
             {
 
-                echo "<h3 style='color:#4268f4!important;'><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                echo "<h3 style='color:#0066cc!important;'><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
                 echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
             }
             }
@@ -210,11 +219,12 @@ function getYoutube($url)
         </div>
         <div class="tab-pane" id="3">
             <?php
+            echo "<p>&nbsp</p>";
             for($i=0;$i<count($js);$i++)
             {
                 if($js[$i]["TYPE"]=="propagácia")
                 {
-                    echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                    echo "<h3 style='color:#0066cc!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
                     echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                 }
             }
@@ -222,11 +232,12 @@ function getYoutube($url)
         </div>
         <div class="tab-pane" id="4">
             <?php
+            echo "<p>&nbsp</p>";
             for($i=0;$i<count($js);$i++)
             {
                 if($js[$i]["TYPE"]=="zariadenie")
                 {
-                    echo "<h3 style='color:#4268f4!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                    echo "<h3 style='color:#0066cc!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
                     echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
                 }
             }
@@ -275,9 +286,9 @@ function getYoutube($url)
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>

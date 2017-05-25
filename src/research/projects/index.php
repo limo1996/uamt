@@ -7,7 +7,8 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
-$projects =  $lan->getTextForProjects();
+$text2 = $lan->getTextForPage('projects-headers');
+$projects =  $lan->getTextForPage('projects');
 ?>
 
 <!DOCTYPE html>
@@ -185,13 +186,13 @@ $projects =  $lan->getTextForProjects();
     <div class="col-sm-3"></div>
     <div id="tabs" class="col-sm-8 center">
         <ul id="list" class="nav nav-tabs">
-            <li class="active" id="labak"><a  href="#1" data-toggle="tab" >Všetky</a></li>
-            <li id="predmet"><a  href="#2" data-toggle="tab">Medzinárodné</a></li>
+            <li class="active" id="labak"><a  href="#1" data-toggle="tab" ><?php echo $text2['all']; ?></a></li>
+            <li id="predmet"><a  href="#2" data-toggle="tab"><?php echo $text2['inter']; ?></a></li>
             <li id="prop"><a  href="#3" data-toggle="tab">VEGA</a></li>
             <li id="zariadenie"><a  href="#4" data-toggle="tab">APVV</a></li>
             <li id="zariadenie"><a  href="#5" data-toggle="tab">KEGA</a></li>
 
-            <li id="zariadenie"><a  href="#6" data-toggle="tab">Iné domáce</a></li>
+            <li id="zariadenie"><a  href="#6" data-toggle="tab"><?php echo $text2['other']; ?></a></li>
 
         </ul>
     </div>
@@ -201,12 +202,10 @@ $projects =  $lan->getTextForProjects();
 
             <table class="table table-striped table-bordered" id="displayTable">
                 <tr>
-                    <th>Číslo</th>
-                    <th>Názov</th>
-                    <th>Doba riešenia</th>
-                    <th>Zodpovedný riešiteľ</th>
-
-
+                    <th><?php echo $text2['1']; ?></th>
+                    <th><?php echo $text2['2']; ?></th>
+                    <th><?php echo $text2['3']; ?></th>
+                    <th><?php echo $text2['4']; ?></th>
                 </tr>
 
 
@@ -231,12 +230,10 @@ $projects =  $lan->getTextForProjects();
         <div class="tab-pane" id="3">
             <table class="table table-striped table-bordered" id="table1">
                 <tr>
-                    <th>Číslo</th>
-                    <th>Názov</th>
-                    <th>Doba riešenia</th>
-                    <th>Zodpovedný riešiteľ</th>
-
-
+                    <th><?php echo $text2['1']; ?></th>
+                    <th><?php echo $text2['2']; ?></th>
+                    <th><?php echo $text2['3']; ?></th>
+                    <th><?php echo $text2['4']; ?></th>
                 </tr>
 
 
@@ -262,12 +259,10 @@ $projects =  $lan->getTextForProjects();
         <div class="tab-pane" id="2">
             <table class="table table-striped table-bordered" id="table2">
                 <tr>
-                    <th>Číslo</th>
-                    <th>Názov</th>
-                    <th>Doba riešenia</th>
-                    <th>Zodpovedný riešiteľ</th>
-
-
+                    <th><?php echo $text2['1']; ?></th>
+                    <th><?php echo $text2['2']; ?></th>
+                    <th><?php echo $text2['3']; ?></th>
+                    <th><?php echo $text2['4']; ?></th>
                 </tr>
 
 
@@ -293,12 +288,10 @@ $projects =  $lan->getTextForProjects();
         <div class="tab-pane" id="4">
             <table class="table table-striped table-bordered" id="table3">
                 <tr>
-                    <th>Číslo</th>
-                    <th>Názov</th>
-                    <th>Doba riešenia</th>
-                    <th>Zodpovedný riešiteľ</th>
-
-
+                    <th><?php echo $text2['1']; ?></th>
+                    <th><?php echo $text2['2']; ?></th>
+                    <th><?php echo $text2['3']; ?></th>
+                    <th><?php echo $text2['4']; ?></th>
                 </tr>
 
 
@@ -324,12 +317,10 @@ $projects =  $lan->getTextForProjects();
         <div class="tab-pane" id="5">
             <table class="table table-striped table-bordered" id="table4">
                 <tr>
-                    <th>Číslo</th>
-                    <th>Názov</th>
-                    <th>Doba riešenia</th>
-                    <th>Zodpovedný riešiteľ</th>
-
-
+                    <th><?php echo $text2['1']; ?></th>
+                    <th><?php echo $text2['2']; ?></th>
+                    <th><?php echo $text2['3']; ?></th>
+                    <th><?php echo $text2['4']; ?></th>
                 </tr>
 
 
@@ -355,12 +346,10 @@ $projects =  $lan->getTextForProjects();
         <div class="tab-pane" id="6">
             <table class="table table-striped table-bordered" id="table5">
                 <tr>
-                    <th>Číslo</th>
-                    <th>Názov</th>
-                    <th>Doba riešenia</th>
-                    <th>Zodpovedný riešiteľ</th>
-
-
+                    <th><?php echo $text2['1']; ?></th>
+                    <th><?php echo $text2['2']; ?></th>
+                    <th><?php echo $text2['3']; ?></th>
+                    <th><?php echo $text2['4']; ?></th>
                 </tr>
 
 
