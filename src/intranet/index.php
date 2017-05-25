@@ -282,7 +282,6 @@ if(isset($_POST['Login']))   // it checks whether the user clicked login button 
         </div>
 
     </div>
-    </div>
 </footer>
 <script src="../menu/jQueryScripts.js"></script>
 </body>

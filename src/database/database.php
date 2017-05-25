@@ -89,6 +89,12 @@ class Database
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
     }
+    function fetchPropagationVideos()
+    {
+        $request = $this->conn->prepare("SELECT * FROM video WHERE TYPE='propagácia' LIMIT 2");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
 
     function fetchMedia()
     {
