@@ -391,13 +391,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
             if ( webPages[title]){
-            $("#ModalWeb").html("Webova stranka: " + webPages[title] );
+            $("#ModalWeb").html(webPages[title] );
             }
             if ( partners[title]){
-            $("#ModalPartner").html("Partner: " + partners[title]);}
+            $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -413,8 +413,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -428,8 +433,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -444,8 +454,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -460,8 +475,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -476,8 +496,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -491,8 +516,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
