@@ -31,6 +31,12 @@ footer a:hover {
     display: inline-block;
 }
 
+#menu2 {
+    padding-top : 65px;
+    width : 100%;
+    display: inline-block;
+}
+
 h2{
     text-align: center;
     color: purple;

@@ -89,6 +89,7 @@ if(isset($_POST['Login']))   // it checks whether the user clicked login button 
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <link href="loginStyles.css" type="text/css" rel="stylesheet"/>
 
+    <link href="menu/menu2.css" type="text/css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

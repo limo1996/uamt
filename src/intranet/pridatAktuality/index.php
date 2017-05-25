@@ -16,22 +16,6 @@ $roles = array();
 foreach($result as $role)
     $roles[] = $role['ROLE'];
 //---------------------------------------------
-
-if(isset($_POST['Add'])) {
-    $db->insertPurchase($_POST['textareas']);
-    header("Location: index.php");
-}
-
-if(isset($_POST['Save'])) {
-    $db->updatePurchase($_POST['Save'], $_POST['textareas']);
-    header("Location: index.php");
-}
-
-if(isset($_POST['Delete'])) {
-    $db->deletePurchase($_POST['Delete']);
-    header("Location: index.php");
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -43,17 +27,18 @@ if(isset($_POST['Delete'])) {
     <!-- Bootstrap -->
     <title>Intranet</title>
 
+
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=r4y29w5xcesgziqbk6k6sf1gmb3m9uz18g0cinyvy3n8sam4"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="styles/styles.css" type="text/css" rel="stylesheet">
+    <link href="../doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../../menu/menuScripts.js"></script>
-    <script src="script/script.js"></script>
+    <script src="../doktorandi/script/script.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -88,7 +73,7 @@ if(isset($_POST['Delete'])) {
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
                 <li><a href="/uamt/intranet/sluzobneCesty/index.php">Služobné cesty</a></li>
-                <li class="active"><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
+                <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
                 <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
@@ -107,7 +92,7 @@ if(isset($_POST['Delete'])) {
 
 <div id="intranet-wrapper">
     <div id="nazov">
-        <h2><?php echo "Nákupy" ?></h2>
+        <h2><?php echo "Pridať aktuality" ?></h2>
         <hr class="hr_nazov">
     </div>
 
@@ -134,51 +119,7 @@ if(isset($_POST['Delete'])) {
     </div>
 
     <div class="container">
-        <?php
-        $data_target = "";
-        $data_target = "";
-        if (in_array("admin", $roles) || in_array("editor", $roles)) {
-            echo "<button id=\"add\" name=\"add\" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>";
-            $data_toggle = "data-toggle='modal'";
-            $data_target = "data-target='#myModal'";
-        }
 
-        $purchases = $db->getPurchases();
-        foreach($purchases as $purchase) {
-            $id = $purchase["ID"];
-            echo "<article class='div-hover' id='$id' $data_toggle $data_target>";
-            echo $purchase["TEXT"];
-            echo "</article>";
-        }
-
-        if (in_array("admin", $roles) || in_array("editor", $roles)) {
-            echo "
-            <!-- Modal -->
-            <div class=\"modal fade\" id=\"myModal\" data-reveal role=\"dialog\">
-                <div class=\"modal-dialog modal-lg\">
-                    <!-- Modal content-->
-                    <div class=\"modal-content form-area\">
-                        <div class=\"modal-header\">
-                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
-                            <h4 class=\"modal-title\">Upraviť nákup</h4>
-                        </div>
-                        <form method=\"post\" onsubmit=\"saveText();\">
-                            <div class=\"modal-body\">
-                                <textarea id=\"editor_content\" name=\"textareas\" style=\"height:250px; margin:5px 5px 5px 5px;\"></textarea>
-                            </div>
-                            <div class=\"modal-footer\">
-                                <button id=\"Cancel\" type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-share-alt\"></span> Zrušiť</button>
-                                <button id=\"Delete\" name=\"Delete\" type=\"Submit\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Odstrániť</button>
-                                <button id=\"Save\" name=\"Save\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť</button>
-                                <button id=\"Add\" name=\"Add\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Pridať</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            ";
-        }
-        ?>
     </div>
 </div>
 

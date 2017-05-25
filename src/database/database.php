@@ -69,6 +69,13 @@ class Database
         return $request->execute(array(':id' => $id, ':name' => $name)) ? $request->fetchAll() : null;
     }
 
+    function getEmployeeByID($id)
+    {
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE ID = :id");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
+    }
+
     function getUsrId($surname)
     {
         $request = $this->conn->prepare("SELECT AIS_ID FROM ais_emp WHERE SECOND_NAME = :surname");

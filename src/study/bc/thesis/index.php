@@ -90,12 +90,12 @@ ksort($dictionary);
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -182,6 +182,7 @@ ksort($dictionary);
 
             </ul>
         </div>
+    </div>
 </nav>
 <div class="modal fade" id="myModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -227,10 +228,10 @@ ksort($dictionary);
                 <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
                 <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
                 <li>Pre získanie klasifikovaného zápočtu musí študent do dátumu špecifikovanom v harmonograme štúdia FEI STU odovzdať diplomovú prácu:</li>
-                <ol>
+                <ul>
                     <li>v elektronickej forme do AIS</li>
                     <li>v tlačenej forme v počte 2 kusy Ing. Sedlárovi? (A803)</li>
-                </ol>
+                </ul>
                 <li>alebo odovzdať technickú dokumentáciu svojmu vedúcemu práce v nim špecifikovanom rozsahu najneskôr do 20.júna daného roku.</li>
 
             </ul>
@@ -362,9 +363,9 @@ ksort($dictionary);
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk  </a> | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -372,7 +373,7 @@ ksort($dictionary);
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../../menu/jQueryScripts.js"></script>
 </body>

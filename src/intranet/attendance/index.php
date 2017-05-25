@@ -28,6 +28,7 @@ if(!$_SESSION['user']){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="../../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStyles.css" type="text/css" rel="stylesheet">
+    <link href="styles/menu2.css" type="text/css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -42,6 +43,15 @@ if(!$_SESSION['user']){
     </style>
 </head>
 <body>
+
+<style type="text/css">
+    @media print {
+        .table td {
+            background-color: transparent !important;
+        }
+    }
+</style>
+
 <?php
 
 /*******TESTS*******
@@ -70,7 +80,6 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -78,8 +87,6 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li class="active"><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/intranet/logout.php">Odhlásiť</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
         </div>
@@ -91,18 +98,81 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
 </div>
 
 
+<nav class="main-menu">
+    <ul>
+        <li class="has-subnav">
+            <a href="/uamt/intranet/intranet.php">
+                <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text"> </span>
+            </a>
+
+        </li>
+
+        <li class="has-subnav">
+            <a href="/uamt/intranet/intranet.php">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">Domov intranet</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/">
+                <i class="fa fa-flag fa-2x"></i>
+                <span class="nav-text">Domov UAMT</span>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">Upraviť profil</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-font fa-2x"></i>
+                <span class="nav-text">Pridať aktuality</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-photo fa-2x"></i>
+                <span class="nav-text">Pridať fotky</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-play-circle fa-2x"></i>
+                <span class="nav-text">Pridať videa</span>
+            </a>
+
+        </li>
+
+
+        <li>
+            <a href="/uamt/intranet/logout.php">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
 
 
 <div class="container-fluid">
     <div class="row">
+
         <div class="col-sm-6">
             <div class="input-group input-group-lg col-sm-4" id="calendarWrapper">
                 <input id="NoIconDemo" type="text" class="form-control" aria-describedby="sizing-addon1"/>
             </div>
         </div>
     <div class="text-right">
-        <button type="button" class="btn btn-lg btn-primary" id="editBtn">   Edituj   </button>
+        <button type="button" class="btn btn-lg" id="editBtn">   Edituj   </button>
     </div>
     </div>
 
@@ -161,8 +231,8 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
 </div><!-- /.modal -->
 <div class="row">
 
-<div class="col-sm-4">
-    <h3>Legenda</h3>
+<div class="col-sm-4" style="margin-left: 10px;">
+    <h3 style="color:purple">Legenda</h3>
     <span class="label label-primary">PN</span>
     <span class="label label-success">OČR</span>
     <span class="label label-info">Služobka</span>
@@ -207,19 +277,16 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
             </div>
 
             <div class="col-sm-4 text-center">
-
-                <?php
-                if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
-                else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
-
-                ?>
+                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovenský jazyk</a>
             </div>
 
         </div>
 
     </div>
+    </div>
+
+
+
 </footer>
 
 

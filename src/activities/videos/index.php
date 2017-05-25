@@ -21,6 +21,8 @@ $text = $lan->getTextForPage('menu');
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <!-- Latest compiled and minified CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStyles.css" type="text/css" rel="stylesheet">
@@ -39,13 +41,20 @@ $text = $lan->getTextForPage('menu');
             color : white;
             background-color: #0066cc;
             padding : 5px 15px;
+
         }
 
         #tabs h3 {
             color : white;
             background-color: #0066cc;
             padding : 5px 15px;
+
+
         }
+        iframe{
+            max-width: 100% !important;
+        }
+
 
     </style>
 </head>
@@ -83,7 +92,7 @@ function getYoutube($url)
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -170,6 +179,7 @@ function getYoutube($url)
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo  $text->act_video; ?></h2>
@@ -178,8 +188,9 @@ function getYoutube($url)
 
 
 <div class="container">
-
-    <div id="tabs" class="col-sm-12">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div id="tabs" class="col-sm-6 center">
         <ul id="list" class="nav nav-tabs">
             <li class="active" id="labak"><a  href="#1" data-toggle="tab" >Labák</a></li>
             <li id="predmet"><a  href="#2" data-toggle="tab">Predmet</a></li>
@@ -187,67 +198,86 @@ function getYoutube($url)
             <li id="zariadenie"><a  href="#4" data-toggle="tab">Zariadenie</a></li>
         </ul>
     </div>
-    <div class="tab-content ">
+    <div class="col-sm-3"></div>
+
+
+
+
+    <div class="col-sm-4"></div>
+    <div class='w3-content'>
+    <div class="tab-content col-sm-12 center">
+
         <div class="tab-pane active" id="1">
             <?php
-            echo "<p>&nbsp</p>";
+          //  echo "<p>&nbsp;</p>";
            for($i=0;$i<count($js);$i++)
            {
                 if($js[$i]["TYPE"]=="labák")
                {
 
-                   echo "<h3 style='color:#0066cc!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
-                   echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+                   echo "<h3 style='color:#0066cc!important; text-align: center '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+
+                   echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."'allowfullscreen  style='margin: auto;display: block'></iframe>";
+
                }
            }
+           echo "<br><br>";
+
             ?>
 
         </div>
+
         <div class="tab-pane" id="2">
             <?php
-            echo "<p>&nbsp</p>";
+           // echo "<p>&nbsp;</p>";
             for($i=0;$i<count($js);$i++)
             {
             if($js[$i]["TYPE"]=="predmet")
             {
 
-                echo "<h3 style='color:#0066cc!important;'><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
-                echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+                echo "<h3 style='color:#0066cc!important; text-align: center'><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' allowfullscreen style='margin: auto;display: block'></iframe>";
             }
             }
+            echo "<br><br>";
             ?>
         </div>
         <div class="tab-pane" id="3">
             <?php
-            echo "<p>&nbsp</p>";
+            //echo "<p>&nbsp;</p>";
             for($i=0;$i<count($js);$i++)
             {
                 if($js[$i]["TYPE"]=="propagácia")
                 {
-                    echo "<h3 style='color:#0066cc!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
-                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+                    echo "<h3 style='color:#0066cc!important; text-align: center'><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                    echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' allowfullscreen style='margin: auto;display: block'></iframe>";
                 }
             }
+            echo "<br><br>";
             ?>
         </div>
         <div class="tab-pane" id="4">
             <?php
-            echo "<p>&nbsp</p>";
+            //echo "<p>&nbsp;</p>";
             for($i=0;$i<count($js);$i++)
             {
                 if($js[$i]["TYPE"]=="zariadenie")
                 {
-                    echo "<h3 style='color:#0066cc!important '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
-                    echo "<iframe width='420' height='345' src='".getYoutube($js[$i]['URL'])."'></iframe>";
+                    echo "<h3 style='color:#0066cc!important; text-align: center '><i class='fa fa-youtube-play' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]["NAME"]."</h3><br>";
+                    echo "<iframe  width='500' height='300' src='".getYoutube($js[$i]['URL'])."' allowfullscreen  style='margin: auto;display: block'></iframe>";
                 }
             }
+            echo "<br><br>";
             ?>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-</div>
+
 <footer>
+
     <div class="container">
         <div class="container">
             <div class="col-sm-2 text-center">
@@ -286,9 +316,9 @@ function getYoutube($url)
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk </a>  | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk </a>  | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -296,7 +326,7 @@ function getYoutube($url)
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../menu/jQueryScripts.js"></script>
 </body>

@@ -149,6 +149,14 @@ if(isset($_POST['save']))
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
+
+        <a href="#" class="navbar-toggle sidebarmenu-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
@@ -160,7 +168,7 @@ if(isset($_POST['save']))
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav" id="navMenu">
+            <ul class="nav navbar-nav nextto" id="navMenu">
                 <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
@@ -169,10 +177,16 @@ if(isset($_POST['save']))
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/intranet/logout.php">Odhlásiť</a></li>
                 <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
+
+            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
         </div>
     </div>
 </nav>
@@ -187,20 +201,20 @@ if(isset($_POST['save']))
         <ul class="sidebar-nav">
             <br>
             <li>
-                <a href="#item3">Odhlásiť sa</a>
+                <a href="/uamt/intranet/logout.php">Odhlásiť sa</a>
             </li>
             <hr>
             <li>
-                <a href="#item1">Upraviť profil</a>
+                <a href="/uamt/intranet/upravitProfil/index.php">Upraviť profil</a>
             </li>
             <li>
-                <a href="#item2">Pridať aktuality</a>
+                <a href="/uamt/intranet/pridatAktuality/index.php">Pridať aktuality</a>
             </li>
             <li>
-                <a href="#item3">Pridať fotky</a>
+                <a href="/uamt/intranet/pridatFotky/index.php">Pridať fotky</a>
             </li>
             <li>
-                <a href="#item3">Pridať videá</a>
+                <a href="/uamt/intranet/pridatVidea/index.php">Pridať videá</a>
             </li>
         </ul>
     </div>

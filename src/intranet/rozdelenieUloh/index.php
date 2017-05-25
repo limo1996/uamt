@@ -19,10 +19,13 @@ if(!$_SESSION['user']){
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 
+    <link href="../../menu/menu2.css" type="text/css" rel="stylesheet">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="rozdelenieUloh.css" type="text/css" rel="stylesheet">
+
     <script src="../../menu/menuScripts.js"></script>
 
     <style media="all">
@@ -45,7 +48,6 @@ if(!$_SESSION['user']){
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -53,8 +55,6 @@ if(!$_SESSION['user']){
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li  class="active"><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/intranet/logout.php">Odhlásiť</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
         </div>
@@ -66,9 +66,167 @@ if(!$_SESSION['user']){
     <hr class="hr_nazov">
 </div>
 
+<nav class="main-menu">
+    <ul>
+
+        <li class="has-subnav">
+            <a href="/uamt/intranet/intranet.php">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">Domov intranet</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/">
+                <i class="fa fa-flag fa-2x"></i>
+                <span class="nav-text">Domov UAMT</span>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">Upraviť profil</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-font fa-2x"></i>
+                <span class="nav-text">Pridať aktuality</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-photo fa-2x"></i>
+                <span class="nav-text">Pridať fotky</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-play-circle fa-2x"></i>
+                <span class="nav-text">Pridať videa</span>
+            </a>
+
+        </li>
+
+
+        <li>
+            <a href="/uamt/intranet/logout.php">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 <div class="container">
-    <h1> Tabulka rozdelenia uloh</h1>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img3" src="jakub.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+            </div>
+            <div class="col-sm-6">
+                <h4>Jakub Lichman</h4>
+                <ul>
+                    <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
+                    <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
+                    <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+
+                </ul>
+            </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img2" src="adam.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Adam Valašík</h4>
+            <ul>
+                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
+                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
+                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+
+            </ul>
+        </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img1" src="matus.JPG" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Matúš Lukáč</h4>
+            <ul>
+                <li>Menu</li>
+                <li>Footer</li>
+                <li>Stránky - "Výskum" </li>
+                <li>Dizajn</li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img4" src="tomas.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Tomáš Baka</h4>
+            <ul>
+                <li>Kontakt</li>
+                <li>Fotogaléria</li>
+                <li>Videá</li>
+                <li>Médiá</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="hr_nazov">
+
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <img id="img5" src="jakub2.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
+        </div>
+        <div class="col-sm-6">
+            <h4>Jakub Smetanka</h4>
+            <ul>
+                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
+                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
+                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+
+            </ul>
+        </div>
+    </div>
+
+
+
 </div>
+<br>
+<br>
+
+
 
 <footer>
     <div class="container">
@@ -106,7 +264,7 @@ if(!$_SESSION['user']){
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovensky jazyk</a>
+                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovenský jazyk</a>
             </div>
 
         </div>

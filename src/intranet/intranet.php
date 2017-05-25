@@ -31,6 +31,7 @@ foreach($result as $role)
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 
+    <link href="../menu/menu2.css" type="text/css" rel="stylesheet">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
@@ -46,6 +47,14 @@ foreach($result as $role)
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
+
+        <a href="#" class="navbar-toggle sidebarmenu-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
@@ -58,7 +67,6 @@ foreach($result as $role)
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -66,44 +74,87 @@ foreach($result as $role)
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/intranet/logout.php">Odhlásiť</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
+
+            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
         </div>
     </div>
 </nav>
 
-<div id="intranet-wrapper">
     <div id="nazov">
         <h2><?php echo "Intranet" ?></h2>
         <hr class="hr_nazov">
     </div>
 
-    <div id="sidebar-wrapper" class="sidebar-toggle">
-        <ul class="sidebar-nav">
-            <br>
-            <li>
-                <a href="#item3">Odhlásiť sa</a>
-            </li>
-            <hr>
-            <li>
-                <a href="#item1">Upraviť profil</a>
-            </li>
-            <li>
-                <a href="#item2">Pridať aktuality</a>
-            </li>
-            <li>
-                <a href="#item3">Pridať fotky</a>
-            </li>
-            <li>
-                <a href="#item3">Pridať videá</a>
-            </li>
-        </ul>
-    </div>
+<nav class="main-menu">
+    <ul>
 
-    <div class="container">
+        <li class="has-subnav active">
+            <a href="/uamt/intranet/intranet.php">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">Domov intranet</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/">
+                <i class="fa fa-flag fa-2x"></i>
+                <span class="nav-text">Domov UAMT</span>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">Upraviť profil</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-font fa-2x"></i>
+                <span class="nav-text">Pridať aktuality</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-photo fa-2x"></i>
+                <span class="nav-text">Pridať fotky</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-play-circle fa-2x"></i>
+                <span class="nav-text">Pridať videa</span>
+            </a>
+
+        </li>
+
+
+        <li>
+            <a href="/uamt/intranet/logout.php">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container">
             <h1> Welcum to intranet</h1>
+    <h1> Welcum to intranet</h1>
+    <h1> Welcum to intranet</h1>
+    <h1> Welcum to intranet</h1>
 
         <?php
         //if (in_array("admin", $roles))
@@ -113,7 +164,6 @@ foreach($result as $role)
         <br>
     </div>
 
-</div>
 
 <footer>
     <div class="container">
