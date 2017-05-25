@@ -119,7 +119,7 @@ foreach($result as $role)
     </div>
 
     <div class="container">
-            <form  method="post" class ="form-vertical">
+            <form  method="post" class ="form-vertical" enctype=multipart/form-data>
                 <div class="form-group col-sm-4">
                     <label for="title">Nadpis</label>
                     <input type="text" class="form-control" name="title" id="title">
@@ -149,6 +149,11 @@ foreach($result as $role)
                         <option value="Propagácia">Propagácia</option>
                         <option value="Zo života ústavu">Zo života ústavu</option>
                     </select>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="pic">Obrázok</label>
+                    <input type="file" name="pic" id="pic" accept="*.jpeg"><br>
                 </div>
 
                 <div class="form-group col-sm-12 ">
@@ -223,9 +228,25 @@ if(isset($_POST['add'])) {
     $category = $_POST['category'];
     $jazyk = $_POST['jazyk'];
 
+    if(isset($_FILES["pic"])){
+        $filename = $_FILES["pic"];
+        $file = $_FILES["pic"];
+        $tmp_name = $file["tmp_name"];
+        $filename = $file["name"];
+        $target="pic/";
+        chmod($tmp_name,0777);
+        if(move_uploaded_file($tmp_name, $target.$filename)){
+            chmod($target.$filename,0777);
+            echo "success";
+        }
+    }
+    else{
+    $filename="fei.jpg";
+    }
 
 
-    $subject = "UAMT-Newsletter";
+
+/*    $subject = "UAMT-Newsletter";
 
 
     if($jazyk=='SK'){
@@ -233,7 +254,7 @@ if(isset($_POST['add'])) {
         $message .= $desc."<br>";
         $message .= "Dátum : ".$datum."<br>";
         $message .= "Kategória : ".$category."<br>";
-        $message .="<br>Na stránke pribudla nova aktualita <br> navštív našu stránku pre viac informácii <br> Tvoj UAMT Tím ";
+        $message .="<br>Na stránke pribudla nova aktualita <br> navštív našu stránku pre viac informácii http://147.175.98.167/uamt/news/<br> Tvoj UAMT Tím ";
     }
     else{
         $message = "<h1>".$title."</h1><br>";
@@ -248,15 +269,16 @@ if(isset($_POST['add'])) {
     $header .= "Content-type: text/html\r\n";
     $subs=$db->fetchSubsByLang($jazyk);
     foreach ($subs as $sub ){
-        $retval = mail ($sub,$subject,$message,$header);
-    }
-    $retval = mail ('smetanka321@gmail.com',$subject,$message,$header);
+        //var_dump($sub);
+        $retval = mail ($sub['Email'],$subject,$message,$header);
+        if( $retval == true ) {
+            echo "Message sent successfully...";
+        }else {
+            echo "Message could not be sent...";
+        }
+    }*/
 
-    if( $retval == true ) {
-        echo "Message sent successfully...";
-    }else {
-        echo "Message could not be sent...";
-    }
+
 
 }
 ?>

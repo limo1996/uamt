@@ -192,7 +192,7 @@ else {
 
     echo "<div class='container'>";
     foreach($news as $act) {
-        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/fei.jpg class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
+        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/intranet/pridatAktuality/pic/".$act['Pic']." class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
 						</div></div>";
     }
     echo "<br><br></div>";
