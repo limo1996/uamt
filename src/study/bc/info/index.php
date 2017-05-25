@@ -45,12 +45,12 @@ $text = $lan->getTextForPage('menu');
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -137,6 +137,7 @@ $text = $lan->getTextForPage('menu');
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->study_bc . " - ". $text->study_bc_info;?></h2>
@@ -234,9 +235,9 @@ $text = $lan->getTextForPage('menu');
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk </a>  | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -244,7 +245,7 @@ $text = $lan->getTextForPage('menu');
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../../menu/jQueryScripts.js"></script>
 </body>

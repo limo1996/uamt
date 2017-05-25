@@ -68,12 +68,12 @@ $contentText = $lan->getTextForPage('staff');
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -160,6 +160,7 @@ $contentText = $lan->getTextForPage('staff');
 
             </ul>
         </div>
+    </div>
 </nav>
 
 <div id="nazov">
@@ -231,7 +232,7 @@ $contentText = $lan->getTextForPage('staff');
             echo "<td>" . $employee['DEPARTMENT'] . "</td>";
             echo "<td>" . $employee['STAFF_ROLE'] . "</td>";
             echo "<td>" . str_replace(";", "<br>", $employee['FUNCTION']) . "</td>";
-            echo "<td><a href='employeeDetail.php?id=" . $employee['PHONE'] . "&name=".$employee['SECOND_NAME']."'><img src='icon_more.png' width='35px' alt='more' /></a></td>";
+            echo "<td><a href='employeeDetail.php?id=" . $employee['PHONE'] . "&name=".$employee['SECOND_NAME']."'><img src='icon_more.png' width='35' alt='more' /></a></td>";
             echo "</tr>";
             //var_dump($employee);
             //echo "<br>";

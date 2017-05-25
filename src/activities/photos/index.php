@@ -48,12 +48,12 @@ $js = $lan->getTextForPage('photos');
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -140,6 +140,7 @@ $js = $lan->getTextForPage('photos');
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->act_photos; ?></h2>
@@ -160,7 +161,7 @@ $js = $lan->getTextForPage('photos');
             foreach($images as $image)
             {
                 echo "<div class='w3-container w3-third'>";
-                 echo "<img src='".$image."' style='width:100%;height:300px' onclick='onClick(this)' class='w3-hover-opacity'>";
+                 echo "<img src='".$image."' alt='".$image."' style='width:100%;height:300px' onclick='onClick(this)' class='w3-hover-opacity'>";
                 echo "</div>";
 
             }
@@ -171,7 +172,7 @@ $js = $lan->getTextForPage('photos');
         <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
             <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
             <div class="w3-modal-content w3-animate-zoom">
-                <img id="img01" style="width:100%">
+                <img alt = "obrazok" src=".." id="img01" style="width:100%">
             </div>
         </div>
 
@@ -226,9 +227,9 @@ $js = $lan->getTextForPage('photos');
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk </a>  | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk </a>  | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -236,7 +237,7 @@ $js = $lan->getTextForPage('photos');
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../menu/jQueryScripts.js"></script>
 </body>
