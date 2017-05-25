@@ -69,66 +69,54 @@ if(!$_SESSION['user']){
 <nav class="main-menu">
     <ul>
 
-        <li>
-            <a href="#">
+        <li class="has-subnav">
+            <a href="/uamt/intranet/intranet.php">
                 <i class="fa fa-home fa-2x"></i>
                 <span class="nav-text">Domov intranet</span>
             </a>
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/uamt/">
                 <i class="fa fa-flag fa-2x"></i>
-                <span class="nav-text">
-                            Domov uamt
-                        </span>
+                <span class="nav-text">Domov UAMT</span>
             </a>
 
         </li>
         <li>
             <a href="#">
                 <i class="fa fa-user fa-2x"></i>
-                <span class="nav-text">
-                            Upravit profil
-                        </span>
+                <span class="nav-text">Upraviť profil</span>
             </a>
 
         </li>
         <li class="has-subnav">
             <a href="#">
                 <i class="fa fa-font fa-2x"></i>
-                <span class="nav-text">
-                            Pridat aktuality
-                        </span>
+                <span class="nav-text">Pridať aktuality</span>
             </a>
 
         </li>
         <li class="has-subnav">
             <a href="#">
                 <i class="fa fa-photo fa-2x"></i>
-                <span class="nav-text">
-                            Pridat fotky
-                        </span>
+                <span class="nav-text">Pridať fotky</span>
             </a>
 
         </li>
         <li class="has-subnav">
             <a href="#">
                 <i class="fa fa-play-circle fa-2x"></i>
-                <span class="nav-text">
-                            Pridat videa
-                        </span>
+                <span class="nav-text">Pridať videa</span>
             </a>
 
         </li>
 
 
         <li>
-            <a href="#">
+            <a href="/uamt/intranet/logout.php">
                 <i class="fa fa-power-off fa-2x"></i>
-                <span class="nav-text">
-                            Logout
-                        </span>
+                <span class="nav-text">Logout</span>
             </a>
         </li>
     </ul>
@@ -276,7 +264,7 @@ if(!$_SESSION['user']){
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovensky jazyk</a>
+                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovenský jazyk</a>
             </div>
 
         </div>
