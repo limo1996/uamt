@@ -183,7 +183,7 @@ $projects =  $lan->getTextForPage('projects');
 
 
 
-    <div class="col-sm-3"></div>
+    <div class="col-sm-2"></div>
     <div id="tabs" class="col-sm-8 center">
         <ul id="list" class="nav nav-tabs">
             <li class="active" id="labak"><a  href="#1" data-toggle="tab" ><?php echo $text2['all']; ?></a></li>
