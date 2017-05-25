@@ -76,6 +76,24 @@ class Database
         return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
     }
 
+    function insertNewEmployee($name, $surname, $title1, $title2, $ldaplogin, $photo, $room, $phone, $department, $staff_role, $function)
+    {
+        $sql = "INSERT INTO employees (FIRST_NAME, SECOND_NAME, TITLE1, TITLE2, LDAPLOGIN, PHOTO, ROOM, PHONE, DEPARTMENT, STAFF_ROLE, FUNCTION) VALUES 
+                (:name, :surname, :title1, :title2, :ldaplogin, :photo, :room, :phone, :department, :staff_role, :function)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':name' => $name, ':surname' => $surname, ':title1' => $title1, ':title2' => $title2, ':ldaplogin' => $ldaplogin,
+            ':photo' => $photo, ':room' => $room, ':phone' => $phone, ':department' => $department, ':staff_role' => $staff_role, ':function' => $function));
+    }
+
+    function updateEmployee($id, $name, $surname, $title1, $title2, $ldaplogin, $photo, $room, $phone, $department, $staff_role, $function)
+    {
+        $sql = "UPDATE employees SET FIRST_NAME = :name, SECOND_NAME = :surname, TITLE1 = :title1, TITLE2 = :title2, LDAPLOGIN = :ldaplogin, PHOTO = :photo,
+                ROOM = :room, PHONE = :phone, DEPARTMENT = :department, STAFF_ROLE = :staff_role, FUNCTION = :function WHERE ID = :id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':id' => $id, ':name' => $name, ':surname' => $surname, ':title1' => $title1, ':title2' => $title2, ':ldaplogin' => $ldaplogin,
+            ':photo' => $photo, ':room' => $room, ':phone' => $phone, ':department' => $department, ':staff_role' => $staff_role, ':function' => $function));
+    }
+
     function getUsrId($surname)
     {
         $request = $this->conn->prepare("SELECT AIS_ID FROM ais_emp WHERE SECOND_NAME = :surname");
@@ -207,7 +225,7 @@ class Database
     function fetchSubsByLang($newsLang)
     {
         $request = $this->conn->prepare("SELECT Email FROM newsletter WHERE newsLang= :newsLang");
-        $request->setFetchMode(PDO::FETCH_ASSOC, "newsletter");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
     }
 
@@ -314,6 +332,20 @@ class Database
         $request = $this->conn->prepare("SELECT roles.ROLE FROM roles JOIN employee_role ON roles.ID = employee_role.ROLE JOIN employees ON employee_role.EMPLOYEE = employees.ID WHERE employees.LDAPLOGIN = :ldap");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':ldap' => $ldap)) ? $request->fetchAll() : null;
+    }
+
+    function deleteUserRoles($user_id)
+    {
+        $sql = "DELETE FROM employee_role WHERE EMPLOYEE = :user_id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':user_id' => $user_id));
+    }
+
+    function insertUserRoles($user_id, $role_id)
+    {
+        $sql = "INSERT INTO employee_role (EMPLOYEE, ROLE) VALUES (:user_id, :role_id)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':user_id' => $user_id, ':role_id' => $role_id));
     }
 
 }
