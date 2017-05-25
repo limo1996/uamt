@@ -249,6 +249,13 @@ class Database
         return $request->execute(array(':newsLang' => $newsLang,':date'=>$date)) ? $request->fetchAll() : null;
     }
 
+    function insertNews($name, $source, $category, $tab)
+    {
+        $sql = "INSERT INTO Aktuality(Title, Text, Active, TAB) VALUES (:name, :source, :category, :tab)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':name' => $name, ':source' => $source, ':category' => $category, ':tab' => $tab));
+    }
+
     /******************** INTRANET-DOCUMENTS **********************/
     function getTabCategories($tab)
     {
