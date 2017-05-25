@@ -29,7 +29,6 @@ function getYoutube($url)
 ?>
 
 
-?>
 
 <!DOCTYPE html>
 <html lang="sk">
@@ -170,8 +169,8 @@ function getYoutube($url)
 
 <div id="content" >
     <div class="container">
-        <h2> Novinky</h2>
-        <h3>Pridaj sa k nám...</h3>
+        <h2 style=" color: #0066cc; font-family: Monospace;"> Novinky</h2>
+        <h3 style=" text-align: left; color: #0066cc; font-family: Monospace;">Pridaj sa k nám...</h3>
         <div class="center">
             <?php
 
@@ -182,7 +181,7 @@ function getYoutube($url)
         </div>
     </div>
     <div class="container">
-      <h4>Aktuality z ústavu</h4>
+      <h4 style=" text-align: left; color: #0066cc; font-family: Monospace;">Aktuality z ústavu</h4>
         <?php
         foreach($news as $act) {
             echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
