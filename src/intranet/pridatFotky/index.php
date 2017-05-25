@@ -36,9 +36,9 @@ foreach($result as $role)
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
+    <link href="styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../../menu/menuScripts.js"></script>
-    <script src="../doktorandi/script/script.js"></script>
+    <script src="script/script.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -105,6 +105,105 @@ foreach($result as $role)
 
 <div class="container">
 
+
+    <div class="row">
+        <!-- panel preview -->
+        <div class="col-sm-5">
+            <div id="tab" class="btn-group" data-toggle="buttons-radio">
+                <a href="#new_album" class="btn btn-large btn-info active" data-toggle="tab">Pridať do nového albumu</a>
+                <a href="#old_album" class="btn btn-large btn-info" data-toggle="tab">Pridať do existujúceho albumu</a>
+            </div>
+            <div class="tab-content">
+                <div id="new_album" class="tab-pane panel panel-default active">
+                    <form method="post">
+                        <div class="panel-body form-horizontal new_album">
+
+                            <div class="form-group">
+                                <label for="fileToUpload" class="col-sm-3 control-label">Obrázok</label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="fileToUpload" name="fileToUpload" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="n_album" class="col-sm-3 control-label">Album</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="n_album" name="n_album" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="date" class="col-sm-3 control-label">Dátum</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="date" name="date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 text-right">
+                                    <button type="submit" class="btn btn-default preview-add-button">
+                                        <span class="glyphicon glyphicon-plus"></span> Pridať
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="old_album" class="tab-pane panel panel-default">
+                    <form method="post">
+                        <div class="panel-body form-horizontal old_album">
+                            <div class="form-group">
+                                <label for="fileToUpload2" class="col-sm-3 control-label">Obrázok</label>
+                                <div class="col-sm-9 ">
+                                    <input type="file" id="fileToUpload2" name="fileToUpload2" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="o_album" class="col-sm-3 control-label">Album</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="o_album" name="o_album" title="Výber albumu" required>
+                                        <option>Album1</option>
+                                        <option>Album2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 text-right">
+                                    <button type="submit" class="btn btn-default preview-add-button">
+                                        <span class="glyphicon glyphicon-plus"></span> Pridať
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div> <!-- / panel preview -->
+        <div class="col-sm-7">
+            <h4>Súbory:</h4>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table preview-table">
+                            <thead>
+                            <tr>
+                                <th>Obrázok</th>
+                                <th>Album</th>
+                                <th>Dátum</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody> <!-- preview content goes here-->
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <hr style="border:1px dashed #dddddd;">
+                    <button type="button" class="btn btn-primary btn-block">Pridať všetky fotky</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer>
