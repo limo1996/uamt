@@ -69,12 +69,12 @@ function getYoutube($url)
     <div class="nav-flags">
 
     </div>
-
+    </div>
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
+                <li class="active"><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -161,7 +161,6 @@ function getYoutube($url)
 
             </ul>
         </div>
-    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->home; ?></h2>
@@ -232,9 +231,9 @@ function getYoutube($url)
 
                 <?php
                 if($lang == 'sk')
-                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovenský jazyk  </a> | <a href='index.php?lang=en'>  English </a>";
+                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovenský jazyk   | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -242,7 +241,7 @@ function getYoutube($url)
             </div>
 
         </div>
-
+    </div>
 </footer>
 <script src="menu/jQueryScripts.js"></script>
 </body>
