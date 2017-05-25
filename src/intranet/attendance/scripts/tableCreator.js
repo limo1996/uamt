@@ -7,6 +7,8 @@ var lastY = null;
 var editEnabled = false;
 var globalMonth = 5;
 var globalYear = 2017;
+var canUserEdit = false;
+var onlyName = null;
 
 function getMonthDaysCount(month, year){
     return new Date(year, month, 0).getDate();
@@ -15,18 +17,22 @@ function getMonthDaysCount(month, year){
 function printTable(month, year, employees, employeesDays){
     var table = "<table class='table table-bordered' id='mainTable'>";
     var monthCount = getMonthDaysCount(month, year);
-    for(var i = 0; i <= employees.length; i++){
-        if(i == 0)
+    for(var i = 0; i <= employees.length; i++) {
+        var style = "";
+        if (onlyName != null && i !== 0 && employees[i - 1].indexOf(onlyName) === -1) {
+            style = "style='display:none;'";
+        }
+        if (i == 0)
             table += "<tr><th>Meno</th>";
         else
-            table += "<tr><th class='persons text-center' id='" + (i-1).toString() +"'>" + employees[i-1] + "</th>";
-        for(var j = 1; j <= monthCount; j++){
-            if(i == 0){
+            table += "<tr " + style + "><th class='persons text-center' id='" + (i - 1).toString() + "'>" + employees[i - 1] + "</th>";
+        for (var j = 1; j <= monthCount; j++) {
+            if (i == 0) {
                 var day = getDay(year, month, j);
                 var insert = "";
-                if(day == "Sun" || day == "Sat")
+                if (day == "Sun" || day == "Sat")
                     insert = "style='color: #eb9316;'";
-                table += "<th " + insert + "class='text-center'> " + j + "<br/>" + day +"</th>";
+                table += "<th " + insert + "class='text-center'> " + j + "<br/>" + day + "</th>";
             }
             else {
                 var name = employeesDays[m_names[i - 1]];
@@ -35,6 +41,7 @@ function printTable(month, year, employees, employeesDays){
         }
         table += "</tr>";
     }
+
     table += "</table>";
     var fuck = document.getElementById("tableDiv");
     fuck.innerHTML = table;
@@ -109,7 +116,11 @@ function getElementAt(row, column) {
 }
 
 $(document).ready(function(){
+    canUserEdit = document.getElementsByClassName('disabled').length == 0;
+    if(!canUserEdit)
+        onlyName = document.getElementById("currName").innerText;
 
+    console.log("fuck " + canUserEdit);
     getAndPrintTable(5, 2017);
     $('#NoIconDemo').MonthPicker({ Button: false, 
                                    SelectedMonth: 'May, 2017',
@@ -143,6 +154,9 @@ $(document).ready(function(){
 
     $('.tableChoise').click(function (){
         var id = $(this).attr('id');
+        if (!canUserEdit || id != '5')
+            return;
+
         markColor = getAbsenceColor(id);
     });
 });
@@ -175,6 +189,9 @@ function getAndPrintTable(month, year) {
             mark($(this), true);
             setXY($(this));
             down = true;
+
+            var xx = getX($(this));
+            var yy = getY($(this));
             m_dictionary[m_names[xx - 1]][yy -1] = getAbsenceId(markColor);
         }).mousemove(function() {
             if(!editEnabled) return;
@@ -182,6 +199,8 @@ function getAndPrintTable(month, year) {
                 setXY($(this));
                 last = $(this);
                 mark($(this), true);
+                var xx = getX($(this));
+                var yy = getY($(this));
                 m_dictionary[m_names[xx - 1]][yy -1] = getAbsenceId(markColor);
             }
         });
@@ -209,7 +228,7 @@ function getY(item){
     return item.parent().children().index(item);
 }
 
-var markColor = "#265a88";
+var markColor = "#c12e2a";
 function mark(item, edit){
     var id = item.attr('id');
     var row = getX(item);

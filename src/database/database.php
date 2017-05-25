@@ -144,6 +144,14 @@ class Database
         return $request->execute() ? $request->fetchAll() : null;
     }
 
+    function fetchEmployeeName($aisId)
+    {
+        $request = $this->conn->prepare("SELECT SECOND_NAME FROM employees WHERE LDAPLOGIN = :aisId");
+        $request->bindValue(":aisId", $aisId, PDO::PARAM_INT);
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
     function fetchEmployee($id)
     {
         $request = $this->conn->prepare("SELECT id, firstname, lastname FROM Employee WHERE id = :id");
