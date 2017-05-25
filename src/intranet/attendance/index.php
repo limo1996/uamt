@@ -43,6 +43,15 @@ if(!$_SESSION['user']){
     </style>
 </head>
 <body>
+
+<style type="text/css">
+    @media print {
+        .table td {
+            background-color: transparent !important;
+        }
+    }
+</style>
+
 <?php
 
 /*******TESTS*******
