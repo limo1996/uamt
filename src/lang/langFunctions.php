@@ -38,7 +38,7 @@ class Text
         foreach ($projects as $key => $project) {
             $tmp['ID'] = $project['ID'];
             $tmp['TYPE'] = $project['PROJECT_TYPE'];
-            $tmp['NUMBER'] = $project['NUMBER'];
+            $tmp['NUMBER'] = $project['number'];
             $tmp['DURATION'] = $project['DURATION'];
             $tmp['COORDINATION'] = $project['COORDINATION'];
             $tmp['PARTNERS'] = $project['PARTNERS'];

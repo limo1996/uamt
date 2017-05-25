@@ -141,7 +141,7 @@ $text = $lan->getTextForPage('menu');
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->news; ?></h2>
+    <h2><?php echo  $text->news; ?></h2>
     <hr class="hr_nazov">
 </div>
 

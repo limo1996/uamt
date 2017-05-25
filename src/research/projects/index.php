@@ -149,6 +149,9 @@ $projects =  $lan->getTextForProjects();
                 <h5 class="modal-title" id="modalHeader" style="color: #0066cc"></h5>
                 <h6 id="ModalName"></h6>
                 <h6 id="ModalDatum"></h6>
+                <h6 id="ModalWeb"></h6>
+                <h6 id="ModalPartner"></h6>
+
             </div>
             <div class="modal-body" id="modalBody">
 
@@ -171,6 +174,9 @@ $projects =  $lan->getTextForProjects();
     <?php
     foreach ($projects as $project) {
         $annotations[$project['TITLE']] = $project['ANNOTATION'];
+        $webPages[$project['TITLE']] = $project['WEB'];
+        $partners[$project['TITLE']] = $project['PARTNERS'];
+
     }
     ?>
 
@@ -208,7 +214,7 @@ $projects =  $lan->getTextForProjects();
 
                 foreach ($projects as $project) {
                     echo "<tr>";
-                    echo "<td>" .  $project['ID'] . "</td>";
+                    echo "<td>" .  $project['NUMBER'] . "</td>";
                     echo "<td>" .  $project['TITLE'] . "</td>";
                     echo "<td>" .  $project['DURATION'] . "</td>";
                     echo "<td>" .  $project['COORDINATION'] . "</td>";
@@ -239,7 +245,7 @@ $projects =  $lan->getTextForProjects();
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "VEGA") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -270,7 +276,7 @@ $projects =  $lan->getTextForProjects();
                 foreach ($projects as $project) {
                     if ($project['TYPE'] != "VEGA" && $project['TYPE'] != "APVV" && $project['TYPE'] != "KEGA" && $project['TYPE'] != "Iné domáce projekty" ) {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -301,7 +307,7 @@ $projects =  $lan->getTextForProjects();
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "APVV") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -332,7 +338,7 @@ $projects =  $lan->getTextForProjects();
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "KEGA") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -363,7 +369,7 @@ $projects =  $lan->getTextForProjects();
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "Iné domáce projekty") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -385,6 +391,9 @@ $projects =  $lan->getTextForProjects();
     <script>
         <?php
         echo "var annotations = ".json_encode($annotations).";\n";
+        echo "var webPages = ".json_encode($webPages).";\n";
+        echo "var partners = ".json_encode($partners).";\n";
+
         ?>
         $('#displayTable').find('tr').click( function(){
             var title = this.cells[1].innerHTML;
@@ -395,6 +404,11 @@ $projects =  $lan->getTextForProjects();
             $('#modalHeader').html(title);
             $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
             $("#ModalDatum").html("Doba riesenia: " + date);
+            if ( webPages[title]){
+            $("#ModalWeb").html("Webova stranka: " + webPages[title] );
+            }
+            if ( partners[title]){
+            $("#ModalPartner").html("Partner: " + partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
