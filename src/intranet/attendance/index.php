@@ -16,6 +16,14 @@ if(!$_SESSION['user']){
     header("Location:../index.php");
     die;
 }
+
+$canEdit = false;
+$db = new Database();
+$result = $db->getUserRoles($_SESSION['user']);
+$roles = array();
+foreach($result as $role)
+    if( $role['ROLE'] == 'hr')
+        $canEdit = true;
 ?>
 
 <!DOCTYPE html>
@@ -25,13 +33,17 @@ if(!$_SESSION['user']){
     <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link href="styles/MonthPicker.css" rel="stylesheet" type="text/css" />
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" media="screen">
     <link href="../../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <link href="styles/menu2.css" type="text/css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
     <script src="scripts/MonthPicker.js"></script>
     <script src="scripts/tableCreator.js"></script>
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
@@ -43,14 +55,6 @@ if(!$_SESSION['user']){
     </style>
 </head>
 <body>
-
-<style type="text/css">
-    @media print {
-        .table td {
-            background-color: transparent !important;
-        }
-    }
-</style>
 
 <?php
 
@@ -180,17 +184,17 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
 <br />
 <div class="text-center" id="selector">
     <div class="btn-group">
-        <button type="button" class="btn btn-primary tableChoise" id="1">PN</button>
-        <button type="button" class="btn btn-success tableChoise" id="2">OČR</button>
-        <button type="button" class="btn btn-info tableChoise" id="3">Služobka</button>
-        <button type="button" class="btn btn-warning tableChoise" id="4">Dovolenka</button>
+        <button type="button" class="btn btn-primary tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="1">PN</button>
+        <button type="button" class="btn btn-success tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="2">OČR</button>
+        <button type="button" class="btn btn-info tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="3">Služobka</button>
+        <button type="button" class="btn btn-warning tableChoise <?php if (!$canEdit) echo 'disabled'; ?>" id="4">Dovolenka</button>
         <button type="button" class="btn btn-danger tableChoise" id="5">Plán Dovolenky</button>
     </div>
 </div>
 <br />
 <div id="tableDiv" class="container-fluid"></div>
 <br />
-
+<div style="display: none;" id="currName"><?php echo $db->fetchEmployeeName($_SESSION['user'])[0]['SECOND_NAME']; ?></div>
 <div class="modal fade" id="myModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -277,7 +281,7 @@ $db->deleteEmployeeAbsence(date("Y-m-d", strtotime("2017-02-05")), 3, 3);
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovenský jazyk</a>
+                <a href='index.php?lang=sk' style='color: white' > Slovenský jazyk</a>
             </div>
 
         </div>
