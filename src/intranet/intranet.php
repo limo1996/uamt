@@ -30,6 +30,7 @@ foreach($result as $role)
 
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <link href="../menu/menu2.css" type="text/css" rel="stylesheet">
 
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +59,6 @@ foreach($result as $role)
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -66,8 +66,6 @@ foreach($result as $role)
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/intranet/logout.php">Odhlásiť</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
         </div>
@@ -79,29 +77,79 @@ foreach($result as $role)
         <h2><?php echo "Intranet" ?></h2>
         <hr class="hr_nazov">
     </div>
+    <nav class="main-menu">
+        <ul>
+            <div id="menu2">
 
-    <div id="sidebar-wrapper" class="sidebar-toggle">
-        <ul class="sidebar-nav">
-            <br>
+            </div>
             <li>
-                <a href="#item3">Odhlásiť sa</a>
+                <a href="#">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                            Domov intranet
+                        </span>
+                </a>
+
             </li>
-            <hr>
-            <li>
-                <a href="#item1">Upraviť profil</a>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-flag fa-2x"></i>
+                    <span class="nav-text">
+                            Domov uamt
+                        </span>
+                </a>
+
             </li>
             <li>
-                <a href="#item2">Pridať aktuality</a>
+                <a href="#">
+                    <i class="fa fa-user fa-2x"></i>
+                    <span class="nav-text">
+                            Upravit profil
+                        </span>
+                </a>
+
             </li>
-            <li>
-                <a href="#item3">Pridať fotky</a>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-font fa-2x"></i>
+                    <span class="nav-text">
+                            Pridat aktuality
+                        </span>
+                </a>
+
             </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-photo fa-2x"></i>
+                    <span class="nav-text">
+                            Pridat fotky
+                        </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-play-circle fa-2x"></i>
+                    <span class="nav-text">
+                            Pridat videa
+                        </span>
+                </a>
+
+            </li>
+
+        </ul>
+
+        <ul class="logout">
             <li>
-                <a href="#item3">Pridať videá</a>
+                <a href="#">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">
+                            Logout
+                        </span>
+                </a>
             </li>
         </ul>
-    </div>
-
+    </nav>
     <div class="container">
             <h1> Welcum to intranet</h1>
 
