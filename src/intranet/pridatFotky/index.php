@@ -1,14 +1,14 @@
 <?php
-include_once ("../database/database.php");
-
+include_once ("../../database/database.php");
 session_start();
 
 if(!$_SESSION['user']){
-    header("Location:index.php");
+    header("Location:../index.php");
     die;
 }
 
 $db = new Database();
+
 // zistenie roly
 //---------------------------------------------
 $result = $db->getUserRoles($_SESSION['user']);
@@ -16,7 +16,6 @@ $roles = array();
 foreach($result as $role)
     $roles[] = $role['ROLE'];
 //---------------------------------------------
-
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +29,16 @@ foreach($result as $role)
 
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
-    <script src="../menu/menuScripts.js"></script>
+    <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="../doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
+    <script src="../../menu/menuScripts.js"></script>
+    <script src="../doktorandi/script/script.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -65,8 +67,8 @@ foreach($result as $role)
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
+            <ul class="nav navbar-nav nextto" id="navMenu">
+                <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -84,14 +86,13 @@ foreach($result as $role)
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-
         </div>
     </div>
 </nav>
 
 <div id="intranet-wrapper">
     <div id="nazov">
-        <h2><?php echo "Intranet" ?></h2>
+        <h2><?php echo "Pridať fotky" ?></h2>
         <hr class="hr_nazov">
     </div>
 
@@ -118,16 +119,8 @@ foreach($result as $role)
     </div>
 
     <div class="container">
-            <h1> Welcum to intranet</h1>
 
-        <?php
-        //if (in_array("admin", $roles))
-        //    echo "";
-        ?>
-
-        <br>
     </div>
-
 </div>
 
 <footer>
@@ -177,6 +170,6 @@ foreach($result as $role)
 
 
 </footer>
-<script src="../menu/jQueryScripts.js"></script>
+<script src="../../menu/jQueryScripts.js"></script>
 </body>
 </html>

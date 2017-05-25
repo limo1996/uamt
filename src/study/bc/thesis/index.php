@@ -228,10 +228,10 @@ ksort($dictionary);
                 <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
                 <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
                 <li>Pre získanie klasifikovaného zápočtu musí študent do dátumu špecifikovanom v harmonograme štúdia FEI STU odovzdať diplomovú prácu:</li>
-                <ol>
+                <ul>
                     <li>v elektronickej forme do AIS</li>
                     <li>v tlačenej forme v počte 2 kusy Ing. Sedlárovi? (A803)</li>
-                </ol>
+                </ul>
                 <li>alebo odovzdať technickú dokumentáciu svojmu vedúcemu práce v nim špecifikovanom rozsahu najneskôr do 20.júna daného roku.</li>
 
             </ul>

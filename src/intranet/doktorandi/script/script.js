@@ -57,5 +57,34 @@ $(document).ready(function() {
         document.getElementById("save").value = this.value;
     });
 
+    $('.dropdown').on('show.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
+    });
+    $('.dropdown').on('hide.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
+    });
+    $(".sidebarmenu-toggle").click(function(e) {
+        e.preventDefault();
+        var elem = document.getElementById("sidebar-wrapper");
+        left = window.getComputedStyle(elem,null).getPropertyValue("left");
+        if(left == "170px"){
+            document.getElementsByClassName("sidebar-toggle")[0].style.left="-170px";
+        }
+        else if(left == "-170px"){
+            document.getElementsByClassName("sidebar-toggle")[0].style.left="170px";
+        }
+    });
+
+});
+
+
+$(window).resize(function() {
+    var path = $(this);
+    var contW = path.width();
+    if(contW >= 1480){
+        document.getElementsByClassName("sidebar-toggle")[0].style.left="170px";
+    }else{
+        document.getElementsByClassName("sidebar-toggle")[0].style.left="-170px";
+    }
 });
 

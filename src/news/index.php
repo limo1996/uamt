@@ -294,7 +294,7 @@ else {
     </div>
     </div>
 </footer>
-<script src="../../menu/jQueryScripts.js"></script>
+<script src="../menu/jQueryScripts.js"></script>
 </body>
 
 </html>
