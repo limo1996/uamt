@@ -16,6 +16,8 @@ $text2 = $lan->getTextForPage('contact');
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
@@ -149,8 +151,9 @@ $text2 = $lan->getTextForPage('contact');
 </div>
 
 
-
+<div class="container>"
 <div class="row">
+
     <div class="col-sm-2" >
     </div>
         <div class="col-sm-4 center" >
@@ -174,7 +177,7 @@ $text2 = $lan->getTextForPage('contact');
             </div>
         </div>
 
-    <div id="map" class="col-sm-4" style=" height:458px">
+    <div id="map" class="col-sm-4" style=" height:449px">
         </div>
     <div class= "col-sm-2" >
 
@@ -183,6 +186,7 @@ $text2 = $lan->getTextForPage('contact');
 
     <div style=" height:20px; width: 20px">
     </div>
+</div>
 <footer>
     <div class="container">
         <div class="container">
