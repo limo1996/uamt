@@ -1,10 +1,22 @@
 <?php
+include_once ("../database/database.php");
+
 session_start();
 
 if(!$_SESSION['user']){
     header("Location:index.php");
     die;
 }
+
+$db = new Database();
+// zistenie roly
+//---------------------------------------------
+$result = $db->getUserRoles($_SESSION['user']);
+$roles = array();
+foreach($result as $role)
+    $roles[] = $role['ROLE'];
+//---------------------------------------------
+
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +31,12 @@ if(!$_SESSION['user']){
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 
+    <link href="../menu/menu2.css" type="text/css" rel="stylesheet">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
+    <link href="doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../menu/menuScripts.js"></script>
 
     <style media="all">
@@ -33,6 +47,14 @@ if(!$_SESSION['user']){
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
+
+        <a href="#" class="navbar-toggle sidebarmenu-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
@@ -45,7 +67,6 @@ if(!$_SESSION['user']){
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -53,23 +74,96 @@ if(!$_SESSION['user']){
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/intranet/logout.php">Odhlásiť</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
+
+            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
         </div>
     </div>
 </nav>
 
-<div id="nazov">
-    <h2><?php echo "Intranet" ?></h2>
-    <hr class="hr_nazov">
-</div>
+    <div id="nazov">
+        <h2><?php echo "Intranet" ?></h2>
+        <hr class="hr_nazov">
+    </div>
+
+<nav class="main-menu">
+    <ul>
+
+        <li class="has-subnav active">
+            <a href="/uamt/intranet/intranet.php">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">Domov intranet</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/">
+                <i class="fa fa-flag fa-2x"></i>
+                <span class="nav-text">Domov UAMT</span>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">Upraviť profil</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-font fa-2x"></i>
+                <span class="nav-text">Pridať aktuality</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-photo fa-2x"></i>
+                <span class="nav-text">Pridať fotky</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-play-circle fa-2x"></i>
+                <span class="nav-text">Pridať videa</span>
+            </a>
+
+        </li>
+
+
+        <li>
+            <a href="/uamt/intranet/logout.php">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 
 <div class="container">
-        <h1> Welcum to intranet</h1>
-    <br>
-</div>
+            <h1> Welcum to intranet</h1>
+    <h1> Welcum to intranet</h1>
+    <h1> Welcum to intranet</h1>
+    <h1> Welcum to intranet</h1>
+
+        <?php
+        //if (in_array("admin", $roles))
+        //    echo "";
+        ?>
+
+        <br>
+    </div>
+
 
 <footer>
     <div class="container">

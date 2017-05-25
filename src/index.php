@@ -7,6 +7,28 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+
+include_once ("database/database.php");
+$ex = new Database();
+$js = $ex->fetchPropagationVideos();
+$news=$ex->fetchAllNewsByLang($lang,0,3);
+function getYoutube($url)
+{
+    $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_]+)\??/i';
+    $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+
+    if (preg_match($longUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+
+    if (preg_match($shortUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+    return 'https://www.youtube.com/embed/' . $youtube_id ;
+}
+?>
+
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +44,7 @@ $text = $lan->getTextForPage('menu');
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="menu/menuStyles.css" type="text/css" rel="stylesheet">
-
+    <link rel="stylesheet" href="news/newsStyle.css" type="text/css">
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -47,12 +69,12 @@ $text = $lan->getTextForPage('menu');
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li class="active"><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li class="active"><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -139,38 +161,35 @@ $text = $lan->getTextForPage('menu');
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->home; ?></h2>
     <hr class="hr_nazov">
 </div>
 
-<div id="content">// simulate large amount of information
-    <h1> Content</h1>
+<div id="content" >
+    <div class="container">
+        <h2> Novinky</h2>
+        <h3>Pridaj sa k nám...</h3>
+        <div class="center">
+            <?php
 
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
-
-    <h1> Content</h1>
+                for($i=0;$i<2;$i++) {
+                    echo "<div class=col-sm-6><iframe width='500' height='300' src='" . getYoutube($js[$i]['URL']) . "'></iframe></div>";
+                }
+             ?>
+        </div>
+    </div>
+    <div class="container">
+      <h4>Aktuality z ústavu</h4>
+        <?php
+        foreach($news as $act) {
+            echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
+						</div></div>";
+        }
+        ?>
+    </div>
 </div>
 
 
@@ -213,9 +232,9 @@ $text = $lan->getTextForPage('menu');
 
                 <?php
                 if($lang == 'sk')
-                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovenský jazyk   | <a href='index.php?lang=en'>  English </a>";
+                 echo "<a href='index.php?lang=sk' style='color: yellow' > Slovenský jazyk  </a> | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -223,7 +242,7 @@ $text = $lan->getTextForPage('menu');
             </div>
 
         </div>
-    </div>
+
 </footer>
 <script src="menu/jQueryScripts.js"></script>
 </body>

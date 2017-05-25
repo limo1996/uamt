@@ -75,6 +75,8 @@ ksort($dictionary);
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../../menu/menuScripts.js"></script>
+
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>
@@ -89,12 +91,12 @@ ksort($dictionary);
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -181,6 +183,7 @@ ksort($dictionary);
 
             </ul>
         </div>
+    </div>
 </nav>
 <div class="modal fade" id="myModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -254,9 +257,6 @@ ksort($dictionary);
 
             </ul>
 
-
-
-
         </article>
 
 
@@ -320,7 +320,7 @@ ksort($dictionary);
                 if(title != "Názov")
                     $('#myModal').modal('toggle');
             });
-        </script
+        </script>
 
         <p>&nbsp;</p>
         <p>&nbsp;</p>
@@ -371,9 +371,9 @@ ksort($dictionary);
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk  </a> | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -381,7 +381,7 @@ ksort($dictionary);
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../../menu/jQueryScripts.js"></script>
 </body>

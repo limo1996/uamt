@@ -16,6 +16,8 @@ $text2 = $lan->getTextForPage('contact');
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
@@ -49,12 +51,12 @@ $text2 = $lan->getTextForPage('contact');
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -141,6 +143,7 @@ $text2 = $lan->getTextForPage('contact');
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->contact; ?></h2>
@@ -148,8 +151,9 @@ $text2 = $lan->getTextForPage('contact');
 </div>
 
 
-
+<div class="container>"
 <div class="row">
+
     <div class="col-sm-2" >
     </div>
         <div class="col-sm-4 center" >
@@ -173,15 +177,16 @@ $text2 = $lan->getTextForPage('contact');
             </div>
         </div>
 
-    <div id="map" class="col-sm-4 center" style=" height:458px;>
+    <div id="map" class="col-sm-4" style=" height:449px">
         </div>
-    <div class="col-sm-2" >
+    <div class= "col-sm-2" >
 
     </div>
 </div>
 
     <div style=" height:20px; width: 20px">
     </div>
+</div>
 <footer>
     <div class="container">
         <div class="container">
@@ -221,9 +226,9 @@ $text2 = $lan->getTextForPage('contact');
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk  </a> | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: #424242'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='index.php?lang=en'  style='    color: #424242'>  English </a>";
 
                 ?>
             </div>
@@ -231,7 +236,7 @@ $text2 = $lan->getTextForPage('contact');
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script>
     function myMap() {

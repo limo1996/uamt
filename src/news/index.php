@@ -1,22 +1,54 @@
 <?php
 include('../lang/langFunctions.php');
 include_once ("../database/database.php");
+session_start();
 $lang = 'sk';
+$showAll = $_GET['ShowAll'];
+$_SESSION["show"]=$showAll;
 
 if (isset($_GET['lang']))
     $lang = $_GET['lang'];
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
-
-$ex = new Database();
-$js = $ex->fetchMedia();
 $db = new Database();
+$date = date("Y-m-d");
+
+if(isset($_GET['ShowAll'])) {
+    $count = $db->getCountOfNews($lang);
+    $check=true;
+    $_SESSION["count"] = $count;
+}
+else{
+    $count = $db->getCountOfActiveNews($lang, $date);
+    $check=false;
+    $_SESSION["count"] = $count;
+}
+$rec_limit=6;
+$rec_count= $count[0]["COUNT(Title)"];
+$str=ceil($rec_count/$rec_limit);
+
+if( isset($_GET{'page'} ) ) {
+    $page = $_GET{'page'} + 1;
+    $offset = $rec_limit * $page ;
+}else {
+    $page = 0;
+    $offset = 0;
+}
+$left_rec = $rec_count - ($page * $rec_limit);
+if(isset($_GET['ShowAll'])){
+    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
+}
+else {
+    $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
 <head lang="sk">
-    <title><?php echo $text->act_media; ?></title>
+    <title><?php echo $text->news; ?></title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -142,47 +174,74 @@ $db = new Database();
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->news; ?></h2>
+    <h2><?php echo  $text->news; ?></h2>
     <hr class="hr_nazov">
 </div>
 <div class="container">
         <div>
             <!-- <input type="text">-->
-            <form class="form-vertical" method="post">
+
+            <form action="index.php" method="get" class="form-horizontal">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
-                    <!--<label for="sel1">(select one):</label>-->
-                    <select class="form-control" name="choice" id="sel1">
-                        <option>EN</option>
-                        <option>SK</option>
-                    </select>
-                    <button type="submit" class="btn btn-default navbar-btn">Odber</button>
+                    <div class="checkbox col-sm-4">
+                        <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" />Zobraz vsetko</label>
+                        <input type="submit" class="btn btn-default navbar-btn" />
+                    </div>
                 </div>
-            </form>
         </div>
     <?php
-    $news=$db->fetchAllNews();
+
+    echo "<div class='container'>";
     foreach($news as $act) {
-        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><h1>".$act['Title']."</h1></div><p class=description>".$act['Text']."</p></div></div>";
-        //echo
-
-
-        /*  echo "<h3>".$act['Title']."</h3>";
-                  echo $act['Text']."<br>";
-                  echo $act['Active'];
-                  echo $act['Category'];
-                  echo $act['Lang'];
-                  echo "<br><br>";
-<div class='row'></div>
-        	"<div class="title">".$act['Title']."</div>"
-<p class="description">".$act['Text']."</p>
-
-          */
+        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
+						</div></div>";
     }
+    echo "<br><br></div>";
+    //unset($news);
+ /*   echo "<ul class=pagination>";
+    if( $page > 0 && $left_rec > $rec_limit) {
+        $last = $page-2 ;
+        echo "<li><a href =$_PHP_SELF?page=$last>Previous</a></li>";
+        echo "<li><a href = $_PHP_SELF?page=$page>Next</a></li>";
+    }else if( $page == 0 ) {
+        echo "<li><a href = $_PHP_SELF?page=$page>Next</a></li>";
+    }else if( $left_rec < $rec_limit ) {
+        $last = $page-2 ;
+        echo "<li><a href = $_PHP_SELF?page=$last>Previous</a><li>";
+    }
+    echo "</ul>";*/
+    //var_dump($offset)
+
+    echo "<ul class=pagination>";
+    for($i=1;$i<=$str;$i++){
+        $act=$i-2;
+        echo "<li><a href =index.php?showAll=$showAll?page=$act>$i</a></li>";
+        $showAll = $_GET['ShowAll'];
+    }
+    echo "</ul>";
         ?>
-
+    <!--<div>
+        <ul class="pagination">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
+    </div>-->
+    <form class="form-vertical letter" method="post">
+        <div class="form-group" id="letter">
+            <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
+            <!--<label for="sel1">(select one):</label>-->
+            <select class="form-control" name="choice" id="sel1">
+                <option>EN</option>
+                <option>SK</option>
+            </select>
+            <button type="submit" class="btn btn-default navbar-btn" name="in">Prihlasit</button>
+            <button type="submit" class="btn btn-default navbar-btn" name="out">Odhlasit</button>
+        </div>
+    </form>
 </div>
-
 
 <footer>
     <div class="container">
@@ -235,18 +294,23 @@ $db = new Database();
     </div>
     </div>
 </footer>
-<script src="../../menu/jQueryScripts.js"></script>
+<script src="../menu/jQueryScripts.js"></script>
 </body>
 
 </html>
 <?php
 
 
-if (isset($_POST['email'])){
+if (isset($_POST['in'])){
 $db = new Database();
 $email=$_POST['email'];
 $newsLang=$_POST['choice'];
 $db->insertNewsletterSubs($email,$newsLang);
 }
-
+if (isset($_POST['out'])){
+    $db = new Database();
+    $email=$_POST['email'];
+    $newsLang=$_POST['choice'];
+    $db->deleteNewsletterSubs($email,$newsLang);
+}
 ?>

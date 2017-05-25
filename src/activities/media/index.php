@@ -53,12 +53,12 @@ $js = $ex->fetchMedia();
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -145,6 +145,7 @@ $js = $ex->fetchMedia();
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->act_media; ?></h2>
@@ -155,8 +156,8 @@ $js = $ex->fetchMedia();
         <?php
         for($i=0;$i<count($js);$i++)
         {
-           echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['TITLE']."</h3>";
-           echo "<h4><i class='fa fa-newspaper-o' style='line-height:6%;color:#4268f4!important;'></i> ".$js[$i]['MEDIA']."</h4>";
+           echo "<h3><i class='fa fa-camera' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]['TITLE']."</h3>";
+           echo "<h4><i class='fa fa-newspaper-o' style='line-height:6%;color:#0066cc!important;'></i> ".$js[$i]['MEDIA']."</h4>";
            if(strpos($js[$i]['DATE'], '.') !== false)
            {
             $date = str_replace('.', '/',$js[$i]['DATE'] );
@@ -165,14 +166,14 @@ $js = $ex->fetchMedia();
             {
                 $date = $js[$i]['DATE'];
             }
-            echo "<h4><i class='fa fa-calendar' style='line-height:6%;color:#4268f4!important;'></i> ".$date."</h4>";
+            echo "<h4><i class='fa fa-calendar' style='line-height:6%;color:#0066cc!important;'></i> ".$date."</h4>";
             if(!empty($js[$i]['PDF']))
             {
-                echo "<h4><i class='fa fa-file-pdf-o' style='line-height:6%;color:#4268f4!important;'></i><a target='_blank' href ='".$js[$i]['PDF']."'> Zisti viac</a></h4>";
+                echo "<h4><i class='fa fa-file-pdf-o' style='line-height:6%;color:#0066cc!important;'></i><a target='_blank' href ='".$js[$i]['PDF']."'> Zisti viac</a></h4>";
             }
             if(!empty($js[$i]['URL']))
             {
-                echo "<h4><i class='fa fa-external-link' style='line-height:6%;color:#4268f4!important;'></i><a target='_blank' href ='".$js[$i]['URL']."'> Zisti viac</a></h4>";
+                echo "<h4><i class='fa fa-external-link' style='line-height:6%;color:#0066cc!important;'></i><a target='_blank' href ='".$js[$i]['URL']."'> Zisti viac</a></h4>";
             }
             echo "<hr>";
         }
@@ -222,9 +223,9 @@ $js = $ex->fetchMedia();
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk  </a> | <a href='/uamt/index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk </a>  | <a href='/uamt/index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -232,7 +233,7 @@ $js = $ex->fetchMedia();
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../menu/jQueryScripts.js"></script>
 </body>

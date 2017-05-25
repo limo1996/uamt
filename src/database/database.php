@@ -27,43 +27,57 @@ class Database
         }
     }
 
-    function fetchAisEmployees(){
+    function fetchAisEmployees()
+    {
         $request = $this->conn->prepare("SELECT * FROM ais_emp");
         $request->setFetchMode(PDO::FETCH_CLASS, "Employee");
         return $request->execute() ? $request->fetchAll() : null;
     }
 
-    function fetchEmployees(){
+    function fetchEmployees()
+    {
         $request = $this->conn->prepare("SELECT * FROM employees");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
     }
 
-    function sortEmployeesBy($sortBy){
-        $request = $this->conn->prepare("SELECT * FROM `employees` ORDER BY `employees`.`".$sortBy."` ASC");
+    function sortEmployeesBy($sortBy)
+    {
+        $request = $this->conn->prepare("SELECT * FROM `employees` ORDER BY `employees`.`" . $sortBy . "` ASC");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
     }
 
-    function sortAndFilterEmployeesBy($sortBy, $filterBy, $keyword){
-        $request = $this->conn->prepare("SELECT * FROM employees WHERE ".$filterBy." LIKE '%".$keyword."%' ORDER BY ".$sortBy);
+    function sortAndFilterEmployeesBy($sortBy, $filterBy, $keyword)
+    {
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE " . $filterBy . " LIKE '%" . $keyword . "%' ORDER BY " . $sortBy);
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':keyword' => $keyword)) ? $request->fetchAll() : null;
     }
 
-    function filterEmployeesBy($filterBy, $keyword){
-        $request = $this->conn->prepare("SELECT * FROM employees WHERE ".$filterBy." LIKE '%".$keyword."%'");
+    function filterEmployeesBy($filterBy, $keyword)
+    {
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE " . $filterBy . " LIKE '%" . $keyword . "%'");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':filterBy' => $filterBy, ':keyword' => $keyword)) ? $request->fetchAll() : null;
     }
 
-    function getEmployee($id, $name){
+    function getEmployee($id, $name)
+    {
         $request = $this->conn->prepare("SELECT * FROM employees WHERE PHONE = :id AND SECOND_NAME = :name");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':id' => $id, ':name' => $name)) ? $request->fetchAll() : null;
     }
 
-    function getUsrId($surname){
+    function getEmployeeByID($id)
+    {
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE ID = :id");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
+    }
+
+    function getUsrId($surname)
+    {
         $request = $this->conn->prepare("SELECT AIS_ID FROM ais_emp WHERE SECOND_NAME = :surname");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute(array(':surname' => $surname)) ? $request->fetchAll() : null;
@@ -79,6 +93,12 @@ class Database
     function fetchVideos()
     {
         $request = $this->conn->prepare("SELECT * FROM video");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+    function fetchPropagationVideos()
+    {
+        $request = $this->conn->prepare("SELECT * FROM video WHERE TYPE='propagácia' LIMIT 2");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
     }
@@ -156,28 +176,52 @@ class Database
         $request = $this->conn->prepare($sql);
         return $request->execute() ? $request->fetchAll() : null;
     }
+
     /************************* NEWS *********************************/
-    function fetchAllNews(){
-        $sql = "SELECT * FROM Aktuality";
+    function fetchAllNewsByLang($newsLang,$offset,$rec_limit)
+    {
+        $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang LIMIT $offset,$rec_limit";
         $request = $this->conn->prepare($sql);
-        return $request->execute() ? $request->fetchAll() : null;
+        return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
     }
-    function insertNewsletterSubs($email,$newsLang){
+    function fetchAllActiveNewsByLang($newsLang,$offset,$rec_limit,$date)
+    {
+        $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang AND Active >= :date LIMIT $offset,$rec_limit";
+        $request = $this->conn->prepare($sql);
+        return $request->execute(array(':newsLang' => $newsLang,':date'=>$date)) ? $request->fetchAll() : null;
+    }
+    function insertNewsletterSubs($email, $newsLang)
+    {
         $sql = "INSERT INTO newsletter(Email,newsLang) VALUES (:email,:newsLang)";
         $request = $this->conn->prepare($sql);
-        $request->execute(array(':email' => $email,':newsLang'=> $newsLang));
+        $request->execute(array(':email' => $email, ':newsLang' => $newsLang));
     }
-    function deleteNewsletterSubs($email)
+
+    function deleteNewsletterSubs($email,$newsLang)
     {
-        $sql = "DELETE FROM newsletter WHERE Email = :email ";
+        $sql = "DELETE FROM newsletter WHERE Email = :email AND newsLang = :newsLang";
         $request = $this->conn->prepare($sql);
-        $request->execute(array(':email' => $email));
+        $request->execute(array(':email' => $email,':newsLang'=>$newsLang));
     }
+
     function fetchSubsByLang($newsLang)
     {
         $request = $this->conn->prepare("SELECT Email, newsLang FROM newsletter WHERE newsLang= :newsLang");
         $request->setFetchMode(PDO::FETCH_ASSOC, "newsletter");
         return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
+    }
+
+    function getCountOfNews($newsLang)
+    {
+        $request = $this->conn->prepare("SELECT COUNT(Title) FROM `Aktuality` WHERE Lang= :newsLang");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':newsLang' => $newsLang)) ? $request->fetchAll() : null;
+    }
+    function getCountOfActiveNews($newsLang,$date)
+    {
+        $request = $this->conn->prepare("SELECT COUNT(Title) FROM `Aktuality` WHERE Lang= :newsLang AND Active >= :date");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':newsLang' => $newsLang,':date'=>$date)) ? $request->fetchAll() : null;
     }
 
     /******************** INTRANET-DOCUMENTS **********************/
@@ -224,17 +268,52 @@ class Database
             $sql = "UPDATE document SET source = :source WHERE id = :id";
             $request = $this->conn->prepare($sql);
             $request->execute(array(':id' => $id, ':source' => $source));
-        }
-        else if ($source == null || $source == '') {
+        } else if ($source == null || $source == '') {
             $sql = "UPDATE document SET name = :name WHERE id = :id";
             $request = $this->conn->prepare($sql);
             $request->execute(array(':id' => $id, ':name' => $name));
-        }
-        else {
+        } else {
             $sql = "UPDATE document SET name = :name, source = :source WHERE id = :id";
             $request = $this->conn->prepare($sql);
             $request->execute(array(':id' => $id, ':name' => $name, ':source' => $source));
         }
+    }
+
+    /******************** INTRANET-PURCHASES **********************/
+    function getPurchases()
+    {
+        $request = $this->conn->prepare("SELECT * FROM purchases");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function updatePurchase($id, $text)
+    {
+        $sql = "UPDATE purchases SET TEXT = :text WHERE ID = :id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':id' => $id, ':text' => $text));
+    }
+
+    function insertPurchase($text)
+    {
+        $sql = "INSERT INTO purchases (TEXT) VALUES (:text)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':text' => $text));
+    }
+
+    function deletePurchase($id)
+    {
+        $sql = "DELETE FROM purchases WHERE id = :id";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':id' => $id));
+    }
+
+    /******************** ROLES **********************/
+    function getUserRoles($ldap)
+    {
+        $request = $this->conn->prepare("SELECT roles.ROLE FROM roles JOIN employee_role ON roles.ID = employee_role.ROLE JOIN employees ON employee_role.EMPLOYEE = employees.ID WHERE employees.LDAPLOGIN = :ldap");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute(array(':ldap' => $ldap)) ? $request->fetchAll() : null;
     }
 
 }

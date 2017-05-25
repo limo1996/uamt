@@ -25,6 +25,8 @@ $text2 = $lan->getTextForPage('research');
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../../menu/menuScripts.js"></script>
+
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>
@@ -39,12 +41,12 @@ $text2 = $lan->getTextForPage('research');
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -131,6 +133,7 @@ $text2 = $lan->getTextForPage('research');
 
             </ul>
         </div>
+    </div>
 </nav>
 <div id="nazov">
     <h2><?php echo $text->research_vehicle;?></h2>
@@ -169,7 +172,7 @@ $text2 = $lan->getTextForPage('research');
     </div>
     <div class="col-sm-3"></div>
 
-</div>
+
 <footer>
     <div class="container">
         <div class="container">
@@ -209,9 +212,9 @@ $text2 = $lan->getTextForPage('research');
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk </a>  | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -219,7 +222,7 @@ $text2 = $lan->getTextForPage('research');
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../../menu/jQueryScripts.js"></script>
 </body>

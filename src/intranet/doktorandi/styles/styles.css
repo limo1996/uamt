@@ -1,8 +1,17 @@
-.space {
-    margin-bottom: 50px;
+.table {
+    width: 700px;
 }
 
-#myModal {
+td {
+    width: 200px;
+}
+
+
+.right_pos {
+    width: 5px;
+}
+
+#myModal, #myModal2 {
     margin-top: 110px;
 }
 
@@ -25,14 +34,14 @@
     margin-bottom: 15px;
 }
 
-#selectCategory, #newCategory, #attachFile, #attachLink {
+#selectCategory, #newCategory, #attachFile, #attachLink, #attachFile2, #attachLink2 {
     display: none;
 }
 
 .funkyradio div {
     clear: both;
     overflow: hidden;
-
+    margin-bottom: -4px;
 }
 
 .funkyradio label {
@@ -106,4 +115,86 @@
 .funkyradio-success input[type="checkbox"]:checked ~ label:before {
     color: #fff;
     background-color: #5cb85c;
+}
+
+#intranet-wrapper {
+    position: relative;
+    vertical-align: bottom;
+    min-height: 400px;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+#sidebar-wrapper {
+    top: 0px;
+    left: -170px;
+    width: 170px;
+    background-color: #8080ff;
+    color: white;
+    position: absolute;
+    height: 100%;
+    z-index: 1;
+    border-right: 1px solid purple;
+
+}
+.sidebar-nav {
+    margin-top: 60px;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    width: 170px;
+}
+
+@media print {
+    #sidebar-wrapper {display: none;}
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 50px;
+}
+.sidebar-nav li a {
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+.sidebar-nav li a:hover {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    text-decoration: none;
+}
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+#sidebar-wrapper.sidebar-toggle {
+    transition: all 0.3s ease-out;
+    margin-left: -170px;
+}
+
+@media screen and (max-width: 1480px) {
+    #sidebar-wrapper.sidebar-toggle {
+        transition: 0s;
+        left: -170px;
+    }
+    .navbar-sidebar {
+        display: inline;
+    }
+}
+
+@media screen and (min-width: 1481px) {
+    #sidebar-wrapper.sidebar-toggle {
+        transition: 0s;
+        left: 170px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #sidebar-wrapper.sidebar-toggle {
+        transition: 0s;
+        left: -170px;
+    }
+    .navbar-sidebar {
+        display: none;
+    }
+
 }

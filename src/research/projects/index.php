@@ -49,12 +49,12 @@ $projects =  $lan->getTextForPage('projects');
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -141,6 +141,7 @@ $projects =  $lan->getTextForPage('projects');
 
             </ul>
         </div>
+    </div>
 </nav>
 <div class="modal fade" id="myModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -150,6 +151,9 @@ $projects =  $lan->getTextForPage('projects');
                 <h5 class="modal-title" id="modalHeader" style="color: #0066cc"></h5>
                 <h6 id="ModalName"></h6>
                 <h6 id="ModalDatum"></h6>
+                <h6 id="ModalWeb"></h6>
+                <h6 id="ModalPartner"></h6>
+
             </div>
             <div class="modal-body" id="modalBody">
 
@@ -172,21 +176,24 @@ $projects =  $lan->getTextForPage('projects');
     <?php
     foreach ($projects as $project) {
         $annotations[$project['TITLE']] = $project['ANNOTATION'];
+        $webPages[$project['TITLE']] = $project['WEB'];
+        $partners[$project['TITLE']] = $project['PARTNERS'];
+
     }
     ?>
 
 
 
-    <div class="col-sm-3"></div>
+    <div class="col-sm-2"></div>
     <div id="tabs" class="col-sm-8 center">
         <ul id="list" class="nav nav-tabs">
             <li class="active" id="labak"><a  href="#1" data-toggle="tab" ><?php echo $text2['all']; ?></a></li>
             <li id="predmet"><a  href="#2" data-toggle="tab"><?php echo $text2['inter']; ?></a></li>
             <li id="prop"><a  href="#3" data-toggle="tab">VEGA</a></li>
-            <li id="zariadenie"><a  href="#4" data-toggle="tab">APVV</a></li>
-            <li id="zariadenie"><a  href="#5" data-toggle="tab">KEGA</a></li>
+            <li><a  href="#4" data-toggle="tab">APVV</a></li>
+            <li><a  href="#5" data-toggle="tab">KEGA</a></li>
 
-            <li id="zariadenie"><a  href="#6" data-toggle="tab"><?php echo $text2['other']; ?></a></li>
+            <li><a  href="#6" data-toggle="tab"><?php echo $text2['other']; ?></a></li>
 
         </ul>
     </div>
@@ -207,7 +214,7 @@ $projects =  $lan->getTextForPage('projects');
 
                 foreach ($projects as $project) {
                     echo "<tr>";
-                    echo "<td>" .  $project['ID'] . "</td>";
+                    echo "<td>" .  $project['NUMBER'] . "</td>";
                     echo "<td>" .  $project['TITLE'] . "</td>";
                     echo "<td>" .  $project['DURATION'] . "</td>";
                     echo "<td>" .  $project['COORDINATION'] . "</td>";
@@ -236,7 +243,7 @@ $projects =  $lan->getTextForPage('projects');
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "VEGA") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -265,7 +272,7 @@ $projects =  $lan->getTextForPage('projects');
                 foreach ($projects as $project) {
                     if ($project['TYPE'] != "VEGA" && $project['TYPE'] != "APVV" && $project['TYPE'] != "KEGA" && $project['TYPE'] != "Iné domáce projekty" ) {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -294,7 +301,7 @@ $projects =  $lan->getTextForPage('projects');
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "APVV") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -323,7 +330,7 @@ $projects =  $lan->getTextForPage('projects');
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "KEGA") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -352,7 +359,7 @@ $projects =  $lan->getTextForPage('projects');
                 foreach ($projects as $project) {
                     if ($project['TYPE'] == "Iné domáce projekty") {
                         echo "<tr>";
-                        echo "<td>" . $project['ID'] . "</td>";
+                        echo "<td>" . $project['NUMBER'] . "</td>";
                         echo "<td>" . $project['TITLE'] . "</td>";
                         echo "<td>" . $project['DURATION'] . "</td>";
                         echo "<td>" . $project['COORDINATION'] . "</td>";
@@ -374,6 +381,9 @@ $projects =  $lan->getTextForPage('projects');
     <script>
         <?php
         echo "var annotations = ".json_encode($annotations).";\n";
+        echo "var webPages = ".json_encode($webPages).";\n";
+        echo "var partners = ".json_encode($partners).";\n";
+
         ?>
         $('#displayTable').find('tr').click( function(){
             var title = this.cells[1].innerHTML;
@@ -382,8 +392,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+            $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+            $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -399,8 +414,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -414,8 +434,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -430,8 +455,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -446,8 +476,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -462,8 +497,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -477,8 +517,13 @@ $projects =  $lan->getTextForPage('projects');
             //alert(title+supervisor+ustav);
 
             $('#modalHeader').html(title);
-            $("#ModalName").html("Zodpovedny riesitel: " + supervisor);
-            $("#ModalDatum").html("Doba riesenia: " + date);
+            $("#ModalName").html(supervisor);
+            $("#ModalDatum").html(date);
+            if ( webPages[title]){
+                $("#ModalWeb").html(webPages[title] );
+            }
+            if ( partners[title]){
+                $("#ModalPartner").html(partners[title]);}
             $("#modalBody").html(annotations[title]);
 
             if(title != "Názov")
@@ -532,9 +577,9 @@ $projects =  $lan->getTextForPage('projects');
 
                 <?php
                 if($lang == 'sk')
-                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk   | <a href='index.php?lang=en'>  English </a>";
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk  </a> | <a href='index.php?lang=en'>  English </a>";
                 else
-                    echo "<a href='index.php?lang=sk' > Slovensky jazyk   | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
 
                 ?>
             </div>
@@ -542,7 +587,7 @@ $projects =  $lan->getTextForPage('projects');
         </div>
 
     </div>
-    </div>
+
 </footer>
 <script src="../../menu/jQueryScripts.js"></script>
 </body>
