@@ -7,6 +7,7 @@ if (isset($_GET['lang']))
 
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
+$text2 = $lan->getTextForPage('home');
 
 include_once ("database/database.php");
 $ex = new Database();
@@ -169,8 +170,8 @@ function getYoutube($url)
 
 <div id="content" >
     <div class="container">
-        <h2> Novinky</h2>
-        <h3>Pridaj sa k nám...</h3>
+        <h2> <?php echo $text2['1']; ?> </h2>
+        <h3><?php echo $text2['2']; ?></h3>
         <div class="center">
             <?php
 
@@ -180,18 +181,30 @@ function getYoutube($url)
              ?>
         </div>
     </div>
+    <br>
     <div class="container">
-      <h4>Aktuality z ústavu</h4>
+      <h3><?php echo $text2['3']; ?></h3>
         <?php
         foreach($news as $act) {
             echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/news/feika.jpg class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
 						</div></div>";
         }
+
+        if(count($news) == 0){
+            echo '<h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">';
+            if($lang){
+                echo 'Žiadne aktuality niesu k dispozícii. Nové aktuality môžte pridať po prihlásení sa do Intranetu.';
+            } else {
+                echo 'No news available. You can add some after logging to Intranet.';
+            }
+            echo '</h3>';
+        }
         ?>
     </div>
 </div>
 
-
+<br>
+<br>
 <footer>
     <div class="container">
         <div class="container">

@@ -62,11 +62,11 @@ class Database
         return $request->execute(array(':filterBy' => $filterBy, ':keyword' => $keyword)) ? $request->fetchAll() : null;
     }
 
-    function getEmployee($id, $name)
+    function getEmployee($id)
     {
-        $request = $this->conn->prepare("SELECT * FROM employees WHERE PHONE = :id AND SECOND_NAME = :name");
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE ID = :id");
         $request->setFetchMode(PDO::FETCH_ASSOC);
-        return $request->execute(array(':id' => $id, ':name' => $name)) ? $request->fetchAll() : null;
+        return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
     }
 
     function getEmployeeByID($id)
