@@ -334,28 +334,28 @@ if(isset($_POST['save_emp'])) {
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="name">Meno</label>
                             <div class="col-md-9">
-                                <input id="name" name="name" type="text" placeholder="Meno" value="<?php echo $name;?>" class="form-control" required>
+                                <input id="name" name="name" type="text" placeholder="Meno" value="<?php echo $name;?>" class="form-control" maxlength="30" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="surname">Priezvisko</label>
                             <div class="col-md-9">
-                                <input id="surname" name="surname" type="text" placeholder="Priezvisko" value="<?php echo $surname;?>" class="form-control" required>
+                                <input id="surname" name="surname" type="text" placeholder="Priezvisko" value="<?php echo $surname;?>" class="form-control" maxlength="30" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="room">Miestnosť</label>
                             <div class="col-md-9">
-                                <input id="room" name="room" type="text" placeholder="Kancelária" value="<?php echo $room;?>" class="form-control">
+                                <input id="room" name="room" type="text" placeholder="Kancelária" value="<?php echo $room;?>" maxlength="20" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="phone">Telefón</label>
                             <div class="col-md-9">
-                                <input id="phone" name="phone" type="number" placeholder="Telefón" value="<?php echo $phone;?>" class="form-control">
+                                <input id="phone" name="phone" type="text" pattern="\d*" maxlength="4" placeholder="Telefón" value="<?php echo $phone;?>" class="form-control">
                             </div>
                         </div>
 
@@ -366,35 +366,35 @@ if(isset($_POST['save_emp'])) {
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"title1\">Titul 1</label>
                                     <div class=\"col-md-9\">
-                                        <input id=\"title1\" name=\"title1\" type=\"text\" placeholder=\"Titul 1\" value=\"$title1\" class=\"form-control\">
+                                        <input id=\"title1\" name=\"title1\" type=\"text\" placeholder=\"Titul 1\" value=\"$title1\" maxlength=\"10\" class=\"form-control\">
                                     </div>
                                 </div>
 
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"title2\">Titul 2</label>
                                     <div class=\"col-md-9\">
-                                        <input id=\"title2\" name=\"title2\" type=\"text\" placeholder=\"Titul 2\" value=\"$title2\" class=\"form-control\">
+                                        <input id=\"title2\" name=\"title2\" type=\"text\" placeholder=\"Titul 2\" value=\"$title2\"  maxlength=\"10\" class=\"form-control\">
                                     </div>
                                 </div>
 
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"department\">Oddelenie</label>
                                     <div class=\"col-md-9\">
-                                        <input id=\"department\" name=\"department\" type=\"text\" placeholder=\"Oddelenie\" value=\"$department\" class=\"form-control\">
+                                        <input id=\"department\" name=\"department\" type=\"text\" placeholder=\"Oddelenie\" value=\"$department\"  maxlength=\"20\" class=\"form-control\">
                                     </div>
                                 </div>
 
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"staff_role\">Typ zamestnanca</label>
                                     <div class=\"col-md-9\">
-                                        <input id=\"staff_role\" name=\"staff_role\" type=\"text\" placeholder=\"Typ zamestnanca\" value=\"$staff_role\" class=\"form-control\">
+                                        <input id=\"staff_role\" name=\"staff_role\" type=\"text\" placeholder=\"Typ zamestnanca\" value=\"$staff_role\"  maxlength=\"30\" class=\"form-control\">
                                     </div>
                                 </div>
 
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"function\">Funkcia</label>
                                     <div class=\"col-md-9\">
-                                        <input id=\"function\" name=\"function\" type=\"text\" placeholder=\"Funkcia\" value=\"$function\" class=\"form-control\">
+                                        <input id=\"function\" name=\"function\" type=\"text\" placeholder=\"Funkcia\" value=\"$function\"  maxlength=\"150\" class=\"form-control\">
                                     </div>
                                 </div>
                                 ";
@@ -404,7 +404,7 @@ if(isset($_POST['save_emp'])) {
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"ldaplogin\">LDAP login</label>
                                     <div class=\"col-md-9\">
-                                        <input id=\"ldaplogin\" name=\"ldaplogin\" type=\"text\" placeholder=\"LDAP login\" value=\"$ldaplogin\" class=\"form-control\">
+                                        <input id=\"ldaplogin\" name=\"ldaplogin\" type=\"text\" placeholder=\"LDAP login\" value=\"$ldaplogin\"  maxlength=\"20\" class=\"form-control\">
                                     </div>
                                 </div>
 

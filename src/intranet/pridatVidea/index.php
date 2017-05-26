@@ -182,14 +182,14 @@ if(isset($_POST['add_video'])) {
                         <div class="form-group">
                             <label for="video_name" class="col-sm-3 control-label">Názov videa</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="video_name" name="video_name" required>
+                                <input type="text" class="form-control" id="video_name" name="video_name" maxlength="100" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="link" class="col-sm-3 control-label">URL</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="link" name="link" required>
+                                <input type="text" class="form-control" id="link" name="link" maxlength="100" required>
                             </div>
                         </div>
 
