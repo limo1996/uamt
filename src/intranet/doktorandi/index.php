@@ -209,28 +209,38 @@ if(isset($_POST['save']))
             </a>
 
         </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatAktuality">
-                <i class="fa fa-font fa-2x"></i>
-                <span class="nav-text">Pridať aktuality</span>
-            </a>
 
-        </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatFotky">
-                <i class="fa fa-photo fa-2x"></i>
-                <span class="nav-text">Pridať fotky</span>
-            </a>
+        <?php
+        if (in_array("reporter", $roles) || in_array("editor", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatAktuality\">
+                    <i class=\"fa fa-font fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať aktuality</span>
+                </a>
+            </li>
+            ";
+        }
 
-        </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatVidea">
-                <i class="fa fa-play-circle fa-2x"></i>
-                <span class="nav-text">Pridať videa</span>
-            </a>
-
-        </li>
-
+        if (in_array("reporter", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatFotky\">
+                    <i class=\"fa fa-photo fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať fotky</span>
+                </a>
+            </li>
+            
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatVidea\">
+                    <i class=\"fa fa-play-circle fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať videa</span>
+                </a>
+            </li>
+            
+            ";
+        }
+        ?>
 
         <li>
             <a href="/uamt/intranet/logout.php">
@@ -309,7 +319,7 @@ if(isset($_POST['save']))
                         <div class=\"modal-body\">
                             <br style=\"clear:both\">
                             <div class=\"form-group\">
-                                <input type=\"text\" class=\"form-control\" id=\"documentName\" name=\"documentName\" placeholder=\"Názov dokumentu\" required>
+                                <input type=\"text\" class=\"form-control\" id=\"documentName\" name=\"documentName\" placeholder=\"Názov dokumentu\" maxlength=\"200\" required>
                             </div>
                             <div class=\"funkyradio\">
                                 <div class=\"funkyradio-success\">
@@ -334,7 +344,7 @@ if(isset($_POST['save']))
                             </div>
                             <div id=\"newCategory\">
                                 <div class=\"form-group\">
-                                    <input type=\"text\" class=\"form-control\" id=\"categoryName\" name=\"categoryName\" placeholder=\"Názov kategórie\">
+                                    <input type=\"text\" class=\"form-control\" id=\"categoryName\" name=\"categoryName\" placeholder=\"Názov kategórie\" maxlength=\"70\">
                                 </div>
                             </div>
                             <div class=\"funkyradio\">
@@ -351,7 +361,7 @@ if(isset($_POST['save']))
                                 <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">
                             </div>
                             <div id=\"attachLink\" class=\"form-group\">
-                                <input type=\"text\" class=\"form-control\" id=\"linkToFile\" name=\"linkToFile\" placeholder=\"Odkaz na dokument\">
+                                <input type=\"text\" class=\"form-control\" id=\"linkToFile\" name=\"linkToFile\" placeholder=\"Odkaz na dokument\" maxlength=\"1000\">
                             </div>
                         </div>
                          <div class=\"modal-footer\">
@@ -376,7 +386,7 @@ if(isset($_POST['save']))
                         <div class=\"modal-body\">
                             <br style=\"clear:both\">
                             <div class=\"form-group\">
-                                <input type=\"text\" class=\"form-control\" id=\"documentName2\" name=\"documentName2\" placeholder=\"Názov dokumentu\">
+                                <input type=\"text\" class=\"form-control\" id=\"documentName2\" name=\"documentName2\" placeholder=\"Názov dokumentu\" maxlength=\"200\">
                             </div>
                             <div class=\"funkyradio\">
                                 <div class=\"funkyradio-success\">
@@ -392,7 +402,7 @@ if(isset($_POST['save']))
                                 <input type=\"file\" name=\"fileToUpload2\" id=\"fileToUpload2\">
                             </div>
                             <div id=\"attachLink2\" class=\"form-group\">
-                                <input type=\"text\" class=\"form-control\" id=\"linkToFile2\" name=\"linkToFile2\" placeholder=\"Odkaz na dokument\">
+                                <input type=\"text\" class=\"form-control\" id=\"linkToFile2\" name=\"linkToFile2\" placeholder=\"Odkaz na dokument\" maxlength=\"1000\">
                             </div>
                         </div>
                         <div class=\"modal-footer\">

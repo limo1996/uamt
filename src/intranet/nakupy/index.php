@@ -126,27 +126,38 @@ if(isset($_POST['Delete'])) {
             </a>
 
         </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatAktuality">
-                <i class="fa fa-font fa-2x"></i>
-                <span class="nav-text">Pridať aktuality</span>
-            </a>
 
-        </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatFotky">
-                <i class="fa fa-photo fa-2x"></i>
-                <span class="nav-text">Pridať fotky</span>
-            </a>
+        <?php
+        if (in_array("reporter", $roles) || in_array("editor", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatAktuality\">
+                    <i class=\"fa fa-font fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať aktuality</span>
+                </a>
+            </li>
+            ";
+        }
 
-        </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatVidea">
-                <i class="fa fa-play-circle fa-2x"></i>
-                <span class="nav-text">Pridať videa</span>
-            </a>
-
-        </li>
+        if (in_array("reporter", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatFotky\">
+                    <i class=\"fa fa-photo fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať fotky</span>
+                </a>
+            </li>
+            
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatVidea\">
+                    <i class=\"fa fa-play-circle fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať videa</span>
+                </a>
+            </li>
+            
+            ";
+        }
+        ?>
 
 
         <li>
@@ -160,51 +171,58 @@ if(isset($_POST['Delete'])) {
 
 
 <div class="container space">
-    <?php
-    $data_target = "";
-    $data_target = "";
-    if (in_array("admin", $roles) || in_array("editor", $roles)) {
-        echo "<button id=\"add\" name=\"add\" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>";
-        $data_toggle = "data-toggle='modal'";
-        $data_target = "data-target='#myModal'";
-    }
 
-    $purchases = $db->getPurchases();
-    foreach($purchases as $purchase) {
-        $id = $purchase["ID"];
-        echo "<article class='div-hover' id='$id' $data_toggle $data_target>";
-        echo $purchase["TEXT"];
-        echo "</article>";
-    }
+    <div class="col-sm-1">
+    </div>
 
-    if (in_array("admin", $roles) || in_array("editor", $roles)) {
-        echo "
-            <!-- Modal -->
-            <div class=\"modal fade\" id=\"myModal\" data-reveal role=\"dialog\">
-                <div class=\"modal-dialog modal-lg\">
-                    <!-- Modal content-->
-                    <div class=\"modal-content form-area\">
-                        <div class=\"modal-header\">
-                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
-                            <h4 class=\"modal-title\">Upraviť nákup</h4>
+    <div class="col-sm-10">
+
+        <?php
+        $data_target = "";
+        $data_target = "";
+        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+            echo "<button id=\"add\" name=\"add\" class='btn btn-primary' type='button' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-pencil'></span> Nový nákup</button>";
+            $data_toggle = "data-toggle='modal'";
+            $data_target = "data-target='#myModal'";
+        }
+
+        $purchases = $db->getPurchases();
+        foreach($purchases as $purchase) {
+            $id = $purchase["ID"];
+            echo "<article class='div-hover' id='$id' $data_toggle $data_target>";
+            echo $purchase["TEXT"];
+            echo "</article>";
+        }
+
+        if (in_array("admin", $roles) || in_array("editor", $roles)) {
+            echo "
+                <!-- Modal -->
+                <div class=\"modal fade\" id=\"myModal\" data-reveal role=\"dialog\">
+                    <div class=\"modal-dialog modal-lg\">
+                        <!-- Modal content-->
+                        <div class=\"modal-content form-area\">
+                            <div class=\"modal-header\">
+                                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
+                                <h4 class=\"modal-title\">Upraviť nákup</h4>
+                            </div>
+                            <form method=\"post\" onsubmit=\"saveText();\">
+                                <div class=\"modal-body\">
+                                    <textarea id=\"editor_content\" name=\"textareas\" style=\"height:250px; margin:5px 5px 5px 5px;\"></textarea>
+                                </div>
+                                <div class=\"modal-footer\">
+                                    <button id=\"Cancel\" type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-share-alt\"></span> Zrušiť</button>
+                                    <button id=\"Delete\" name=\"Delete\" type=\"Submit\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Odstrániť</button>
+                                    <button id=\"Save\" name=\"Save\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť</button>
+                                    <button id=\"Add\" name=\"Add\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Pridať</button>
+                                </div>
+                            </form>
                         </div>
-                        <form method=\"post\" onsubmit=\"saveText();\">
-                            <div class=\"modal-body\">
-                                <textarea id=\"editor_content\" name=\"textareas\" style=\"height:250px; margin:5px 5px 5px 5px;\"></textarea>
-                            </div>
-                            <div class=\"modal-footer\">
-                                <button id=\"Cancel\" type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-share-alt\"></span> Zrušiť</button>
-                                <button id=\"Delete\" name=\"Delete\" type=\"Submit\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Odstrániť</button>
-                                <button id=\"Save\" name=\"Save\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť</button>
-                                <button id=\"Add\" name=\"Add\" type=\"Submit\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok\"></span> Pridať</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
-            </div>
-            ";
-    }
-    ?>
+                ";
+        }
+        ?>
+    </div>
 </div>
 
 <footer>
