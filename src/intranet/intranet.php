@@ -110,28 +110,38 @@ foreach($result as $role)
             </a>
 
         </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatAktuality">
-                <i class="fa fa-font fa-2x"></i>
-                <span class="nav-text">Pridať aktuality</span>
-            </a>
 
-        </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatFotky">
-                <i class="fa fa-photo fa-2x"></i>
-                <span class="nav-text">Pridať fotky</span>
-            </a>
+        <?php
+        if (in_array("reporter", $roles) || in_array("editor", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatAktuality\">
+                    <i class=\"fa fa-font fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať aktuality</span>
+                </a>
+            </li>
+            ";
+        }
 
-        </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatVidea">
-                <i class="fa fa-play-circle fa-2x"></i>
-                <span class="nav-text">Pridať videa</span>
-            </a>
-
-        </li>
-
+        if (in_array("reporter", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatFotky\">
+                    <i class=\"fa fa-photo fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať fotky</span>
+                </a>
+            </li>
+            
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatVidea\">
+                    <i class=\"fa fa-play-circle fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať videa</span>
+                </a>
+            </li>
+            
+            ";
+        }
+        ?>
 
         <li>
             <a href="/uamt/intranet/logout.php">
@@ -147,8 +157,8 @@ foreach($result as $role)
     <h2> Vitajte v Intranete</h2>
     <h3 style="text-align: center; color: purple; font-family: Monospace;"> Vitajte v Intranete</h3>
     <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip: Stránky obsahujú obsah, ktorý je viditeľný iba pre príslušnú rolu užívateľa</h3>
-    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip: Napríklad, na každej stránke v ľavo nájdeš rozšírujúce menu (ak máš príslušnú rolu)</h3>
-    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip2: Niekde je rozšírujúce menu reprezentované ikonou, po kliknutí sa zobrazí</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip2: Napríklad, na každej stránke v ľavo nájdeš rozšírujúce menu (ak máš príslušnú rolu)</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip3: Niekde je rozšírujúce menu reprezentované ikonou, po kliknutí sa zobrazí</h3>
 
 
     <?php

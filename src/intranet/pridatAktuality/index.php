@@ -16,6 +16,12 @@ $roles = array();
 foreach($result as $role)
     $roles[] = $role['ROLE'];
 //---------------------------------------------
+
+if (!in_array("reporter", $roles) && !in_array("editor", $roles) && !in_array("admin", $roles)) {
+    header("Location:../index.php");
+    die;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -111,28 +117,38 @@ foreach($result as $role)
                 </a>
 
             </li>
-            <li class="has-subnav active">
-                <a href="/uamt/intranet/pridatAktuality">
-                    <i class="fa fa-font fa-2x"></i>
-                    <span class="nav-text">Pridať aktuality</span>
+
+            <?php
+            if (in_array("reporter", $roles) || in_array("editor", $roles) || in_array("admin", $roles)) {
+                echo "
+            <li class=\"has-subnav active\">
+                <a href=\"/uamt/intranet/pridatAktuality\">
+                    <i class=\"fa fa-font fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať aktuality</span>
                 </a>
-
             </li>
-            <li class="has-subnav">
-                <a href="/uamt/intranet/pridatFotky">
-                    <i class="fa fa-photo fa-2x"></i>
-                    <span class="nav-text">Pridať fotky</span>
+            ";
+            }
+
+            if (in_array("reporter", $roles) || in_array("admin", $roles)) {
+                echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatFotky\">
+                    <i class=\"fa fa-photo fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať fotky</span>
                 </a>
-
             </li>
-            <li class="has-subnav">
-                <a href="/uamt/intranet/pridatVidea">
-                    <i class="fa fa-play-circle fa-2x"></i>
-                    <span class="nav-text">Pridať videa</span>
+            
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatVidea\">
+                    <i class=\"fa fa-play-circle fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať videa</span>
                 </a>
-
             </li>
-
+            
+            ";
+            }
+            ?>
 
             <li>
                 <a href="/uamt/intranet/logout.php">
@@ -187,7 +203,11 @@ foreach($result as $role)
                     <textarea class="form-control" rows="10" id="text" name="text"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-default" name="add">Pridat</button>
+                <div class="col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success" name="add">
+                        <span class="glyphicon glyphicon-plus"></span> Pridať aktualitu
+                    </button>
+                </div>
 
             </form>
 
