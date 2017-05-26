@@ -164,12 +164,12 @@ if (!in_array("reporter", $roles) && !in_array("editor", $roles) && !in_array("a
             <form  method="post" class ="form-vertical" enctype=multipart/form-data>
                 <div class="form-group col-sm-4">
                     <label for="title">Nadpis</label>
-                    <input type="text" class="form-control" name="title" id="title">
+                    <input type="text" class="form-control" name="title" id="title" maxlength="50">
                 </div>
 
                 <div class="form-group col-sm-4">
                     <label for="desc">Popis</label>
-                    <input type="text" class="form-control" name="desc" id="desc">
+                    <input type="text" class="form-control" name="desc" id="desc" maxlength="255">
                 </div>
 
                 <div class="form-group col-sm-4">
@@ -271,9 +271,23 @@ if(isset($_POST['add'])) {
     $title=$_POST['title'];
     $desc = $_POST['desc'];
     $datum = $_POST['datum'];
-    $category = $_POST['category'];
-    $jazyk = $_POST['jazyk'];
 
+    $jazyk = $_POST['jazyk'];
+    if($jazyk=='SK'){
+        if($_POST['category']=="Oznamy"){
+            $category="Announcement";
+        }
+        elseif($_POST['category']=="Propagácia"){
+            $category="Propagation";
+        }
+        elseif($_POST['category']=="Zo života ústavu"){
+            $category="From Department";
+        }
+
+    }
+    else{
+        $category = $_POST['category'];
+    }
     if(isset($_FILES["pic"]) && $_FILES["pic"]["name"]!=""){
         echo "preslo cez podmienku";
         $filename = $_FILES["pic"];

@@ -301,7 +301,7 @@ class Database
     {
         $request = $this->conn->prepare("SELECT COUNT(Title) FROM `Aktuality` WHERE Lang= :newsLang AND Category= :cat");
         $request->setFetchMode(PDO::FETCH_ASSOC);
-        return $request->execute(array(':newsLang' => $newsLang,':cat'=>$cat)) ? $request->fetchAll() : null;
+        return $request->execute(array(':newsLang' => $newsLang,':cat' => $cat)) ? $request->fetchAll() : null;
     }
     function getCountOfActiveCatNews($newsLang,$cat,$date)
     {

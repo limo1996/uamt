@@ -34,7 +34,7 @@ else{
 }
 $rec_limit=6;
 $rec_count= $count[0]["COUNT(Title)"];
-echo $rec_count;
+
 $str=ceil($rec_count/$rec_limit);
 
 
@@ -249,28 +249,39 @@ else {
     echo "</ul>";*/
     //var_dump($offset)
 
-    echo "<ul class=pagination>";
-    for($i=0;$i<$str;$i++){
-        $act=$i+1;
-        $showAll = $_GET['ShowAll'];
 
-        echo "<li><a href =index.php?lang=$lang&ShowAll=$showAll&page=$i&category=$cat>$act</a></li>";
-    }
-    echo "</ul>";
 
 
         ?>
 
     <form class="form-vertical letter" method="post">
-        <div class="form-group" id="letter">
+        <div class="form-group" id="letter">Newsletter<br>
             <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
             <!--<label for="sel1">(select one):</label>-->
             <select class="form-control" name="choice" id="sel1">
                 <option>EN</option>
                 <option>SK</option>
             </select>
-            <button type="submit" class="btn btn-default navbar-btn" name="in" >Prihlasit</button>
-            <button type="submit" class="btn btn-default navbar-btn" name="out">Odhlasit</button>
+
+            <?php if($lang=='sk'){
+
+                echo "<button type=submit class='btn btn-default navbar-btn' name=in >Prihlasiť</button>
+            <button type=submit class='btn btn-default navbar-btn' name=out>Odhlasiť</button>";
+            }
+            else{
+                echo "<button type=submit class='btn btn-default navbar-btn' name=in >Sign in</button>
+            <button type=submit class='btn btn-default navbar-btn' name=out>Sign out</button>";
+            }
+
+            echo "<ul class=pagination>";
+            for($i=0;$i<$str;$i++){
+                $act=$i+1;
+                $showAll = $_GET['ShowAll'];
+
+                echo "<li><a href =index.php?lang=$lang&ShowAll=$showAll&page=$i&category=$cat>$act</a></li>";
+            }
+            echo "</ul>";
+            ?>
         </div>
     </form>
 
