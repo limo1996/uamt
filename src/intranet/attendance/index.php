@@ -144,7 +144,7 @@ foreach ($result as $role)
         </li>
 
         <?php
-        if (in_array("reporter", $roles) || in_array("editor", $roles) || in_array("admin", $roles)) {
+        if (in_array("reporter", $roles) && in_array("editor", $roles) && in_array("admin", $roles)) {
             echo "
             <li class=\"has-subnav\">
                 <a href=\"/uamt/intranet/pridatAktuality\">
@@ -155,7 +155,7 @@ foreach ($result as $role)
             ";
         }
 
-        if (in_array("reporter", $roles) || in_array("admin", $roles)) {
+        if (in_array("reporter", $roles) && in_array("admin", $roles)) {
             echo "
             <li class=\"has-subnav\">
                 <a href=\"/uamt/intranet/pridatFotky\">
