@@ -117,11 +117,7 @@ td {
     background-color: #5cb85c;
 }
 
-#intranet-wrapper {
-    position: relative;
-    vertical-align: bottom;
-    min-height: 400px;
-    height: 100%;
+.space {
     padding-bottom: 50px;
 }
 

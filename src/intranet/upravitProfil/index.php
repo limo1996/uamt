@@ -255,7 +255,7 @@ if(isset($_POST['save_emp'])) {
     </ul>
 </nav>
 
-<div class="container">
+<div class="container space">
     <?php
     if (in_array("admin", $roles)) {
         echo "

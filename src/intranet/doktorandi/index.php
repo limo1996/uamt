@@ -236,7 +236,7 @@ if(isset($_POST['save']))
 </nav>
 
 
-<div class="container">
+<div class="container space">
     <div id="documents">
         <?php
         $categories = $db->getTabCategories($tab);

@@ -38,9 +38,9 @@ foreach($result as $role)
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
+    <link href="styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../../menu/menuScripts.js"></script>
-    <script src="../doktorandi/script/script.js"></script>
+    <script src="script/script.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -137,7 +137,7 @@ foreach($result as $role)
 </nav>
 
 
-<div class="container">
+<div class="container space">
 
 </div>
 

@@ -152,7 +152,7 @@ if(isset($_POST['Delete'])) {
 </nav>
 
 
-<div class="container">
+<div class="container space">
     <?php
     $data_target = "";
     $data_target = "";

@@ -174,7 +174,6 @@ if(isset($_POST['save']))
     </div>
 </nav>
 
-<div id="intranet-wrapper">
     <div id="nazov">
         <h2><?php echo "Pedagogika" ?></h2>
         <hr class="hr_nazov">
@@ -236,8 +235,7 @@ if(isset($_POST['save']))
         </ul>
     </nav>
 
-
-    <div class="container">
+    <div class="container space">
         <div id="documents">
             <?php
             $categories = $db->getTabCategories($tab);
@@ -396,7 +394,6 @@ if(isset($_POST['save']))
         }
         ?>
     </div>
-</div>
 
 <footer>
     <div class="container">
