@@ -29,8 +29,6 @@ function getYoutube($url)
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="sk">
 

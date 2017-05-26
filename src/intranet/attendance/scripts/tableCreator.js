@@ -137,14 +137,14 @@ $(document).ready(function(){
     $('#selector').hide();
     $('#editBtn').click(function(){
         var value = $(this).text();
-        if(value == "   Edituj   "){
-            $(this).html('   Ulož   ');
+        if(value == "Edituj"){
+            $(this).html('Ulož');
             $('#selector').show();
             editEnabled = true;
             $('#NoIconDemo').attr('disabled', true);
         }
         else{
-            $(this).html('   Edituj   ');
+            $(this).html('Edituj');
             $('#selector').hide();
             editEnabled = false;
             deleteRecords();
@@ -154,7 +154,7 @@ $(document).ready(function(){
 
     $('.tableChoise').click(function (){
         var id = $(this).attr('id');
-        if (!canUserEdit || id != '5')
+        if (!canUserEdit && id != '5')
             return;
 
         markColor = getAbsenceColor(id);
@@ -170,6 +170,18 @@ function getAbsenceColor(id) {
     else if (id == 3) color = "#2aabd2";
     else if (id == 4) color = "#eb9316";
     else color = "#c12e2a";
+    return color;
+}
+
+function getAbsenceLetter(id) {
+    if(id == null || isNaN(id))
+        return "";
+    var color;
+    if(id == 1) color = "PN";
+    else if (id == 2) color = "O";
+    else if (id == 3) color = "S";
+    else if (id == 4) color = "D";
+    else color = "P";
     return color;
 }
 
@@ -346,3 +358,99 @@ function removeFromAll(absence) {
     if(index > -1)
         updated.splice(index, 1);
 }
+
+function printPDFTable(month, year, employees, employeesDays){
+    var table = "<table id='tmpTable' style='border: 1px solid black;'>";
+    var monthCount = getMonthDaysCount(month, year);
+
+    for(var i = 0; i <= employees.length; i++) {
+        if (i == 0)
+            table += "<tr><th>Meno</th>";
+        else
+            table += "<tr><th>" + removeDiacritics(employees[i - 1]) + "</th>";
+        for (var j = 1; j <= monthCount; j++) {
+            var day = getDay(year, month, j);
+            if (i == 0) {
+                var insert = "";
+                if (day == "Sun" || day == "Sat")
+                    insert = "style='font-weight: bold;'";
+                table += "<th " + insert + "> " + j + "</th>";
+            }
+            else {
+                var name = employeesDays[employees[i - 1]];
+                var letter = getAbsenceLetter(name[j - 1]);
+                if (day == "Sun" || day == "Sat")
+                    letter = 'X';
+                table += "<td>" + letter + "</td>";
+            }
+        }
+        if(i == 0){
+            table += "<th>odpr</th><th>PN</th><th>O</th><th>S</th><th>D</th><th>P</th><th>SUM</th>"
+        }
+        else {
+            table += "<td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+        }
+        table += "</tr>";
+    }
+
+    table += "</table>";
+    var fuck = document.getElementById("toPrint");
+    fuck.innerHTML = table;
+    printPDF();
+}
+
+function getAndPrintPDFTable(month, year, doc) {
+    $.post("/uamt/intranet/attendance/php/getAbsences.php", {'month' : month, 'year' : year, 'restrict': doc }, function (data, status) {
+        data = JSON.parse(data);
+        var names = data[0];
+        var dictionary = data[1];
+        var tmp = dictionary[names[0]];
+        var down = false;
+        printPDFTable(month, year, names, dictionary);
+    });
+}
+
+
+// "what?" version ... http://jsperf.com/diacritics/12
+function removeDiacritics (str) {
+    str = str.replace('č', 'c');
+    return str.replace('Ť', 'T');
+}
+
+function exportPDF(doc) {
+    getAndPrintPDFTable(globalMonth, globalYear, doc);
+}
+function printPDF() {
+    var doc = new jsPDF('landscape');
+    var months = ['JANUÁR', 'FEBRUÁR', 'MAREC', 'APRÍL', 'MÁJ', 'JÚN', 'JÚL', 'AUGUST', 'SEPTEMBER', 'OKTÓBER', 'NOVEMBER', 'DECEMBER'];
+
+    doc.setFontSize(8);
+    doc.text('Slovenská technická univerzita Bratislava, Fakulta elektrotechniky a informatiky ', 15, 5);
+    doc.text('Pracovisko: Ústav automobilovej mechatroniky', 15, 9);
+    var textWidth = doc.getStringUnitWidth('EVIDENCIA DOCHÁDZKY') * doc.internal.getFontSize() / doc.internal.scaleFactor;
+    var textOffset = (doc.internal.pageSize.width - textWidth) / 2;
+    doc.text("Za mesiac: " + months[globalMonth - 1] + " " + globalYear, 15, 13);
+    doc.text(textOffset, 17, 'EVIDENCIA DOCHÁDZKY');
+
+    //doc.fromHTML($("#toPrint").get(0), 10, 17);
+    var res = doc.autoTableHtmlToJson($("#tmpTable").get(0));
+
+    doc.setFontSize(8);
+    doc.autoTable(res.columns, res.data,
+        {
+            theme : 'grid',
+            startY: 20,
+            startX: 10,
+            headerStyles: {fillColor: [206, 214, 226]},
+            styles: {fontSize: 6/*, columnWidth: 'wrap', columnHeight: 'wrap'*/}// Red
+        });
+
+    doc.setFontSize(6);
+    doc.text(15, doc.autoTable.previous.finalY + 4, 'Vysvetlivky: PN-práce neschopný, O-OCR, S-Služobná cesta, D-Dovolenka, P-Plán dovolenky');
+    doc.setFontSize(8);
+    doc.text(textOffset * 1.5, doc.autoTable.previous.finalY + 15, "prof. Ing. Mikuláš Huba, PhD.");
+    doc.text(textOffset * 1.5 + 9, doc.autoTable.previous.finalY + 18, "riaditel ÚAMT");
+    doc.text(25, doc.autoTable.previous.finalY + 11, "Vypracoval: Tvoj tatko generator");
+    doc.save('dochadzka.pdf');
+}
+
