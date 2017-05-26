@@ -3,3 +3,12 @@
     -webkit-transform:rotate(90deg); /* Chrome, Safari, Opera */
     transform:rotate(90deg); /* Standard syntax */
 }
+
+.person {
+    border: 5px solid transparent;
+    margin-bottom: 10px;
+
+}
+.person:hover {
+    border-color: purple;
+}

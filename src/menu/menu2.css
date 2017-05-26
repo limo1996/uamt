@@ -27,7 +27,7 @@
     position:fixed;
     top:58px;
     bottom:0px;
-    height:259px;
+    height:295px;
 
     left:0;
     width:60px;
@@ -138,3 +138,9 @@ nav ul,nav li {
     }
 }
 
+
+@media only screen and (max-width: 600px) {
+    .main-menu {
+        height:35px;
+    }
+}

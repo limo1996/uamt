@@ -192,7 +192,7 @@ else {
 
     echo "<div class='container'>";
     foreach($news as $act) {
-        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/intranet/pridatAktuality/pic/".$act['Pic']." class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=#>".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
+        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/intranet/pridatAktuality/pic/".$act['Pic']." class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=http://147.175.98.167/uamt/news/show.php?id=".$act['ID'].">".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
 						</div></div>";
     }
     echo "<br><br></div>";
@@ -218,6 +218,8 @@ else {
         echo "<li><a href =$_PHP_SELF?page=$act>$i</a></li>";
     }
     echo "</ul>";
+
+
         ?>
 
     <form class="form-vertical letter" method="post">
@@ -242,14 +244,14 @@ else {
                 <a href="http://is.stuba.sk/">AIS STU</a>
             </div>
             <div class="col-sm-2 text-center">
-                <a href="http://aladin.elf.stuba.sk/rozvrh/ ">Rozvrh hodín FEI</a>
+                <a href="http://aladin.elf.stuba.sk/rozvrh/ "> <?php echo $text->timetable; ?></a>
             </div>
             <div class="col-sm-2 text-center">
                 <a href="http://elearn.elf.stuba.sk/moodle/  "> Moodle FEI</a>
 
             </div>
             <div class="col-sm-2 text-center">
-                <a href="https://www.jedalen.stuba.sk/WebKredit/"> Jedáleň STU </a>
+                <a href="https://www.jedalen.stuba.sk/WebKredit/"> <?php echo $text->cantine; ?> </a>
             </div>
 
 

@@ -101,11 +101,12 @@ usort($allRows, "cmp");
 <html>
 <head>
     <link href="detailStyle.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
+
     <script src="../menu/menuScripts.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -127,17 +128,17 @@ usort($allRows, "cmp");
     <div class="nav-flags">
 
     </div>
-    </div>
+
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
+                <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/about/history/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_history; ?></a></li>
-                        <li><a href="/uamt/about/management/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_management; ?></a></li>
+                        <li ><a href="/uamt/about/management/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_management; ?></a></li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->about_department; ?><b
                                         class="caret"></b></a>
@@ -150,7 +151,7 @@ usort($allRows, "cmp");
                         </li>
                     </ul>
                 </li>
-                <li class="active"><a href="/uamt/employees/<?php echo "?lang=".$lang; ?>"><?php echo $text->staff; ?></a></li>
+                <li  class="active"><a href="/uamt/employees/<?php echo "?lang=".$lang; ?>"><?php echo $text->staff; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -214,11 +215,12 @@ usort($allRows, "cmp");
                     </ul>
                 </li>
                 <li><a href="/uamt/contactPage/<?php echo "?lang=".$lang; ?>"><?php echo $text->contact; ?></a></li>
-                <li><a href="/uamt/intranet/" style="color:purple"><i class="fa fa-user fa-1x" style="color: purple!important;"></i> Intranet</a></li>
+                <li><a href="/uamt/intranet/<?php echo "?lang=".$lang; ?>" style="color:purple"><i class="fa fa-user fa-1x" style="color: purple!important;"></i> Intranet</a></li>
                 <!--   <li><a href="#"><button type="button" class="button-menu btn btn-primary btn-sm">Primary</button></a></li>-->
 
             </ul>
         </div>
+    </div>
 </nav>
 
 <div id="nazov">
@@ -336,6 +338,59 @@ usort($allRows, "cmp");
             echo '</table>';
         ?>
 </div>
+
+<footer>
+    <div class="container">
+        <div class="container">
+            <div class="col-sm-2 text-center">
+                <a href="http://is.stuba.sk/">AIS STU</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="http://aladin.elf.stuba.sk/rozvrh/ "> <?php echo $text->timetable; ?></a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="http://elearn.elf.stuba.sk/moodle/  "> Moodle FEI</a>
+
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="https://www.jedalen.stuba.sk/WebKredit/"> <?php echo $text->cantine; ?> </a>
+            </div>
+
+
+            <div class="col-sm-2 text-center">
+                <a href="https://www.facebook.com/UAMTFEISTU"> Facebook </a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="https://www.youtube.com/channel/UCo3WP2kC0AVpQMIiJR79TdA"> Youtube </a>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+
+            <div class="col-sm-4 text-center">
+                © Copyright 2017. Všetky práva vyhradené.
+            </div>
+            <div class="col-sm-4 text-center">
+                Baka | Lukac | Lichman | Valasik | Smetanka
+            </div>
+
+            <div class="col-sm-4 text-center">
+
+                <?php
+                if($lang == 'sk')
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk  </a> | <a href='index.php?lang=en'>  English </a>";
+                else
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+
+                ?>
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
 <script src="../menu/jQueryScripts.js"></script>
 </body>
 </html>

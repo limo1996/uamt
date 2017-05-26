@@ -10,5 +10,9 @@
 }
 
 #permissions {
-    display: none;
+     display: none;
+ }
+
+.space {
+    padding-bottom: 50px;
 }

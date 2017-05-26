@@ -7,24 +7,24 @@
     margin-top: 110px;
 }
 
+
 .div-hover {
     border: 1px solid;
     border-radius: 8px;
     padding: 15px 20px 15px 20px;
     margin: 20px 0 25px;
     cursor: pointer;
-    word-wrap: break-word
+    word-wrap: break-word;
+
 }
 
 .div-hover:hover {
-    background-color: #f2f2f2;
+    border: 2px solid purple;
+    color: purple;
+
 }
 
-#intranet-wrapper {
-    position: relative;
-    vertical-align: bottom;
-    min-height: 400px;
-    height: 100%;
+.space {
     padding-bottom: 50px;
 }
 

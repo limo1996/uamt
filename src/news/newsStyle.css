@@ -154,3 +154,12 @@ p.more {
 #letter.form-group {
     width:190px;
 }
+
+h2,h3,h5{
+    text-align: center;
+    color: #0066cc;
+    font-family: Monospace;
+}
+h4{
+    text-align: center;
+}

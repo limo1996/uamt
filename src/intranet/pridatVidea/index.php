@@ -32,13 +32,15 @@ foreach($result as $role)
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
+    <link href="../../menu/menu2.css" type="text/css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
+    <link href="styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../../menu/menuScripts.js"></script>
-    <script src="../doktorandi/script/script.js"></script>
+    <script src="script/script.js"></script>
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -60,7 +62,6 @@ foreach($result as $role)
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -68,7 +69,6 @@ foreach($result as $role)
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
         </div>
@@ -80,29 +80,70 @@ foreach($result as $role)
     <hr class="hr_nazov">
 </div>
 
-    <div id="sidebar-wrapper" class="sidebar-toggle">
-        <ul class="sidebar-nav">
-            <br>
-            <li>
-                <a href="/uamt/intranet/logout.php">Odhlásiť sa</a>
-            </li>
-            <hr>
-            <li>
-                <a href="/uamt/intranet/upravitProfil/index.php">Upraviť profil</a>
-            </li>
-            <li>
-                <a href="/uamt/intranet/pridatAktuality/index.php">Pridať aktuality</a>
-            </li>
-            <li>
-                <a href="/uamt/intranet/pridatFotky/index.php">Pridať fotky</a>
-            </li>
-            <li>
-                <a href="/uamt/intranet/pridatVidea/index.php">Pridať videá</a>
-            </li>
-        </ul>
-    </div>
+<nav class="main-menu">
+    <ul><li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text"> </span>
+            </a>
 
-<div class="container">
+        </li>
+
+        <li class="has-subnav ">
+            <a href="/uamt/intranet/intranet.php">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">Domov intranet</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/">
+                <i class="fa fa-flag fa-2x"></i>
+                <span class="nav-text">Domov UAMT</span>
+            </a>
+
+        </li>
+        <li>
+            <a href="/uamt/intranet/upravitProfil/">
+                <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">Upraviť profil</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/intranet/pridatAktuality">
+                <i class="fa fa-font fa-2x"></i>
+                <span class="nav-text">Pridať aktuality</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/intranet/pridatFotky">
+                <i class="fa fa-photo fa-2x"></i>
+                <span class="nav-text">Pridať fotky</span>
+            </a>
+
+        </li>
+        <li class="has-subnav active">
+            <a href="/uamt/intranet/pridatVidea">
+                <i class="fa fa-play-circle fa-2x"></i>
+                <span class="nav-text">Pridať videa</span>
+            </a>
+
+        </li>
+
+
+        <li>
+            <a href="/uamt/intranet/logout.php">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container space">
 
 </div>
 
@@ -142,7 +183,7 @@ foreach($result as $role)
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovensky jazyk</a>
+               Slovenský jazyk
             </div>
 
         </div>

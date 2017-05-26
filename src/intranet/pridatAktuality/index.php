@@ -32,13 +32,15 @@ foreach($result as $role)
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
+    <link href="../../menu/menu2.css" type="text/css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
     <script src="../../menu/menuScripts.js"></script>
-    <script src="../doktorandi/script/script.js"></script>
+
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -48,15 +50,7 @@ foreach($result as $role)
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
-
-        <a href="#" class="navbar-toggle sidebarmenu-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:purple;">UAMT - Intranet</p></div>
@@ -67,8 +61,7 @@ foreach($result as $role)
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav nextto" id="navMenu">
-                <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
+            <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -76,49 +69,82 @@ foreach($result as $role)
                 <li><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
-
-            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
         </div>
     </div>
 </nav>
 
-<div id="intranet-wrapper">
+
     <div id="nazov">
         <h2><?php echo "Pridať aktuality" ?></h2>
         <hr class="hr_nazov">
     </div>
 
-    <div id="sidebar-wrapper" class="sidebar-toggle">
-        <ul class="sidebar-nav">
-            <br>
-            <li>
-                <a href="/uamt/intranet/logout.php">Odhlásiť sa</a>
+    <nav class="main-menu">
+        <ul>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-list fa-2x"></i>
+                    <span class="nav-text"> </span>
+                </a>
+
             </li>
-            <hr>
-            <li>
-                <a href="/uamt/intranet/upravitProfil/index.php">Upraviť profil</a>
+            <li class="has-subnav ">
+                <a href="/uamt/intranet/intranet.php">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">Domov intranet</span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="/uamt/">
+                    <i class="fa fa-flag fa-2x"></i>
+                    <span class="nav-text">Domov UAMT</span>
+                </a>
+
             </li>
             <li>
-                <a href="/uamt/intranet/pridatAktuality/index.php">Pridať aktuality</a>
+                <a href="/uamt/intranet/upravitProfil/">
+                    <i class="fa fa-user fa-2x"></i>
+                    <span class="nav-text">Upraviť profil</span>
+                </a>
+
             </li>
-            <li>
-                <a href="/uamt/intranet/pridatFotky/index.php">Pridať fotky</a>
+            <li class="has-subnav active">
+                <a href="/uamt/intranet/pridatAktuality">
+                    <i class="fa fa-font fa-2x"></i>
+                    <span class="nav-text">Pridať aktuality</span>
+                </a>
+
             </li>
+            <li class="has-subnav">
+                <a href="/uamt/intranet/pridatFotky">
+                    <i class="fa fa-photo fa-2x"></i>
+                    <span class="nav-text">Pridať fotky</span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="/uamt/intranet/pridatVidea">
+                    <i class="fa fa-play-circle fa-2x"></i>
+                    <span class="nav-text">Pridať videa</span>
+                </a>
+
+            </li>
+
+
             <li>
-                <a href="/uamt/intranet/pridatVidea/index.php">Pridať videá</a>
+                <a href="/uamt/intranet/logout.php">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">Logout</span>
+                </a>
             </li>
         </ul>
-    </div>
+    </nav>
 
-    <div class="container">
+
+    <div class="container space">
             <form  method="post" class ="form-vertical" enctype=multipart/form-data>
                 <div class="form-group col-sm-4">
                     <label for="title">Nadpis</label>
@@ -203,13 +229,13 @@ foreach($result as $role)
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovensky jazyk</a>
+                Slovenský jazyk
             </div>
 
         </div>
 
     </div>
-    </div>
+
 
 
 
@@ -227,8 +253,9 @@ if(isset($_POST['add'])) {
     $datum = $_POST['datum'];
     $category = $_POST['category'];
     $jazyk = $_POST['jazyk'];
-
-    if(isset($_FILES["pic"])){
+    var_dump($_FILES["pic"]);
+    if(isset($_FILES["pic"]) && $_FILES["pic"]["name"]!=""){
+        echo "preslo cez podmienku";
         $filename = $_FILES["pic"];
         $file = $_FILES["pic"];
         $tmp_name = $file["tmp_name"];
@@ -244,6 +271,35 @@ if(isset($_POST['add'])) {
     $filename="fei.jpg";
     }
 
+$db->insertNews($title,$desc,$datum,$category,$jazyk,$filename);
+    $id=$db->fetchIdOfNews($title,$datum);
+   $file="texty.txt";
+    chmod($file,0777);
+     /* $a =[
+            [
+            'ID' => $id[0]['ID'],
+            'Text' => $text
+            ]
+          ];*/
+
+     $cont=file_get_contents("texty.txt");
+     echo "Cont:".$cont;
+     $parts=explode("[",$cont);
+     echo "Part1".$parts[1];
+     $last=explode("]",$parts[1]);
+     echo "Last".$last[0];
+   $a->id=$id[0]['ID'];
+   $a->text=$text;
+   if($last[0]=="") {
+       $all = "[" . $last[0] . json_encode($a) . "]";
+   }
+   else{
+       $all = "[" . $last[0] .",". json_encode($a) . "]";
+   }
+   var_dump($parts);
+   var_dump($all);
+    //file_put_contents($file, "\n",FILE_APPEND);
+    file_put_contents($file,$all);
 
 
 /*    $subject = "UAMT-Newsletter";
