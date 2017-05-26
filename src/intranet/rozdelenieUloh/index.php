@@ -242,9 +242,9 @@ foreach($result as $role)
         <div class="col-sm-6">
             <h4>Jakub Smetanka</h4>
             <ul>
-                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
-                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
-                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
+                <li>Aktuality</li>
+                <li>Úvodná stránka</li>
+
 
             </ul>
         </div>

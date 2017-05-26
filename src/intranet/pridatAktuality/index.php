@@ -335,7 +335,7 @@ $db->insertNews($title,$desc,$datum,$category,$jazyk,$filename);
     file_put_contents($file,$all);
 
 
-/*  POSIELANIE NEWSLETTer ODKOMENTUJ PRED ODOVZDANIM
+
     $subject = "UAMT-Newsletter";
 
 
@@ -366,7 +366,7 @@ $db->insertNews($title,$desc,$datum,$category,$jazyk,$filename);
         }else {
             echo "Message could not be sent...";
         }
-    }*/
+    }
 
 
 

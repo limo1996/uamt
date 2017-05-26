@@ -200,26 +200,33 @@ else {
         <div>
             <!-- <input type="text">-->
 
-            <form action="index.php" method="get" class="form-horizontal">
+            <form action="index.php" method="get" class="form-vertical letter">
                 <div class="form-group">
-                    <div class="checkbox col-sm-4">
-                        <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" <?php if($showAll == 'Yes') echo 'checked';?>/>Zobraz vsetko</label>
-                        <select name="category" class="form-control" id="category" >
+                    <div class="checkbox col-sm-8">
+                        <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" <?php if($showAll == 'Yes') echo 'checked';?>/></label>
+
                             <?php if($lang=='sk') echo"
+                            <select name=category class=form-control id=category >
                             <option value=>Vyber</option>
                             <option value=Oznamy>Oznamy</option>
                             <option value=Propagácia>Propagácia</option>
-                            <option value=Zo života ústavu>Zo života ústavu</option>";
+                            <option value=Zo života ústavu>Zo života ústavu</option>
+                            </select>
+                        <button type=submit class='btn btn-default navbar-btn' value= $lang;>Poslať</button>";
+
                             else{
                                 echo"
+                            <select name=category class=form-control id=category >
                             <option value=>Chose</option>
                             <option value=Announcement>Announcement</option>
                             <option value=Propagation>Propagation</option>
-                            <option value=From Department>From Department</option>";
-                            }
-                            ?>
+                            <option value=From Department>From Department</option>
+                            
+                    
                         </select>
-                        <button type="submit" class="btn btn-default navbar-btn" value="<?php echo $lang; ?>">Poslať</button>
+                        <button type=submit class='btn btn-default navbar-btn' value= $lang;>Send</button>";
+                        }
+                            ?>
                     </div>
                 </div>
             </form>
@@ -255,7 +262,7 @@ else {
         ?>
 
     <form class="form-vertical letter" method="post">
-        <div class="form-group" id="letter">Newsletter<br>
+        <div class="form-group" id="letter"><h5>Newsletter</h5>
             <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
             <!--<label for="sel1">(select one):</label>-->
             <select class="form-control" name="choice" id="sel1">
@@ -273,18 +280,20 @@ else {
             <button type=submit class='btn btn-default navbar-btn' name=out>Sign out</button>";
             }
 
-            echo "<ul class=pagination>";
-            for($i=0;$i<$str;$i++){
-                $act=$i+1;
-                $showAll = $_GET['ShowAll'];
 
-                echo "<li><a href =index.php?lang=$lang&ShowAll=$showAll&page=$i&category=$cat>$act</a></li>";
-            }
-            echo "</ul>";
             ?>
         </div>
     </form>
+    <?php
+    echo "<ul class=pagination>";
+    for($i=0;$i<$str;$i++){
+        $act=$i+1;
+        $showAll = $_GET['ShowAll'];
 
+        echo "<li><a href =index.php?lang=$lang&ShowAll=$showAll&page=$i&category=$cat>$act</a></li>";
+    }
+    echo "</ul>";
+    ?>
 
 </div>
 

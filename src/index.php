@@ -175,7 +175,7 @@ function getYoutube($url)
             <?php
 
                 for($i=0;$i<2;$i++) {
-                    echo "<div class=col-sm-6><iframe width='500' height='300' src='" . getYoutube($js[$i]['URL']) . "'></iframe></div>";
+                    echo "<div class='col-sm-6'></divclas><div class='embed-responsive embed-responsive-4by3'><iframe class='embed-responsive-item' style='margin:auto;display:block;' width='500' height='300' src='" . getYoutube($js[$i]['URL']) . "'></iframe></div></div>";
                 }
              ?>
         </div>
