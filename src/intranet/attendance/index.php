@@ -50,9 +50,11 @@ foreach ($result as $role)
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
     <script src="scripts/MonthPicker.js"></script>
     <script src="scripts/tableCreator.js"></script>
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
@@ -195,11 +197,19 @@ foreach ($result as $role)
         <div class="col-sm-4 text-center">
             <?php
             if($canEdit)
-                echo '<button type="button" class="btn btn-lg" id="exportBtn"> Stiahni Pdf</button>';
+                echo '<div class="dropdown">
+                <button class="btn btn-lg dropdown-toggle" type="button" data-toggle="dropdown" id="exportBtn">Stiahni Pdf
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu" style="margin-left: 25px; width: 300px;">
+                    <li><a href="javascript:exportPDF(0);">Doktorandi</a></li>
+                    <li><a href="javascript:exportPDF(1);">Zamestnanci</a></li>
+                </ul>
+            </div>';
             ?>
+
         </div>
         <div class="col-sm-4 text-center">
-            <button type="button" class="btn btn-lg" id="editBtn"> Edituj</button>
+            <button type="button" class="btn btn-lg" id="editBtn">Edituj</button>
         </div>
     </div>
 
@@ -322,5 +332,8 @@ foreach ($result as $role)
 
 </footer>
 
-
+<div style="display: none;">
+    <div id="toPrint">
+    </div>
+</div>
 </html>

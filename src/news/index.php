@@ -82,7 +82,9 @@ else {
 
 
     <!-- Latest compiled JavaScript -->
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>

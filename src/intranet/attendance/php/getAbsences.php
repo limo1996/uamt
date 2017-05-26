@@ -11,9 +11,20 @@ require  __DIR__."/../../../database/database.php";
 $month = $_POST['month'];
 $year = $_POST['year'];
 
+$doc = $_POST['restrict'];
+
 $db = new Database();
 
-$tmpEmployees = $db->fetchAisEmployees();
+$tmpEmployees = null;
+if(isset($doc)){
+    if($doc == '0'){
+        $tmpEmployees = $db->fetchAisEmployeesDoctorants();
+    } else{
+        $tmpEmployees = $db->fetchAisEmployees2();
+    }
+} else {
+    $tmpEmployees = $db->fetchAisEmployees();
+}
 
 $employees = array();
 $employeesIds = array();

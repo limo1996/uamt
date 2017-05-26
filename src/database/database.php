@@ -34,6 +34,20 @@ class Database
         return $request->execute() ? $request->fetchAll() : null;
     }
 
+    function fetchAisEmployeesDoctorants()
+    {
+        $request = $this->conn->prepare("SELECT * FROM ais_emp WHERE ID = 0");
+        $request->setFetchMode(PDO::FETCH_CLASS, "Employee");
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function fetchAisEmployees2()
+    {
+        $request = $this->conn->prepare("SELECT * FROM ais_emp WHERE ID != 0");
+        $request->setFetchMode(PDO::FETCH_CLASS, "Employee");
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
     function fetchEmployees()
     {
         $request = $this->conn->prepare("SELECT * FROM employees");
