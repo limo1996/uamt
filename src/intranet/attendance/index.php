@@ -17,10 +17,18 @@ if (!$_SESSION['user']) {
     die;
 }
 
+
 $canEdit = false;
 $db = new Database();
 $result = $db->getUserRoles($_SESSION['user']);
+
+// zistenie roly
+//---------------------------------------------
 $roles = array();
+foreach($result as $role)
+    $roles[] = $role['ROLE'];
+//---------------------------------------------
+
 foreach ($result as $role)
     if ($role['ROLE'] == 'hr' || $role['ROLE'] == 'admin')
         $canEdit = true;
