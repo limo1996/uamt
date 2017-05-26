@@ -232,7 +232,7 @@ $contentText = $lan->getTextForPage('staff');
             echo "<td>" . $employee['DEPARTMENT'] . "</td>";
             echo "<td>" . $employee['STAFF_ROLE'] . "</td>";
             echo "<td>" . str_replace(";", "<br>", $employee['FUNCTION']) . "</td>";
-            echo "<td><a href='employeeDetail.php?id=" . $employee['PHONE'] . "&name=".$employee['SECOND_NAME']."'><img src='icon_more.png' width='35' alt='more' /></a></td>";
+            echo "<td><a href='employeeDetail.php?id=" . $employee['ID']."'><img src='icon_more.png' width='35' alt='more' /></a></td>";
             echo "</tr>";
             //var_dump($employee);
             //echo "<br>";

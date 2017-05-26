@@ -9,12 +9,12 @@ include_once ('../lang/langFunctions.php');
 include_once ("../database/database.php");
 include("diacritics.php");
 
-$num = $_GET['id'];
-$name = $_GET['name'];
+$ID = $_GET['id'];
 $db = new Database();
-$usrId = $db->getUsrId($name)[0]['AIS_ID'];
 
-$employee = array_values($db->getEmployee($num, $name))[0];
+$employee = array_values($db->getEmployee($ID))[0];
+$name = $employee['SECOND_NAME'];
+$usrId = $db->getUsrId($name)[0]['AIS_ID'];
 
 $lang = 'sk';
 

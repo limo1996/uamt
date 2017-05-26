@@ -28,6 +28,8 @@ class Text
             return $this->getTextForPhotos();
         } else if ($page == 'projects-headers'){
             return $this->getTextForProjectsHeaders();
+        } else if ($page == 'home'){
+            return $this->getTextForHomePage();
         }
             return null;
     }
@@ -194,6 +196,22 @@ class Text
             $tmp['all'] = 'All';
             $tmp['inter'] = 'International';
             $tmp['other'] = 'Other national projects';
+        } else
+            return null;
+        return $tmp;
+    }
+
+    private function getTextForHomePage()
+    {
+        $tmp = null;
+        if ($this->m_lang == 'sk') {
+            $tmp['1'] = 'Novinky';
+            $tmp['2'] = 'Pridaj sa k nám...';
+            $tmp['3'] = 'Aktuality z ústavu';
+        } else if ($this->m_lang == 'en') {
+            $tmp['1'] = 'News';
+            $tmp['2'] = 'Join us...';
+            $tmp['3'] = 'News from institute';
         } else
             return null;
         return $tmp;

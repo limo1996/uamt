@@ -17,7 +17,6 @@ foreach($result as $role)
     $roles[] = $role['ROLE'];
 //---------------------------------------------
 
-
 if(isset($_POST['add_new'])) {
 
     $folder = $db->getLatestFolder();
@@ -72,9 +71,36 @@ if(isset($_POST['add_new'])) {
     }
 
     $db->insertPhotos($n_date, $n_albumSK, $n_albumEN, $folder_number);
-
+    header("Location:index.php");
 }
 
+if(isset($_POST['add_old'])) {
+    $o_folder = $_POST['o_album'];
+
+    $target_dir = "../../activities/photos/$o_folder/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload2"]["name"]);
+    $uploadOk = 1;
+    $check = getimagesize($_FILES["fileToUpload2"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload2"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["fileToUpload2"]["name"]). " has been uploaded.";
+            chmod($target_file, 0777);
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+    header("Location:index.php");
+}
 
 
 ?>
@@ -268,8 +294,14 @@ if(isset($_POST['add_new'])) {
                                 <label for="o_album" class="col-sm-3 control-label">Album</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" id="o_album" name="o_album" title="Výber albumu" required>
-                                        <option>Album1</option>
-                                        <option>Album2</option>
+                                        <?php
+                                        $albums = $db->fetchPhotos();
+                                        foreach ($albums as $a) {
+                                            $al = $a['Title-SK'];
+                                            $event = $a["Folder"];
+                                            echo "<option value='$event'> $al</option>";
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
