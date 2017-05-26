@@ -146,6 +146,7 @@ p.more {
 }
 .pagination {
     display:inline-block;
+    margin-left: 40px;
 }
 .pag{
     display: block;

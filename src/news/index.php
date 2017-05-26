@@ -201,8 +201,8 @@ else {
 <div class="container">
         <div>
             <!-- <input type="text">-->
-
-            <form action="index.php" method="get" class="form-vertical letter">
+            <div class="text-center col-sm-12">
+            <form action="index.php" method="get" class="form-horizontal letter">
                 <div class="form-group">
                     <div class="checkbox col-sm-8">
                         <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" <?php if($showAll == 'Yes') echo 'checked';?>/></label>
@@ -232,7 +232,7 @@ else {
                     </div>
                 </div>
             </form>
-
+            </div>
 
         </div>
     <?php
