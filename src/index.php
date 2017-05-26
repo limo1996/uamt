@@ -163,7 +163,7 @@ function getYoutube($url)
         </div>
 </nav>
 <div id="nazov">
-    <h2><?php echo $text->home; ?></h2>
+    <h2><img src="logo.jpg" alt="Logo" width="25" height="25" ><?php echo " " . $text->home; ?></h2>
     <hr class="hr_nazov">
 </div>
 
@@ -199,6 +199,15 @@ function getYoutube($url)
             echo '</h3>';
         }
         ?>
+    </div>
+    <div class="container">
+        <h3></h3>
+        <br>
+        <br>
+        <br>
+
+        <center><a href="http://www.automobilova-mechatronika.fei.stuba.sk/webstranka/"><img src="banner_dole.png" alt="Banner"  ></a></center>
+
     </div>
 </div>
 
