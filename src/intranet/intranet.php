@@ -76,7 +76,7 @@ foreach($result as $role)
 </nav>
 
 <div id="nazov">
-    <h2><?php echo "Služobné cesty" ?></h2>
+    <h2><?php echo "Intranet" ?></h2>
     <hr class="hr_nazov">
 </div>
 
@@ -137,12 +137,14 @@ foreach($result as $role)
 </nav>
 
 <div class="container">
-            <h1> Welcum to intranet</h1>
-    <h1> Welcum to intranet</h1>
-    <h1> Welcum to intranet</h1>
-    <h1> Welcum to intranet</h1>
+            <h1 style="text-align: center; color: purple; font-family: Monospace;"> Vitajte v Intranete</h1>
+    <h2> Vitajte v Intranete</h2>
+    <h3 style="text-align: center; color: purple; font-family: Monospace;"> Vitajte v Intranete</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip: Na každej stránke v ľavo nájdeš rozšírujúce menu</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip2: Niekde je rozšírujúce menu reprezentované ikonou, po kliknutí sa zobrazí</h3>
 
-        <?php
+
+    <?php
         //if (in_array("admin", $roles))
         //    echo "";
         ?>
