@@ -210,6 +210,18 @@ class Database
         return $request->execute() ? $request->fetchAll() : null;
     }
 
+    function getLatestFolder () {
+        $sql = "SELECT FOLDER FROM photos ORDER BY FOLDER desc LIMIT 1";
+        $request = $this->conn->prepare($sql);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function insertPhotos($date, $titleSK, $titleEN, $folder) {
+        $sql = "INSERT INTO photos (Date, Title-SK, Title-EN, Folder) VALUES (:date, :titleSK, :titleEN, :folder)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':date' => $date, ':titleSK' => $titleSK, ':titleEN' => $titleEN, ':folder' => $folder));
+    }
+
     /************************* NEWS *********************************/
     function fetchNewsById($id){
         $sql = "SELECT * FROM Aktuality WHERE ID = :id";
