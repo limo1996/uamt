@@ -11,38 +11,6 @@ if (isset($_GET['lang']))
 $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
 $db = new Database();
-$date = date("Y-m-d");
-
-if(!isset($_GET['ShowAll'])) {
-    $count = $db->getCountOfActiveNews($lang, $date);
-
-}
-else{
-    $count = $db->getCountOfNews($lang);
-    $check=false;
-
-}
-$rec_limit=6;
-$rec_count= $count[0]["COUNT(Title)"];
-$str=ceil($rec_count/$rec_limit);
-
-if( isset($_GET{'page'} ) ) {
-    $page = $_GET{'page'} + 1;
-    $offset = $rec_limit * $page ;
-}else {
-    $page = 0;
-    $offset = 0;
-}
-$left_rec = $rec_count - ($page * $rec_limit);
-if(!isset($_GET['ShowAll'])){
-
-    $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
-}
-else {
-    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
-}
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,8 +41,8 @@ else {
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
-                    class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-                    class="icon-bar"></span></button>
+                class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:#0066cc;">UAMT</p></div>
     <div class="nav-flags">
 
@@ -86,13 +54,13 @@ else {
             <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/<?php echo "?lang=".$lang; ?>" ><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->about; ?><b
-                                class="caret"></b></a>
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/about/history/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_history; ?></a></li>
                         <li><a href="/uamt/about/management/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_management; ?></a></li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->about_department; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/uamt/about/OAMM/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_department_OAMM; ?></a></li>
                                 <li><a href="/uamt/about/OIKR/<?php echo "?lang=".$lang; ?>"><?php echo $text->about_department_OIKR; ?></a></li>
@@ -104,11 +72,11 @@ else {
                 </li>
                 <li><a href="/uamt/employees/<?php echo "?lang=".$lang; ?>"><?php echo $text->staff; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $text->study; ?><b
-                                class="caret"></b></a>
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->study_candidate; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/uamt/study/candidate/bc/<?php echo "?lang=".$lang; ?>"><?php echo $text->study_candidate_bc; ?></a></li>
                                 <li><a href="/uamt/study/candidate/ing/<?php echo "?lang=".$lang; ?>"><?php echo $text->study_candidate_ing; ?></a></li>
@@ -116,7 +84,7 @@ else {
                         </li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->study_bc; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/uamt/study/bc/info/<?php echo "?lang=".$lang; ?>"><?php echo $text->study_bc_info; ?></a></li>
                                 <li><a href="/uamt/study/bc/thesis/<?php echo "?lang=".$lang; ?>"><?php echo $text->study_bc_thesis; ?></a></li>
@@ -124,7 +92,7 @@ else {
                         </li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->study_ing; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/uamt/study/ing/info/<?php echo "?lang=".$lang; ?>"><?php echo $text->study_ing_info; ?></a></li>
                                 <li><a href="/uamt/study/ing/thesis/<?php echo "?lang=".$lang; ?>"><?php echo $text->study_ing_thesis; ?></a></li>
@@ -134,12 +102,12 @@ else {
                     </ul>
                 </li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->research; ?><b
-                                class="caret"></b></a>
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/research/projects/<?php echo "?lang=".$lang; ?>"><?php echo $text->research_projects; ?></a></li>
                         <li><a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"><?php echo $text->research_topics; ?><b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/uamt/research/topics/electricGo/<?php echo "?lang=".$lang; ?>"><?php echo $text->research_motocar; ?></a></li>
                                 <li><a href="/uamt/research/topics/autonomousVehicle/<?php echo "?lang=".$lang; ?>"><?php echo $text->research_vehicle; ?></a></li>
@@ -151,14 +119,14 @@ else {
                 </li>
                 <li class="active"><a href="/uamt/news/<?php echo "?lang=".$lang; ?>"><?php echo $text->news; ?></a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act; ?><b
-                                class="caret"></b></a>
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/uamt/activities/photos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_photos; ?></a></li>
                         <li><a href="/uamt/activities/videos/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_video; ?></a></li>
                         <li><a href="/uamt/activities/media/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_media; ?></a></li>
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text->act_temata; ?>
                                 <b
-                                        class="caret"></b></a>
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/uamt/activities/temata_pages/mobility/<?php echo "?lang=".$lang; ?>"><?php echo $text->act_temata_mobility; ?></a></li>
                             </ul>
@@ -177,63 +145,13 @@ else {
     <hr class="hr_nazov">
 </div>
 <div class="container">
-        <div>
-            <!-- <input type="text">-->
-
-            <form action="" method="post" class="form-horizontal">
-                <div class="form-group">
-                    <div class="checkbox col-sm-4">
-                        <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" />Zobraz vsetko</label>
-                        <input type="submit" class="btn btn-default navbar-btn" />
-                    </div>
-                </div>
-        </div>
     <?php
-
-    echo "<div class='container'>";
-    foreach($news as $act) {
-        echo "<div class='col-sm-4'><div class='news'><div class='img-figure'><div class='cat'>" . $act['Category']."</div><img src=http://147.175.98.167/uamt/intranet/pridatAktuality/pic/".$act['Pic']." class=img-responsive></div><div class='title'><i class= 'fa fa-calendar-check-o' aria-hidden=true></i> ".$act['Active']."<h1><a href=http://147.175.98.167/uamt/news/show.php?id=".$act['ID'].">".$act['Title']."</a></h1></div><p class=description>".$act['Text']."</p>
-						</div></div>";
-    }
-    echo "<br><br></div>";
-    //unset($news);
- /*   echo "<ul class=pagination>";
-    if( $page > 0 && $left_rec > $rec_limit) {
-        $last = $page-2 ;
-        echo "<li><a href =$_PHP_SELF?page=$last>Previous</a></li>";
-        echo "<li><a href = $_PHP_SELF?page=$page>Next</a></li>";
-    }else if( $page == 0 ) {
-        echo "<li><a href = $_PHP_SELF?page=$page>Next</a></li>";
-    }else if( $left_rec < $rec_limit ) {
-        $last = $page-2 ;
-        echo "<li><a href = $_PHP_SELF?page=$last>Previous</a><li>";
-    }
-    echo "</ul>";*/
-    //var_dump($offset)
-
-    echo "<ul class=pagination>";
-    for($i=1;$i<=$str;$i++){
-        $act=$i-2;
-        $showAll = $_GET['ShowAll'];
-        echo "<li><a href =$_PHP_SELF?page=$act>$i</a></li>";
-    }
-    echo "</ul>";
-
-
-        ?>
-
-    <form class="form-vertical letter" method="post">
-        <div class="form-group" id="letter">
-            <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
-            <!--<label for="sel1">(select one):</label>-->
-            <select class="form-control" name="choice" id="sel1">
-                <option>EN</option>
-                <option>SK</option>
-            </select>
-            <button type="submit" class="btn btn-default navbar-btn" name="in">Prihlasit</button>
-            <button type="submit" class="btn btn-default navbar-btn" name="out">Odhlasit</button>
-        </div>
-    </form>
+    $id=$_GET['id'];
+    $article=$db->fetchNewsById($id);
+    var_dump($article);
+    echo "<h2>".$article[0]['Title']."</h2>";
+    echo "<h4><i class='fa fa-calendar' aria-hidden=true></i> ".$article[0]['Active']." <i class='fa fa-newspaper-o' aria-hidden=true></i> ".$article[0]['Category']."</h4>"
+    ?>
 
 </div>
 
@@ -292,21 +210,3 @@ else {
 </body>
 
 </html>
-<?php
-
-
-if (isset($_POST['in'])){
-    $db = new Database();
-    $email=$_POST['email'];
-    $newsLang=$_POST['choice'];
-    var_dump($email);
-    var_dump($newsLang);
-    $db->insertNewsletterSubs($email,$newsLang);
-}
-if (isset($_POST['out'])){
-    $db = new Database();
-    $email=$_POST['email'];
-    $newsLang=$_POST['choice'];
-    $db->deleteNewsletterSubs($email,$newsLang);
-}
-?>

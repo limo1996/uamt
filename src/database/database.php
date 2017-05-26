@@ -211,6 +211,11 @@ class Database
     }
 
     /************************* NEWS *********************************/
+    function fetchNewsById($id){
+        $sql = "SELECT * FROM Aktuality WHERE ID = :id";
+        $request = $this->conn->prepare($sql);
+        return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
+    }
     function fetchAllNewsByLang($newsLang,$offset,$rec_limit)
     {
         $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang LIMIT $offset,$rec_limit";
@@ -257,11 +262,11 @@ class Database
         return $request->execute(array(':newsLang' => $newsLang,':date'=>$date)) ? $request->fetchAll() : null;
     }
 
-    function insertNews($name, $source, $category, $tab)
+    function insertNews($title, $text,$active, $category, $jazyk, $pic)
     {
-        $sql = "INSERT INTO Aktuality(Title, Text, Active, TAB) VALUES (:name, :source, :category, :tab)";
+        $sql = "INSERT INTO Aktuality(Title, Text, Active, Category, Lang, Pic) VALUES (:title, :text, :active, :category, :lang, :pic)";
         $request = $this->conn->prepare($sql);
-        $request->execute(array(':name' => $name, ':source' => $source, ':category' => $category, ':tab' => $tab));
+        $request->execute(array(':title' => $title, ':text' => $text,':active' =>$active, ':category' => $category, ':lang' => $jazyk, ':pic'=>$pic));
     }
 
     /******************** INTRANET-DOCUMENTS **********************/

@@ -244,7 +244,7 @@ if(isset($_POST['add'])) {
     $filename="fei.jpg";
     }
 
-
+$db->insertNews($title,$desc,$datum,$category,$jazyk,$filename);
 
 /*    $subject = "UAMT-Newsletter";
 
