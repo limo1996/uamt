@@ -266,7 +266,7 @@ if(isset($_POST['save_emp'])) {
 
 <div class="container space">
     <?php
-    if (in_array("admin", $roles)) {
+    if (in_array("hr", $roles) || in_array("admin", $roles)) {
         echo "
             <form action=\"\" method=\"post\">
                 <div class=\"form-group col-md-9 col-md-offset-3\">
@@ -293,7 +293,7 @@ if(isset($_POST['save_emp'])) {
     }
 
     echo $name;
-    if (id != "" && in_array("admin", $roles)) {
+    if (id != "" && (in_array("hr", $roles) || in_array("admin", $roles))) {
         $employee = $db->getEmployeeByID($id);
         foreach ($employee as $emp) {
             $employee = $emp;
@@ -351,7 +351,7 @@ if(isset($_POST['save_emp'])) {
                         </div>
 
                         <?php
-                        if (in_array("admin", $roles)) {
+                        if (in_array("hr", $roles) || in_array("admin", $roles)) {
                             echo "
                                 
                                 <div class=\"form-group\">
@@ -388,7 +388,10 @@ if(isset($_POST['save_emp'])) {
                                         <input id=\"function\" name=\"function\" type=\"text\" placeholder=\"Funkcia\" value=\"$function\" class=\"form-control\">
                                     </div>
                                 </div>
+                                ";
 
+                            if (in_array("admin", $roles)) {
+                                echo "
                                 <div class=\"form-group\">
                                     <label class=\"col-md-3 control-label\" for=\"ldaplogin\">LDAP login</label>
                                     <div class=\"col-md-9\">
@@ -401,79 +404,80 @@ if(isset($_POST['save_emp'])) {
                                     <div class=\"btn-group col-md-9\" data-toggle=\"buttons\">
                                 ";
 
-                            if (in_array("user", $employee_roles))
-                                echo "
+                                if (in_array("user", $employee_roles))
+                                    echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"1\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> user
                                         </label>                                  
                                         ";
-                            else
-                                echo "
+                                else
+                                    echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"1\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> user
                                         </label> 
                                         ";
-                            if (in_array("hr", $employee_roles))
-                                echo "
+                                if (in_array("hr", $employee_roles))
+                                    echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"2\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> hr
                                         </label>                                 
                                         ";
-                            else
-                                echo "
+                                else
+                                    echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"2\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> hr
                                         </label>
                                         ";
-                            if (in_array("reporter", $employee_roles))
-                                echo "
+                                if (in_array("reporter", $employee_roles))
+                                    echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"3\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> reporter
                                         </label>                                 
                                         ";
-                            else
-                                echo "
+                                else
+                                    echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"3\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> reporter
                                         </label>
                                         ";
-                            if (in_array("editor", $employee_roles))
-                                echo "
+                                if (in_array("editor", $employee_roles))
+                                    echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"4\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> editor
                                         </label>                                 
                                         ";
-                            else
-                                echo "
+                                else
+                                    echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"4\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> editor
                                         </label>
                                         ";
-                            if (in_array("admin", $employee_roles))
-                                echo "
+                                if (in_array("admin", $employee_roles))
+                                    echo "
                                         <label class=\"btn btn-default active\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"5\" checked>
                                             <span class=\"glyphicon glyphicon-ok\"></span> admin
                                         </label>                                
                                         ";
-                            else
-                                echo "
+                                else
+                                    echo "
                                         <label class=\"btn btn-default\">
                                             <input type=\"checkbox\" name=\"role_list[]\" autocomplete=\"off\" value=\"5\">
                                             <span class=\"glyphicon glyphicon-ok\"></span> admin
                                         </label>
                                         ";
 
-                            echo "</div>";
-                            echo "</div>";
+                                echo "</div>";
+                                echo "</div>";
+                            }
                         }
                         ?>
 
