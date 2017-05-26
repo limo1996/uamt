@@ -17,6 +17,11 @@ foreach($result as $role)
     $roles[] = $role['ROLE'];
 //---------------------------------------------
 
+if (!in_array("reporter", $roles) && !in_array("admin", $roles)) {
+    header("Location:../index.php");
+    die;
+}
+
 if(isset($_POST['add_video'])) {
     $new_name = $_POST['video_name'];
     $new_url = $_POST['link'];
@@ -123,28 +128,38 @@ if(isset($_POST['add_video'])) {
             </a>
 
         </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatAktuality">
-                <i class="fa fa-font fa-2x"></i>
-                <span class="nav-text">Pridať aktuality</span>
-            </a>
 
-        </li>
-        <li class="has-subnav">
-            <a href="/uamt/intranet/pridatFotky">
-                <i class="fa fa-photo fa-2x"></i>
-                <span class="nav-text">Pridať fotky</span>
-            </a>
+        <?php
+        if (in_array("reporter", $roles) || in_array("editor", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatAktuality\">
+                    <i class=\"fa fa-font fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať aktuality</span>
+                </a>
+            </li>
+            ";
+        }
 
-        </li>
-        <li class="has-subnav active">
-            <a href="/uamt/intranet/pridatVidea">
-                <i class="fa fa-play-circle fa-2x"></i>
-                <span class="nav-text">Pridať videa</span>
-            </a>
-
-        </li>
-
+        if (in_array("reporter", $roles) || in_array("admin", $roles)) {
+            echo "
+            <li class=\"has-subnav\">
+                <a href=\"/uamt/intranet/pridatFotky\">
+                    <i class=\"fa fa-photo fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať fotky</span>
+                </a>
+            </li>
+            
+            <li class=\"has-subnav active\">
+                <a href=\"/uamt/intranet/pridatVidea\">
+                    <i class=\"fa fa-play-circle fa-2x\"></i>
+                    <span class=\"nav-text\">Pridať videa</span>
+                </a>
+            </li>
+            
+            ";
+        }
+        ?>
 
         <li>
             <a href="/uamt/intranet/logout.php">

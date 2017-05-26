@@ -110,6 +110,7 @@ foreach($result as $role)
             </a>
 
         </li>
+
         <?php
         if (in_array("reporter", $roles) || in_array("editor", $roles) || in_array("admin", $roles)) {
             echo "
