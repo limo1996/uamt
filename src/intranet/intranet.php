@@ -29,14 +29,17 @@ foreach($result as $role)
     <title>Intranet</title>
 
 
+
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
     <link href="../menu/menu2.css" type="text/css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
     <script src="../menu/menuScripts.js"></script>
 
     <style media="all">
@@ -48,8 +51,8 @@ foreach($result as $role)
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
-                class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-                class="icon-bar"></span></button>
+                    class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                    class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:purple;">UAMT - Intranet</p></div>
     <div class="nav-flags">
 
@@ -72,14 +75,20 @@ foreach($result as $role)
     </div>
 </nav>
 
-    <div id="nazov">
-        <h2><?php echo "Intranet" ?></h2>
-        <hr class="hr_nazov">
-    </div>
+<div id="nazov">
+    <h2><?php echo "Intranet" ?></h2>
+    <hr class="hr_nazov">
+</div>
 
 <nav class="main-menu">
     <ul>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text"> </span>
+            </a>
 
+        </li>
         <li class="has-subnav active">
             <a href="/uamt/intranet/intranet.php">
                 <i class="fa fa-home fa-2x"></i>
@@ -133,14 +142,15 @@ foreach($result as $role)
     </ul>
 </nav>
 
-
 <div class="container">
-            <h1> Welcum to intranet</h1>
-    <h1> Welcum to intranet</h1>
-    <h1> Welcum to intranet</h1>
-    <h1> Welcum to intranet</h1>
+            <h1 style="text-align: center; color: purple; font-family: Monospace;"> Vitajte v Intranete</h1>
+    <h2> Vitajte v Intranete</h2>
+    <h3 style="text-align: center; color: purple; font-family: Monospace;"> Vitajte v Intranete</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip: Na každej stránke v ľavo nájdeš rozšírujúce menu</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip2: Niekde je rozšírujúce menu reprezentované ikonou, po kliknutí sa zobrazí</h3>
 
-        <?php
+
+    <?php
         //if (in_array("admin", $roles))
         //    echo "";
         ?>
@@ -190,7 +200,6 @@ foreach($result as $role)
 
         </div>
 
-    </div>
     </div>
 
 

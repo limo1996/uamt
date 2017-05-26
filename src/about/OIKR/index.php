@@ -174,14 +174,14 @@ $text2 = $lan->getTextForPage('positions');
                 <a href="http://is.stuba.sk/">AIS STU</a>
             </div>
             <div class="col-sm-2 text-center">
-                <a href="http://aladin.elf.stuba.sk/rozvrh/ ">Rozvrh hodín FEI</a>
+                <a href="http://aladin.elf.stuba.sk/rozvrh/ "> <?php echo $text->timetable; ?></a>
             </div>
             <div class="col-sm-2 text-center">
                 <a href="http://elearn.elf.stuba.sk/moodle/  "> Moodle FEI</a>
 
             </div>
             <div class="col-sm-2 text-center">
-                <a href="https://www.jedalen.stuba.sk/WebKredit/"> Jedáleň STU </a>
+                <a href="https://www.jedalen.stuba.sk/WebKredit/"> <?php echo $text->cantine; ?> </a>
             </div>
 
 

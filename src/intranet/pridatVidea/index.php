@@ -81,7 +81,13 @@ foreach($result as $role)
 </div>
 
 <nav class="main-menu">
-    <ul>
+    <ul><li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text"> </span>
+            </a>
+
+        </li>
 
         <li class="has-subnav ">
             <a href="/uamt/intranet/intranet.php">

@@ -66,8 +66,15 @@ if(!$_SESSION['user']){
     <hr class="hr_nazov">
 </div>
 
+
 <nav class="main-menu">
-    <ul>
+    <ul><li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text"> </span>
+            </a>
+
+        </li>
 
         <li class="has-subnav">
             <a href="/uamt/intranet/intranet.php">
@@ -175,7 +182,7 @@ if(!$_SESSION['user']){
             <ul>
                 <li>Menu</li>
                 <li>Footer</li>
-                <li>Stránky - "Výskum" </li>
+                <li>Stránky - "Výskum", časť-"O Nás", "Štúdium" </li>
                 <li>Dizajn</li>
 
 

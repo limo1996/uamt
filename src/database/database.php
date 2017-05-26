@@ -62,11 +62,11 @@ class Database
         return $request->execute(array(':filterBy' => $filterBy, ':keyword' => $keyword)) ? $request->fetchAll() : null;
     }
 
-    function getEmployee($id, $name)
+    function getEmployee($id)
     {
-        $request = $this->conn->prepare("SELECT * FROM employees WHERE PHONE = :id AND SECOND_NAME = :name");
+        $request = $this->conn->prepare("SELECT * FROM employees WHERE ID = :id");
         $request->setFetchMode(PDO::FETCH_ASSOC);
-        return $request->execute(array(':id' => $id, ':name' => $name)) ? $request->fetchAll() : null;
+        return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
     }
 
     function getEmployeeByID($id)
@@ -126,6 +126,18 @@ class Database
         $request = $this->conn->prepare("SELECT * FROM video WHERE TYPE='propagácia' LIMIT 2");
         $request->setFetchMode(PDO::FETCH_ASSOC);
         return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function fetchVideoTypes() {
+        $request = $this->conn->prepare("SELECT TYPE FROM `video` GROUP by TYPE");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function insertVideo($name, $url, $type) {
+        $sql = "INSERT INTO `video` (`NAME`,`URL`,`TYPE`) VALUES (:name, :url, :type)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':name' => $name, ':url' => $url, ':type' => $type));
     }
 
     function fetchMedia()
@@ -208,6 +220,18 @@ class Database
         $sql = "SELECT * FROM photos";
         $request = $this->conn->prepare($sql);
         return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function getLatestFolder () {
+        $sql = "SELECT FOLDER FROM photos ORDER BY FOLDER desc LIMIT 1";
+        $request = $this->conn->prepare($sql);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function insertPhotos($date, $titleSK, $titleEN, $folder) {
+        $sql = "INSERT INTO `photos` (`Date`,`Title-SK`,`Title-EN`, `Folder`) VALUES (:date, :titleSK, :titleEN, :folder)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':date' => $date, ':titleSK' => $titleSK, ':titleEN' => $titleEN, ':folder' => $folder));
     }
 
     /************************* NEWS *********************************/

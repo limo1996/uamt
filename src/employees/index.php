@@ -232,7 +232,7 @@ $contentText = $lan->getTextForPage('staff');
             echo "<td>" . $employee['DEPARTMENT'] . "</td>";
             echo "<td>" . $employee['STAFF_ROLE'] . "</td>";
             echo "<td>" . str_replace(";", "<br>", $employee['FUNCTION']) . "</td>";
-            echo "<td><a href='employeeDetail.php?id=" . $employee['PHONE'] . "&name=".$employee['SECOND_NAME']."'><img src='icon_more.png' width='35' alt='more' /></a></td>";
+            echo "<td><a href='employeeDetail.php?id=" . $employee['ID']."'><img src='icon_more.png' width='35' alt='more' /></a></td>";
             echo "</tr>";
             //var_dump($employee);
             //echo "<br>";
@@ -248,46 +248,49 @@ $contentText = $lan->getTextForPage('staff');
                 <a href="http://is.stuba.sk/">AIS STU</a>
             </div>
             <div class="col-sm-2 text-center">
-                <a href="http://aladin.elf.stuba.sk/rozvrh/ ">Rozvrh hodín FEI</a>
+                <a href="http://aladin.elf.stuba.sk/rozvrh/ "> <?php echo $text->timetable; ?></a>
             </div>
             <div class="col-sm-2 text-center">
                 <a href="http://elearn.elf.stuba.sk/moodle/  "> Moodle FEI</a>
 
             </div>
             <div class="col-sm-2 text-center">
-                <a href="https://www.jedalen.stuba.sk/WebKredit/"> Jedáleň STU     </a>
+                <a href="https://www.jedalen.stuba.sk/WebKredit/"> <?php echo $text->cantine; ?> </a>
             </div>
 
 
-
             <div class="col-sm-2 text-center">
-                <a href="https://www.facebook.com/UAMTFEISTU"> Facebook    </a>
+                <a href="https://www.facebook.com/UAMTFEISTU"> Facebook </a>
             </div>
             <div class="col-sm-2 text-center">
-                <a href="https://www.youtube.com/channel/UCo3WP2kC0AVpQMIiJR79TdA"> Youtube    </a>
+                <a href="https://www.youtube.com/channel/UCo3WP2kC0AVpQMIiJR79TdA"> Youtube </a>
             </div>
         </div>
         <hr>
         <div class="container">
-            <div class="col-sm-1 text-align: center text-center">
+
+            <div class="col-sm-4 text-center">
+                © Copyright 2017. Všetky práva vyhradené.
             </div>
-            <div class="col-sm-2 text-align: centertext-center">
-                Jakub Lichman
+            <div class="col-sm-4 text-center">
+                Baka | Lukac | Lichman | Valasik | Smetanka
             </div>
-            <div class="col-sm-2 text-center">
-                Matus  Lukac
+
+            <div class="col-sm-4 text-center">
+
+                <?php
+                if($lang == 'sk')
+                    echo "<a href='index.php?lang=sk' style='color: yellow' > Slovensky jazyk  </a> | <a href='index.php?lang=en'>  English </a>";
+                else
+                    echo "<a href='index.php?lang=sk' > Slovensky jazyk  </a> | <a href='index.php?lang=en'  style='    color: yellow'>  English </a>";
+
+                ?>
             </div>
-            <div class="col-sm-2 text-center">
-                Tomas Baka
-            </div>
-            <div class="col-sm-2 text-center">
-                Jakub Smetanka
-            </div>
-            <div class="col-sm-2 text-center">
-                Adam Valasik
-            </div>
+
         </div>
+
     </div>
+
 </footer>
 <script src="../menu/jQueryScripts.js"></script>
 <script>
