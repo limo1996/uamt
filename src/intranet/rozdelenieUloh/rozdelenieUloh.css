@@ -3,3 +3,12 @@
     -webkit-transform:rotate(90deg); /* Chrome, Safari, Opera */
     transform:rotate(90deg); /* Standard syntax */
 }
+
+.person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+
+}
+.person:hover {
+    border-color: #CCBADC;
+}
