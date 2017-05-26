@@ -7,7 +7,7 @@ $(document).on('click', '.input-remove-row', function(){
 });
 
 $(function(){
-    $('.preview-add-button').click(function(){
+    $( ".photo_form" ).submit(function( e ) {
         var form_data = {};
 
         if ($( "#new_album" ).hasClass( "active" )) {
@@ -27,6 +27,15 @@ $(function(){
             $('<td class="input-'+type+'"></td>').html(value).appendTo(row);
         });
         $('.preview-table > tbody:last').append(row);
-        calc_total();
+
+        e.preventDefault();
     });
+});
+
+$(document).ready(function() {
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1 ) {
+        $(function() {
+            $( "#date" ).datepicker({ dateFormat: 'dd.mm.yy'});
+        });
+    }
 });

@@ -27,13 +27,14 @@ foreach($result as $role)
     <!-- Bootstrap -->
     <title>Intranet</title>
 
-
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
     <link href="../../menu/menu2.css" type="text/css" rel="stylesheet">
 
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
@@ -150,7 +151,7 @@ foreach($result as $role)
             </div>
             <div class="tab-content">
                 <div id="new_album" class="tab-pane panel panel-default active">
-                    <form method="post">
+                    <form class="photo_form" method="post">
                         <div class="panel-body form-horizontal new_album">
 
                             <div class="form-group">
@@ -183,7 +184,7 @@ foreach($result as $role)
                 </div>
 
                 <div id="old_album" class="tab-pane panel panel-default">
-                    <form method="post">
+                    <form class="photo" method="post">
                         <div class="panel-body form-horizontal old_album">
                             <div class="form-group">
                                 <label for="fileToUpload2" class="col-sm-3 control-label">Obrázok</label>
