@@ -16,6 +16,67 @@ $roles = array();
 foreach($result as $role)
     $roles[] = $role['ROLE'];
 //---------------------------------------------
+
+
+if(isset($_POST['add_new'])) {
+
+    $folder = $db->getLatestFolder();
+    foreach ($folder as $f) {
+        $folder = $f["FOLDER"];
+
+    }
+    $folder_number = substr($folder, -3);
+    $folder_number = $folder_number+1;
+    $folder_number = sprintf( 'events%03d', $folder_number );
+
+    if (!file_exists("../../activities/photos/$folder_number")) {
+        mkdir("../../activities/photos/$folder_number", 0777, true);
+        chmod("../../activities/photos/$folder_number", 0777);
+    }
+
+    $n_albumSK = $_POST['n_albumSK'];
+    $n_albumEN = $_POST['n_albumEN'];
+    $n_date = $_POST['date'];
+
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== false) {
+        $dt = explode( '-', $n_date );
+        $n_date = new DateTime($dt[0].'-'. $dt[1] .'-'. $dt[2]);
+    }
+    else {
+        $dt = explode( '.', $n_date );
+        $n_date = new DateTime($dt[2].'-'. $dt[1] .'-'. $dt[0]);
+    }
+     $n_date = $n_date->format('Y-m-d');
+
+    $target_dir = "../../activities/photos/$folder_number/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            chmod($target_file, 0777);
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+
+    $db->insertPhotos($n_date, $n_albumSK, $n_albumEN, $folder_number);
+
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -148,18 +209,15 @@ foreach($result as $role)
 
 
 <div class="container space">
-
-
-    <div class="row">
         <!-- panel preview -->
-        <div class="col-sm-5">
+        <div class="col-sm-8">
             <div id="tab" class="btn-group" data-toggle="buttons-radio">
                 <a href="#new_album" class="btn btn-large btn-info active" data-toggle="tab">Pridať do nového albumu</a>
                 <a href="#old_album" class="btn btn-large btn-info" data-toggle="tab">Pridať do existujúceho albumu</a>
             </div>
             <div class="tab-content">
                 <div id="new_album" class="tab-pane panel panel-default active">
-                    <form class="photo_form" method="post">
+                    <form class="photo_form" method="post" enctype="multipart/form-data">
                         <div class="panel-body form-horizontal new_album">
 
                             <div class="form-group">
@@ -169,9 +227,15 @@ foreach($result as $role)
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="n_album" class="col-sm-3 control-label">Album</label>
+                                <label for="n_albumSK" class="col-sm-3 control-label">Názov albumu [SK]</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="n_album" name="n_album" required>
+                                    <input type="text" class="form-control" id="n_albumSK" name="n_albumSK" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="n_albumEN" class="col-sm-3 control-label">Názov albumu [EN]</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="n_albumEN" name="n_albumEN" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -182,7 +246,7 @@ foreach($result as $role)
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 text-right">
-                                    <button type="submit" class="btn btn-default preview-add-button">
+                                    <button type="submit" name="add_new" class="btn btn-default preview-add-button">
                                         <span class="glyphicon glyphicon-plus"></span> Pridať
                                     </button>
                                 </div>
@@ -192,7 +256,7 @@ foreach($result as $role)
                 </div>
 
                 <div id="old_album" class="tab-pane panel panel-default">
-                    <form class="photo" method="post">
+                    <form class="photo_form" method="post" enctype="multipart/form-data">
                         <div class="panel-body form-horizontal old_album">
                             <div class="form-group">
                                 <label for="fileToUpload2" class="col-sm-3 control-label">Obrázok</label>
@@ -211,7 +275,7 @@ foreach($result as $role)
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 text-right">
-                                    <button type="submit" class="btn btn-default preview-add-button">
+                                    <button type="submit" name="add_old" class="btn btn-default preview-add-button">
                                         <span class="glyphicon glyphicon-plus"></span> Pridať
                                     </button>
                                 </div>
@@ -220,34 +284,7 @@ foreach($result as $role)
                     </form>
                 </div>
             </div>
-
-        </div> <!-- / panel preview -->
-        <div class="col-sm-7">
-            <h4>Súbory:</h4>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="table-responsive">
-                        <table class="table preview-table">
-                            <thead>
-                            <tr>
-                                <th>Obrázok</th>
-                                <th>Album</th>
-                                <th>Dátum</th>
-                            </tr>
-                            </thead>
-                            <tbody></tbody> <!-- preview content goes here-->
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <hr style="border:1px dashed #dddddd;">
-                    <button type="button" class="btn btn-primary btn-block">Pridať všetky fotky</button>
-                </div>
-            </div>
         </div>
-    </div>
 </div>
 
 <footer>
@@ -292,9 +329,6 @@ foreach($result as $role)
         </div>
 
     </div>
-    </div>
-
-
 
 </footer>
 <script src="../../menu/jQueryScripts.js"></script>
