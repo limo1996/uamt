@@ -183,7 +183,13 @@ if(isset($_POST['save']))
 
 <nav class="main-menu">
     <ul>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text"> </span>
+            </a>
 
+        </li>
         <li class="has-subnav">
             <a href="/uamt/intranet/intranet.php">
                 <i class="fa fa-home fa-2x"></i>

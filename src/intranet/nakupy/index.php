@@ -97,6 +97,13 @@ if(isset($_POST['Delete'])) {
 
 <nav class="main-menu">
     <ul>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text"> </span>
+            </a>
+
+        </li>
 
         <li class="has-subnav">
             <a href="/uamt/intranet/intranet.php">
