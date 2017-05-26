@@ -4,7 +4,8 @@ include_once ("../database/database.php");
 
 $lang = 'sk';
 $showAll = $_GET['ShowAll'];
-
+$count=$_GET['count'];
+$page=$_GET['page'];
 if (isset($_GET['lang']))
     $lang = $_GET['lang'];
 
@@ -12,34 +13,34 @@ $lan = new Text($lang);
 $text = $lan->getTextForPage('menu');
 $db = new Database();
 $date = date("Y-m-d");
-
-if(!isset($_GET['ShowAll'])) {
-    $count = $db->getCountOfActiveNews($lang, $date);
-
+//var_dump($_GET['ShowAll']);
+if(isset($_GET['ShowAll']) && $_GET['ShowAll']=='Yes') {
+    $count = $db->getCountOfNews($lang);
 }
 else{
-    $count = $db->getCountOfNews($lang);
-    $check=false;
-
+    $count = $db->getCountOfActiveNews($lang, $date);
 }
 $rec_limit=6;
 $rec_count= $count[0]["COUNT(Title)"];
-$str=ceil($rec_count/$rec_limit);
 
-if( isset($_GET{'page'} ) ) {
-    $page = $_GET{'page'} + 1;
+$str=ceil($rec_count/$rec_limit);
+//echo $rec_count;
+
+if(isset($_GET['page'])) {
+  // var_dump($_GET['page']);
+    $page = intval($_GET['page']);
     $offset = $rec_limit * $page ;
 }else {
     $page = 0;
     $offset = 0;
 }
 $left_rec = $rec_count - ($page * $rec_limit);
-if(!isset($_GET['ShowAll'])){
+if(isset($_GET['ShowAll']) && $_GET['ShowAll']=="Yes"){
+    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
 
-    $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
 }
 else {
-    $news=$db->fetchAllNewsByLang($lang,$offset,$rec_limit);
+    $news = $db->fetchAllActiveNewsByLang($lang, $offset, $rec_limit, $date);
 }
 
 
@@ -180,13 +181,24 @@ else {
         <div>
             <!-- <input type="text">-->
 
-            <form action="" method="post" class="form-horizontal">
+            <form action="index.php?lang" method="get" class="form-horizontal">
                 <div class="form-group">
                     <div class="checkbox col-sm-4">
                         <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" />Zobraz vsetko</label>
                         <input type="submit" class="btn btn-default navbar-btn" />
                     </div>
                 </div>
+            </form>
+            <form action="index.php?lang" method="get" class="form-horizontal">
+                <div class="form-group">
+                    <select name="category" class="form-control" id="category" >
+                        <option value="Oznamy">Oznamy</option>
+                        <option value="Propagácia">Propagácia</option>
+                        <option value="Zo života ústavu">Zo života ústavu</option>
+                    </select>
+                </div>
+            </form>
+
         </div>
     <?php
 
@@ -212,10 +224,11 @@ else {
     //var_dump($offset)
 
     echo "<ul class=pagination>";
-    for($i=1;$i<=$str;$i++){
-        $act=$i-2;
+    for($i=0;$i<$str;$i++){
+        $act=$i+1;
         $showAll = $_GET['ShowAll'];
-        echo "<li><a href =$_PHP_SELF?page=$act>$i</a></li>";
+
+        echo "<li><a href =index.php?lang=$lang&ShowAll=$showAll&page=$i>$act</a></li>";
     }
     echo "</ul>";
 
@@ -234,6 +247,7 @@ else {
             <button type="submit" class="btn btn-default navbar-btn" name="out">Odhlasit</button>
         </div>
     </form>
+
 
 </div>
 
