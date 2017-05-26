@@ -106,7 +106,7 @@ foreach ($result as $role)
 <nav class="main-menu">
     <ul>
         <li class="has-subnav">
-            <a href="/uamt/intranet/intranet.php">
+            <a href="#">
                 <i class="fa fa-list fa-2x"></i>
                 <span class="nav-text"> </span>
             </a>
@@ -128,28 +128,28 @@ foreach ($result as $role)
 
         </li>
         <li>
-            <a href="#">
+            <a href="/uamt/intranet/upravitProfil/">
                 <i class="fa fa-user fa-2x"></i>
                 <span class="nav-text">Upraviť profil</span>
             </a>
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/uamt/intranet/pridatAktuality">
                 <i class="fa fa-font fa-2x"></i>
                 <span class="nav-text">Pridať aktuality</span>
             </a>
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/uamt/intranet/pridatFotky">
                 <i class="fa fa-photo fa-2x"></i>
                 <span class="nav-text">Pridať fotky</span>
             </a>
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/uamt/intranet/pridatVidea">
                 <i class="fa fa-play-circle fa-2x"></i>
                 <span class="nav-text">Pridať videa</span>
             </a>
@@ -294,12 +294,11 @@ foreach ($result as $role)
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='index.php?lang=sk' style='color: white'> Slovenský jazyk</a>
+                Slovenský jazyk</a>
             </div>
 
         </div>
 
-    </div>
     </div>
 
 

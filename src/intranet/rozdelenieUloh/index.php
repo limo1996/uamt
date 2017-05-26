@@ -84,28 +84,28 @@ if(!$_SESSION['user']){
 
         </li>
         <li>
-            <a href="#">
+            <a href="/uamt/intranet/upravitProfil/">
                 <i class="fa fa-user fa-2x"></i>
                 <span class="nav-text">Upraviť profil</span>
             </a>
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/uamt/intranet/pridatAktuality">
                 <i class="fa fa-font fa-2x"></i>
                 <span class="nav-text">Pridať aktuality</span>
             </a>
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/uamt/intranet/pridatFotky">
                 <i class="fa fa-photo fa-2x"></i>
                 <span class="nav-text">Pridať fotky</span>
             </a>
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/uamt/intranet/pridatVidea">
                 <i class="fa fa-play-circle fa-2x"></i>
                 <span class="nav-text">Pridať videa</span>
             </a>
@@ -265,7 +265,7 @@ if(!$_SESSION['user']){
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovenský jazyk</a>
+                Slovenský jazyk
             </div>
 
         </div>

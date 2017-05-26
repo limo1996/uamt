@@ -48,6 +48,8 @@ if(isset($_POST['Delete'])) {
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=r4y29w5xcesgziqbk6k6sf1gmb3m9uz18g0cinyvy3n8sam4"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
 
+    <link href="../../menu/menu2.css" type="text/css" rel="stylesheet">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
@@ -75,7 +77,6 @@ if(isset($_POST['Delete'])) {
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navMenu">
-                <li><a href="/uamt/intranet"><i class="fa fa-home fa-1x"></i></></a></li>
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -83,7 +84,6 @@ if(isset($_POST['Delete'])) {
                 <li class="active"><a href="/uamt/intranet/nakupy/index.php">Nákupy</a></li>
                 <li><a href="/uamt/intranet/attendance/index.php">Dochádzka</a></li>
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
-                <li><a href="/uamt/" style="color:#0066cc"><i class="fa fa-flag fa-1x" style="color: #0066cc!important;"></i> Stránka</a></li>
 
             </ul>
         </div>
@@ -95,27 +95,62 @@ if(isset($_POST['Delete'])) {
     <hr class="hr_nazov">
 </div>
 
-    <div id="sidebar-wrapper" class="sidebar-toggle">
-        <ul class="sidebar-nav">
-            <br>
-            <li>
-                <a href="/uamt/intranet/logout.php">Odhlásiť sa</a>
-            </li>
-            <hr>
-            <li>
-                <a href="/uamt/intranet/upravitProfil/index.php">Upraviť profil</a>
-            </li>
-            <li>
-                <a href="/uamt/intranet/pridatAktuality/index.php">Pridať aktuality</a>
-            </li>
-            <li>
-                <a href="/uamt/intranet/pridatFotky/index.php">Pridať fotky</a>
-            </li>
-            <li>
-                <a href="/uamt/intranet/pridatVidea/index.php">Pridať videá</a>
-            </li>
-        </ul>
-    </div>
+<nav class="main-menu">
+    <ul>
+
+        <li class="has-subnav">
+            <a href="/uamt/intranet/intranet.php">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">Domov intranet</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/">
+                <i class="fa fa-flag fa-2x"></i>
+                <span class="nav-text">Domov UAMT</span>
+            </a>
+
+        </li>
+        <li>
+            <a href="/uamt/intranet/upravitProfil/">
+                <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">Upraviť profil</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/intranet/pridatAktuality">
+                <i class="fa fa-font fa-2x"></i>
+                <span class="nav-text">Pridať aktuality</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/intranet/pridatFotky">
+                <i class="fa fa-photo fa-2x"></i>
+                <span class="nav-text">Pridať fotky</span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/uamt/intranet/pridatVidea">
+                <i class="fa fa-play-circle fa-2x"></i>
+                <span class="nav-text">Pridať videa</span>
+            </a>
+
+        </li>
+
+
+        <li>
+            <a href="/uamt/intranet/logout.php">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 
 <div class="container">
     <?php
@@ -201,12 +236,11 @@ if(isset($_POST['Delete'])) {
             </div>
 
             <div class="col-sm-4 text-center">
-                <a href='../../../../../Desktop/Nový%20priečinok%20(3)/index.php?lang=sk' style='color: white' > Slovensky jazyk</a>
+                Slovenský jazyk
             </div>
 
         </div>
 
-    </div>
     </div>
 
 
