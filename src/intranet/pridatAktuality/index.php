@@ -38,9 +38,9 @@ foreach($result as $role)
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/mainStylesIntranet.css" type="text/css" rel="stylesheet">
     <link href="../../menu/menuStylesIntranet.css" type="text/css" rel="stylesheet">
-    <link href="../doktorandi/styles/styles.css" type="text/css" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
     <script src="../../menu/menuScripts.js"></script>
-    <script src="../doktorandi/script/script.js"></script>
+
 
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
@@ -50,15 +50,7 @@ foreach($result as $role)
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menuBar">
     <div class="navbar-header">
-
-        <a href="#" class="navbar-toggle sidebarmenu-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                 class="icon-bar"></span></button>
         <p class="navbar-brand" style="color:purple;">UAMT - Intranet</p></div>
@@ -69,7 +61,7 @@ foreach($result as $role)
     <div class="container">
         <div class="navbar-header"></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav nextto" id="navMenu">
+            <ul class="nav navbar-nav" id="navMenu">
                 <li><a href="/uamt/intranet/pedagogika/index.php">Pedagogika</a></li>
                 <li><a href="/uamt/intranet/doktorandi/index.php">Doktorandi</a></li>
                 <li><a href="/uamt/intranet/publikacie/index.php">Publikácie</a></li>
@@ -79,18 +71,11 @@ foreach($result as $role)
                 <li><a href="/uamt/intranet/rozdelenieUloh/index.php">Rozdelenie úloh</a></li>
 
             </ul>
-
-            <a href="#" class="navbar-toggle navbar-sidebar sidebarmenu-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
         </div>
     </div>
 </nav>
 
-<div id="intranet-wrapper">
+
     <div id="nazov">
         <h2><?php echo "Pridať aktuality" ?></h2>
         <hr class="hr_nazov">
@@ -153,7 +138,7 @@ foreach($result as $role)
     </nav>
 
 
-    <div class="container">
+    <div class="container space">
             <form  method="post" class ="form-vertical" enctype=multipart/form-data>
                 <div class="form-group col-sm-4">
                     <label for="title">Nadpis</label>
@@ -244,7 +229,7 @@ foreach($result as $role)
         </div>
 
     </div>
-    </div>
+
 
 
 
@@ -262,8 +247,9 @@ if(isset($_POST['add'])) {
     $datum = $_POST['datum'];
     $category = $_POST['category'];
     $jazyk = $_POST['jazyk'];
-
-    if(isset($_FILES["pic"])){
+    var_dump($_FILES["pic"]);
+    if(isset($_FILES["pic"]) && $_FILES["pic"]["name"]!=""){
+        echo "preslo cez podmienku";
         $filename = $_FILES["pic"];
         $file = $_FILES["pic"];
         $tmp_name = $file["tmp_name"];
@@ -280,6 +266,35 @@ if(isset($_POST['add'])) {
     }
 
 $db->insertNews($title,$desc,$datum,$category,$jazyk,$filename);
+    $id=$db->fetchIdOfNews($title,$datum);
+   $file="texty.txt";
+    chmod($file,0777);
+     /* $a =[
+            [
+            'ID' => $id[0]['ID'],
+            'Text' => $text
+            ]
+          ];*/
+
+     $cont=file_get_contents("texty.txt");
+     echo "Cont:".$cont;
+     $parts=explode("[",$cont);
+     echo "Part1".$parts[1];
+     $last=explode("]",$parts[1]);
+     echo "Last".$last[0];
+   $a->id=$id[0]['ID'];
+   $a->text=$text;
+   if($last[0]=="") {
+       $all = "[" . $last[0] . json_encode($a) . "]";
+   }
+   else{
+       $all = "[" . $last[0] .",". json_encode($a) . "]";
+   }
+   var_dump($parts);
+   var_dump($all);
+    //file_put_contents($file, "\n",FILE_APPEND);
+    file_put_contents($file,$all);
+
 
 /*    $subject = "UAMT-Newsletter";
 

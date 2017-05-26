@@ -216,6 +216,11 @@ class Database
         $request = $this->conn->prepare($sql);
         return $request->execute(array(':id' => $id)) ? $request->fetchAll() : null;
     }
+    function fetchIdOfNews($title,$active){
+        $sql = "SELECT ID FROM Aktuality WHERE Title= :title AND Active= :active";
+        $request = $this->conn->prepare($sql);
+        return $request->execute(array(':title' => $title, ':active' => $active)) ? $request->fetchAll() : null;
+    }
     function fetchAllNewsByLang($newsLang,$offset,$rec_limit)
     {
         $sql = "SELECT * FROM Aktuality WHERE Lang = :newsLang LIMIT $offset,$rec_limit";

@@ -148,9 +148,26 @@ $db = new Database();
     <?php
     $id=$_GET['id'];
     $article=$db->fetchNewsById($id);
-    var_dump($article);
+
     echo "<h2>".$article[0]['Title']."</h2>";
-    echo "<h4><i class='fa fa-calendar' aria-hidden=true></i> ".$article[0]['Active']." <i class='fa fa-newspaper-o' aria-hidden=true></i> ".$article[0]['Category']."</h4>"
+    echo "<h4><i class='fa fa-calendar' aria-hidden=true></i> ".$article[0]['Active']." <i class='fa fa-newspaper-o' aria-hidden=true></i> ".$article[0]['Category']."</h4>";
+    //echo "<img src=http://147.175.98.167/uamt/intranet/pridatAktuality/pic/".$article[0]['Pic']." class=img-responsive>";
+    $file="http://147.175.98.167/uamt/intranet/pridatAktuality/texty.txt";
+
+    $json= file_get_contents($file);
+   // var_dump($json);
+   // var_dump(json_decode($json,true));
+    $data = json_decode($json);
+    foreach ($data as $dat)
+    {
+        //var_dump($dat);
+
+        if ($dat->id==$id){
+
+            echo "<div class='col-sm-12 center'><article>".$dat->text."<article></div>";
+        }
+    }
+
     ?>
 
 </div>
