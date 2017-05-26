@@ -182,7 +182,7 @@ if(!$_SESSION['user']){
             <ul>
                 <li>Menu</li>
                 <li>Footer</li>
-                <li>Stránky - "Výskum" </li>
+                <li>Stránky - "Výskum", časť-"O Nás", "Štúdium" </li>
                 <li>Dizajn</li>
 
 

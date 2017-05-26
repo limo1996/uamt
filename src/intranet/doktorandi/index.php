@@ -243,6 +243,11 @@ if(isset($_POST['save']))
 
 
 <div class="container space">
+    <div class="col-sm-2">
+    </div>
+
+    <div class="col-sm-8">
+
     <div id="documents">
         <?php
         $categories = $db->getTabCategories($tab);
@@ -250,7 +255,7 @@ if(isset($_POST['save']))
 
         foreach($categories as $category) {
             $categ = $category['category'];
-            echo "<h3> $categ </h3>";
+            echo "<h3 style=\"text-align: center; color: purple; font-family: Monospace;\"> $categ </h3>";
 
             echo "<table id='$categ' class='table table-striped'>";
 
@@ -400,6 +405,9 @@ if(isset($_POST['save']))
         </div>";
     }
     ?>
+</div>
+</div>
+<div class="col-sm-2">
 </div>
 
 <footer>
