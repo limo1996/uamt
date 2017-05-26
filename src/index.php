@@ -165,6 +165,11 @@ function getYoutube($url)
     <hr class="hr_nazov">
 </div>
 
+<style>
+    iframe{
+        max-width: 100% !important;
+    }
+</style>
 <div id="content" >
     <div class="container">
         <h2> <?php echo $text2['1']; ?> </h2>
@@ -173,7 +178,7 @@ function getYoutube($url)
             <?php
 
                 for($i=0;$i<2;$i++) {
-                    echo "<div class=col-sm-6><iframe width='500' height='300' src='" . getYoutube($js[$i]['URL']) . "'></iframe></div>";
+                    echo "<div class='col-sm-6'><iframe width='500' height='300' src='" . getYoutube($js[$i]['URL']) . "'></iframe></div>";
                 }
              ?>
         </div>
@@ -204,7 +209,7 @@ function getYoutube($url)
         <br>
         <br>
 
-        <center><a href="http://www.automobilova-mechatronika.fei.stuba.sk/webstranka/"><img src="banner_dole.png" alt="Banner"  ></a></center>
+        <center><a href="http://www.automobilova-mechatronika.fei.stuba.sk/webstranka/"><img src="banner_dole.png" alt="Banner" class="img-responsive" ></a></center>
 
     </div>
 </div>

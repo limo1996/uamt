@@ -200,7 +200,7 @@ foreach ($result as $role)
                 echo '<div class="dropdown">
                 <button class="btn btn-lg dropdown-toggle" type="button" data-toggle="dropdown" id="exportBtn">Stiahni Pdf
                     <span class="caret"></span></button>
-                <ul class="dropdown-menu" style="margin-left: 25px; width: 300px;">
+                <ul class="dropdown-menu" style="position: relative; margin-left: 25px; width: 300px;">
                     <li><a href="javascript:exportPDF(0);">Doktorandi</a></li>
                     <li><a href="javascript:exportPDF(1);">Zamestnanci</a></li>
                 </ul>

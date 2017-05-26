@@ -207,8 +207,10 @@ $contentText = $lan->getTextForPage('staff');
         <br>
     </form>
 </div>
-<div class="container">
-
+<div class="col-sm-4"><div style="display: none;">hajbfhjabefjhb</div> </div>
+<br>
+<br>
+<div class="table-responsive container">
     <table class="table table-stripped table-bordered">
         <tr>
             <th><?php echo $contentText->name; ?></th>
