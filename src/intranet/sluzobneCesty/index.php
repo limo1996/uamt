@@ -256,7 +256,7 @@ if(isset($_POST['save']))
 
             foreach($categories as $category) {
                 $categ = $category['category'];
-                echo "<h3> $categ </h3>";
+                echo "<h3   style=\"text-align: center; color: purple; font-family: Monospace;\"> $categ </h3>";
 
                 echo "<table id='$categ' class='table table-striped'>";
 
