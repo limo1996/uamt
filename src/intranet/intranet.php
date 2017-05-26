@@ -147,8 +147,8 @@ foreach($result as $role)
     <h2> Vitajte v Intranete</h2>
     <h3 style="text-align: center; color: purple; font-family: Monospace;"> Vitajte v Intranete</h3>
     <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip: Stránky obsahujú obsah, ktorý je viditeľný iba pre príslušnú rolu užívateľa</h3>
-    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip: Napríklad, na každej stránke v ľavo nájdeš rozšírujúce menu (ak máš príslušnú rolu)</h3>
-    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip2: Niekde je rozšírujúce menu reprezentované ikonou, po kliknutí sa zobrazí</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip2: Napríklad, na každej stránke v ľavo nájdeš rozšírujúce menu (ak máš príslušnú rolu)</h3>
+    <h3 style=" text-align: center;font-size: 12px; font-weight: normal; font-style: italic; color: #999;">Tip3: Niekde je rozšírujúce menu reprezentované ikonou, po kliknutí sa zobrazí</h3>
 
 
     <?php
