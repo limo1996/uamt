@@ -65,18 +65,19 @@ if(isset($_POST['add_emp'])) {
     $new_staff_role = $_POST["staff_role"];
     $new_function = $_POST["function"];
 
-    if ($new_name != "" || $new_surname != "" || $new_ldaplogin = "") {
+    if ($new_name != "" || $new_surname != "") {
         $db->insertNewEmployee($new_name, $new_surname, $new_title1, $new_title2, $new_ldaplogin, $new_photo, $new_room, $new_phone, $new_department, $new_staff_role, $new_function);
 
+        if($new_ldaplogin != "") {
+            if (!empty($_POST['role_list']) && $new_ldaplogin != "") {
+                $new_id = $db->getEmployeeByLDAP($new_ldaplogin);
+                foreach ($new_id as $e)
+                    $new_id = $e["ID"];
+                echo $new_id;
 
-        if (!empty($_POST['role_list']) && $new_ldaplogin != "") {
-            $new_id = $db->getEmployeeByLDAP($new_ldaplogin);
-            foreach ($new_id as $e)
-                $new_id = $e["ID"];
-            echo $new_id;
-
-            foreach ($_POST['role_list'] as $check) {
-                $db->insertUserRoles($new_id, $check);
+                foreach ($_POST['role_list'] as $check) {
+                    $db->insertUserRoles($new_id, $check);
+                }
             }
         }
     }
@@ -123,9 +124,11 @@ if(isset($_POST['save_emp'])) {
     $update_function = $_POST["function"];
 
     $db->deleteUserRoles($id);
-    if(!empty($_POST['role_list'])) {
-        foreach ($_POST['role_list'] as $check) {
-            $db->insertUserRoles($id, $check);
+    if ($update_ldaplogin != "") {
+        if (!empty($_POST['role_list'])) {
+            foreach ($_POST['role_list'] as $check) {
+                $db->insertUserRoles($id, $check);
+            }
         }
     }
 
@@ -322,14 +325,14 @@ if(isset($_POST['save_emp'])) {
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="name">Meno</label>
                             <div class="col-md-9">
-                                <input id="name" name="name" type="text" placeholder="Meno" value="<?php echo $name;?>" class="form-control">
+                                <input id="name" name="name" type="text" placeholder="Meno" value="<?php echo $name;?>" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="surname">Priezvisko</label>
                             <div class="col-md-9">
-                                <input id="surname" name="surname" type="text" placeholder="Priezvisko" value="<?php echo $surname;?>" class="form-control">
+                                <input id="surname" name="surname" type="text" placeholder="Priezvisko" value="<?php echo $surname;?>" class="form-control" required>
                             </div>
                         </div>
 
@@ -486,7 +489,7 @@ if(isset($_POST['save_emp'])) {
                             echo "
                                 <div class=\"form-group\">
                                     <div class=\"col-md-12 text-right\">
-                                        <button type=\"submit\" name='save_emp' class=\"btn btn-success active\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť</button>
+                                        <button type=\"submit\" name='save_emp' class=\"btn btn-success active\"><span class=\"glyphicon glyphicon-ok\"></span> Uložiť zmeny</button>
                                     </div>
                                 </div>
                                 ";
@@ -495,7 +498,7 @@ if(isset($_POST['save_emp'])) {
                             echo "
                                 <div class=\"form-group\">
                                     <div class=\"col-md-12 text-right\">
-                                        <button type=\"submit\" name='add_emp' class=\"btn btn-success active\"><span class=\"glyphicon glyphicon-ok\"></span> Pridať</button>
+                                        <button type=\"submit\" name='add_emp' class=\"btn btn-success active\"><span class=\"glyphicon glyphicon-plus\"></span> Pridať zamestnanca</button>
                                     </div>
                                 </div>
                                 ";

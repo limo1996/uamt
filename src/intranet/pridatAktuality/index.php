@@ -187,7 +187,11 @@ foreach($result as $role)
                     <textarea class="form-control" rows="10" id="text" name="text"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-default" name="add">Pridat</button>
+                <div class="col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success" name="add">
+                        <span class="glyphicon glyphicon-plus"></span> Pridať aktualitu
+                    </button>
+                </div>
 
             </form>
 

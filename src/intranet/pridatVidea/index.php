@@ -157,9 +157,11 @@ if(isset($_POST['add_video'])) {
 
 
 <div class="container space">
+    <div class="col-sm-2">
+    </div>
     <div class="col-sm-8">
         <br>
-            <div id="new_video" class="tab-pane panel panel-default">
+            <div id="new_video" class="tab-pane panel">
                 <form id="video_form" method="post" enctype="multipart/form-data">
                     <div class="panel-body form-horizontal">
                         <div class="form-group">
@@ -192,7 +194,7 @@ if(isset($_POST['add_video'])) {
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 text-right">
-                                <button type="submit" name="add_video" class="btn btn-default preview-add-button">
+                                <button type="submit" name="add_video" class="btn btn-success preview-add-button">
                                     <span class="glyphicon glyphicon-plus"></span> Pridať video
                                 </button>
                             </div>

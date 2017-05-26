@@ -235,6 +235,8 @@ if(isset($_POST['add_old'])) {
 
 
 <div class="container space">
+    <div class="col-sm-2">
+    </div>
         <!-- panel preview -->
         <div class="col-sm-8">
             <div id="tab" class="btn-group" data-toggle="buttons-radio">
@@ -272,8 +274,8 @@ if(isset($_POST['add_old'])) {
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 text-right">
-                                    <button type="submit" name="add_new" class="btn btn-default preview-add-button">
-                                        <span class="glyphicon glyphicon-plus"></span> Pridať
+                                    <button type="submit" name="add_new" class="btn btn-success preview-add-button">
+                                        <span class="glyphicon glyphicon-plus"></span> Pridať fotku
                                     </button>
                                 </div>
                             </div>
@@ -307,8 +309,8 @@ if(isset($_POST['add_old'])) {
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 text-right">
-                                    <button type="submit" name="add_old" class="btn btn-default preview-add-button">
-                                        <span class="glyphicon glyphicon-plus"></span> Pridať
+                                    <button type="submit" name="add_old" class="btn btn-success preview-add-button">
+                                        <span class="glyphicon glyphicon-plus"></span> Pridať fotku
                                     </button>
                                 </div>
                             </div>
