@@ -128,6 +128,18 @@ class Database
         return $request->execute() ? $request->fetchAll() : null;
     }
 
+    function fetchVideoTypes() {
+        $request = $this->conn->prepare("SELECT TYPE FROM `video` GROUP by TYPE");
+        $request->setFetchMode(PDO::FETCH_ASSOC);
+        return $request->execute() ? $request->fetchAll() : null;
+    }
+
+    function insertVideo($name, $url, $type) {
+        $sql = "INSERT INTO `video` (`NAME`,`URL`,`TYPE`) VALUES (:name, :url, :type)";
+        $request = $this->conn->prepare($sql);
+        $request->execute(array(':name' => $name, ':url' => $url, ':type' => $type));
+    }
+
     function fetchMedia()
     {
         $request = $this->conn->prepare("SELECT * FROM media");
