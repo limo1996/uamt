@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$triedToLogIn = false;
+
 if(isset($_SESSION['user']))   // Checking whether the session is already there or not if
     // true then header redirect it to the home page directly
 {
@@ -18,6 +20,7 @@ $text = $lan->getTextForPage('menu');
 
 if(isset($_POST['Login']))   // it checks whether the user clicked login button or not
 {
+    $triedToLogIn = true;
     $ldap_server = "ldap.stuba.sk";
 
     $username = $_POST["Username"];
@@ -29,42 +32,33 @@ if(isset($_POST['Login']))   // it checks whether the user clicked login button 
 
         // bind to ldap connection
         if (($bind = @ldap_bind($connect)) == false) {
-            print "bind:__FAILED__<br>\n";
-            echo "bad";
-        }
 
+        }
         // search for user
         else if (($res_id = ldap_search($connect, "dc=stuba, dc=sk", "uid=$username")) == false) {
-            print "failure: search in LDAP-tree failed<br>";
-            echo "bad";
-        }
 
+        }
         else if (ldap_count_entries($connect, $res_id) != 1) {
-            print "failure: username $username found more than once<br>\n";
-            echo "bad";
-        }
 
+        }
         else if (($entry_id = ldap_first_entry($connect, $res_id)) == false) {
-            print "failur: entry of searchresult couln't be fetched<br>\n";
-            echo "bad";
-        }
 
+        }
         else if (($user_dn = ldap_get_dn($connect, $entry_id)) == false) {
-            print "failure: user-dn coulnd't be fetched<br>\n";
-            echo "bad";
-        }
 
+        }
         else if (($link_id = ldap_bind($connect, $user_dn, $password)) == false) {
-            print "failure: username, password didn't match: $user_dn<br>\n";
-            echo "bad";
+
         }
         else {
-            // TODO: dorobit prava pre roznych uzivatelov
-            $_SESSION['user'] = $username;
-            echo '<script type="text/javascript"> window.open("intranet.php","_self");</script>';  //  On Successful Login redirects to home.php
-            //header("Location:intranet.php");
-            exit;
-            echo "good";
+            $db = new Database();
+            $employees = $db->fetchEmployees();
+            foreach($employees as $employee) {
+                if ($username == $employee["LDAPLOGIN"]) {
+                    $_SESSION['user'] = $username;
+                    echo '<script type="text/javascript"> window.open("intranet.php","_self");</script>';  //  On Successful Login redirects to home.php
+                }
+            }
 
         }
     } else { // no conection to ldap server
@@ -88,8 +82,6 @@ if(isset($_POST['Login']))   // it checks whether the user clicked login button 
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <link href="loginStyles.css" type="text/css" rel="stylesheet"/>
-
-    <link href="menu/menu2.css" type="text/css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -230,6 +222,16 @@ if(isset($_POST['Login']))   // it checks whether the user clicked login button 
             <button class="btn btn-lg btn-primary btn-block"  name="Login" value="Login" type="Submit">Prihlásiť sa</button>
         </form>
     </div>
+
+    <?php
+    if ($triedToLogIn == true) {
+        echo "
+        <div class=\"alert alert-danger\">
+            <strong>Problém!</strong> Nesprávne meno alebo heslo, alebo máte nedostatočné práva na prihlásenie
+        </div>
+        ";
+    }
+    ?>
 
 </div>
 
