@@ -39,9 +39,11 @@ $contentText = $lan->getTextForPage('staff');
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <title>Final project</title>
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">

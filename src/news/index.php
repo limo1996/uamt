@@ -34,7 +34,7 @@ else{
 }
 $rec_limit=6;
 $rec_count= $count[0]["COUNT(Title)"];
-echo $rec_count;
+
 $str=ceil($rec_count/$rec_limit);
 
 
@@ -82,7 +82,9 @@ else {
 
 
     <!-- Latest compiled JavaScript -->
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <style media="all">
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
     </style>
@@ -199,31 +201,38 @@ else {
 <div class="container">
         <div>
             <!-- <input type="text">-->
-
-            <form action="index.php" method="get" class="form-horizontal">
+            <div class="text-center col-sm-12">
+            <form action="index.php" method="get" class="form-horizontal letter">
                 <div class="form-group">
-                    <div class="checkbox col-sm-4">
-                        <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" <?php if($showAll == 'Yes') echo 'checked';?>/>Zobraz vsetko</label>
-                        <select name="category" class="form-control" id="category" >
+                    <div class="checkbox col-sm-8">
+                        <label><input type="checkbox" id="ShowAll" name="ShowAll" value="Yes" <?php if($showAll == 'Yes') echo 'checked';?>/></label>
+
                             <?php if($lang=='sk') echo"
+                            <select name=category class=form-control id=category >
                             <option value=>Vyber</option>
                             <option value=Oznamy>Oznamy</option>
                             <option value=Propagácia>Propagácia</option>
-                            <option value=Zo života ústavu>Zo života ústavu</option>";
+                            <option value=Zo života ústavu>Zo života ústavu</option>
+                            </select>
+                        <button type=submit class='btn btn-default navbar-btn' value= $lang;>Poslať</button>";
+
                             else{
                                 echo"
+                            <select name=category class=form-control id=category >
                             <option value=>Chose</option>
                             <option value=Announcement>Announcement</option>
                             <option value=Propagation>Propagation</option>
-                            <option value=From Department>From Department</option>";
-                            }
-                            ?>
+                            <option value=From Department>From Department</option>
+                            
+                    
                         </select>
-                        <button type="submit" class="btn btn-default navbar-btn" value="<?php echo $lang; ?>">Poslať</button>
+                        <button type=submit class='btn btn-default navbar-btn' value= $lang;>Send</button>";
+                        }
+                            ?>
                     </div>
                 </div>
             </form>
-
+            </div>
 
         </div>
     <?php
@@ -249,6 +258,35 @@ else {
     echo "</ul>";*/
     //var_dump($offset)
 
+
+
+
+        ?>
+
+    <form class="form-vertical letter" method="post">
+        <div class="form-group" id="letter"><h5>Newsletter</h5>
+            <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
+            <!--<label for="sel1">(select one):</label>-->
+            <select class="form-control" name="choice" id="sel1">
+                <option>EN</option>
+                <option>SK</option>
+            </select>
+
+            <?php if($lang=='sk'){
+
+                echo "<button type=submit class='btn btn-default navbar-btn' name=in >Prihlasiť</button>
+            <button type=submit class='btn btn-default navbar-btn' name=out>Odhlasiť</button>";
+            }
+            else{
+                echo "<button type=submit class='btn btn-default navbar-btn' name=in >Sign in</button>
+            <button type=submit class='btn btn-default navbar-btn' name=out>Sign out</button>";
+            }
+
+
+            ?>
+        </div>
+    </form>
+    <?php
     echo "<ul class=pagination>";
     for($i=0;$i<$str;$i++){
         $act=$i+1;
@@ -257,23 +295,7 @@ else {
         echo "<li><a href =index.php?lang=$lang&ShowAll=$showAll&page=$i&category=$cat>$act</a></li>";
     }
     echo "</ul>";
-
-
-        ?>
-
-    <form class="form-vertical letter" method="post">
-        <div class="form-group" id="letter">
-            <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Email">
-            <!--<label for="sel1">(select one):</label>-->
-            <select class="form-control" name="choice" id="sel1">
-                <option>EN</option>
-                <option>SK</option>
-            </select>
-            <button type="submit" class="btn btn-default navbar-btn" name="in" >Prihlasit</button>
-            <button type="submit" class="btn btn-default navbar-btn" name="out">Odhlasit</button>
-        </div>
-    </form>
-
+    ?>
 
 </div>
 

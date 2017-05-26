@@ -102,8 +102,9 @@ usort($allRows, "cmp");
 <head>
     <link href="detailStyle.css" type="text/css" rel="stylesheet"/>
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../menu/menuStyles.css" type="text/css" rel="stylesheet">
     <link href="../css/mainStyles.css" type="text/css" rel="stylesheet">
