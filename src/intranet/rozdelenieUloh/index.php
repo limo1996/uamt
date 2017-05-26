@@ -161,10 +161,10 @@ if(!$_SESSION['user']){
         <div class="col-sm-6">
             <h4>Adam Valašík</h4>
             <ul>
-                <li>Zodpovedný: 			doc. Ing. Vladimír Kutiš, PhD.</li>
-                <li>Hodnotenie predmetu: 		klasifikovaný zápočet</li>
-                <li>Štandardný čas plnenia: 	3. roč. bakalárskeho štúdia, zimný semester</li>
-
+                <li>Intranet - roly užívateľov</li>
+                <li>Dokumenty a nákupy</li>
+                <li>Pridávanie fotiek, videí</li>
+                <li>Úprava profilu</li>
             </ul>
         </div>
     </div>
