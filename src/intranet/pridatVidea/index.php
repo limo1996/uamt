@@ -16,6 +16,19 @@ $roles = array();
 foreach($result as $role)
     $roles[] = $role['ROLE'];
 //---------------------------------------------
+
+if(isset($_POST['add_video'])) {
+    $new_name = $_POST['video_name'];
+    $new_url = $_POST['link'];
+    $new_categ = $_POST['category'];
+
+    $db->insertVideo($new_name, $new_url, $new_categ);
+    header("Location:index.php");
+}
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +157,50 @@ foreach($result as $role)
 
 
 <div class="container space">
+    <div class="col-sm-8">
+        <br>
+            <div id="new_video" class="tab-pane panel panel-default">
+                <form id="video_form" method="post" enctype="multipart/form-data">
+                    <div class="panel-body form-horizontal">
+                        <div class="form-group">
+                            <label for="video_name" class="col-sm-3 control-label">Názov videa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="video_name" name="video_name" required>
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="link" class="col-sm-3 control-label">URL</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="link" name="link" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category" class="col-sm-3 control-label">Kategória</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="category" name="category" title="Výber kategórie" required>
+                                    <?php
+                                    $videos = $db->fetchVideoTypes();
+                                    foreach ($videos as $v) {
+                                        $type = $v["TYPE"];
+                                        echo "<option value='$type'> $type</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" name="add_video" class="btn btn-default preview-add-button">
+                                    <span class="glyphicon glyphicon-plus"></span> Pridať video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
 </div>
 
 <footer>
