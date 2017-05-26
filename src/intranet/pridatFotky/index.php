@@ -272,13 +272,13 @@ if(isset($_POST['add_old'])) {
                             <div class="form-group">
                                 <label for="n_albumSK" class="col-sm-3 control-label">Názov albumu [SK]</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="n_albumSK" name="n_albumSK" required>
+                                    <input type="text" class="form-control" id="n_albumSK" name="n_albumSK" maxlength="50" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="n_albumEN" class="col-sm-3 control-label">Názov albumu [EN]</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="n_albumEN" name="n_albumEN" required>
+                                    <input type="text" class="form-control" id="n_albumEN" name="n_albumEN" maxlength="50" required>
                                 </div>
                             </div>
                             <div class="form-group">

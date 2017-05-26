@@ -25,8 +25,8 @@ $result = $db->getUserRoles($_SESSION['user']);
 // zistenie roly
 //---------------------------------------------
 $roles = array();
-foreach($result as $role)
-    $roles[] = $role['ROLE'];
+foreach($result as $r)
+    $roles[] = $r['ROLE'];
 //---------------------------------------------
 
 foreach ($result as $role)
